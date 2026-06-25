@@ -2,6 +2,7 @@ import os
 import requests
 import feedparser
 from datetime import datetime
+from google import genai
 
 FEISHU_WEBHOOK_URL = os.getenv("FEISHU_WEBHOOK_URL")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -49,45 +50,29 @@ def summarize_with_gemini(news):
     ])
 
     prompt = f"""
-You are a sports retail industry analyst.
+你是一名体育零售行业分析师。请基于以下新闻，生成一份中英文行业晨报。
 
-Please create a bilingual Chinese-English morning brief based on the following news.
+要求：
+1. 选择最重要的 5 条新闻。
+2. 每条保留英文原标题。
+3. 每条写一段自然中文摘要。
+4. 每条补充“对迪卡侬的启示”。
+5. 最后用 3 个 bullet 总结今日行业趋势。
+6. 语言简洁、专业、有 business insight。
+7. 保留每条新闻链接。
 
-Requirements:
-1. Select the top 5 most relevant stories.
-2. Keep the original English title.
-3. Write a natural Chinese summary for each story.
-4. Add a short "Why it matters for Decathlon" insight in Chinese.
-5. End with a 3-bullet trend summary in Chinese.
-6. Keep the tone concise, professional, and business-oriented.
-
-News:
+新闻：
 {news_text}
 """
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+    client = genai.Client(api_key=GEMINI_API_KEY)
 
-    payload = {
-        "contents": [
-            {
-                "parts": [
-                    {"text": prompt}
-                ]
-            }
-        ]
-    }
-
-    response = requests.post(
-        url,
-        params={"key": GEMINI_API_KEY},
-        json=payload,
-        timeout=60
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt
     )
 
-    response.raise_for_status()
-    data = response.json()
-
-    return data["candidates"][0]["content"]["parts"][0]["text"]
+    return response.text
 
 def send_to_feishu(text):
     payload = {
