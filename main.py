@@ -52,7 +52,7 @@ def summarize_with_gemini(news):
         for item in news
     ])
 
-       prompt = f"""
+    prompt = f"""
 你是一名服务于迪卡侬中国数字化与电商团队的体育零售行业情报分析师。
 
 请基于以下新闻，生成一份中文为主、保留英文标题的行业情报简报。
