@@ -3,7 +3,8 @@ import requests
 import feedparser
 from datetime import datetime
 
-WEBHOOK_URL = os.getenv("FEISHU_WEBHOOK_URL")
+FEISHU_WEBHOOK_URL = os.getenv("FEISHU_WEBHOOK_URL")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 FEEDS = {
     "Retail Dive": "https://www.retaildive.com/feeds/news/",
@@ -35,10 +36,58 @@ def fetch_news():
                 results.append({
                     "source": source,
                     "title": title,
+                    "summary": summary,
                     "link": link
                 })
 
-    return results[:10]
+    return results[:12]
+
+def summarize_with_gemini(news):
+    news_text = "\n\n".join([
+        f"Source: {item['source']}\nTitle: {item['title']}\nSummary: {item['summary']}\nLink: {item['link']}"
+        for item in news
+    ])
+
+    prompt = f"""
+You are a sports retail industry analyst.
+
+Please create a bilingual Chinese-English morning brief based on the following news.
+
+Requirements:
+1. Select the top 5 most relevant stories.
+2. Keep the original English title.
+3. Write a natural Chinese summary for each story.
+4. Add a short "Why it matters for Decathlon" insight in Chinese.
+5. End with a 3-bullet trend summary in Chinese.
+6. Keep the tone concise, professional, and business-oriented.
+
+News:
+{news_text}
+"""
+
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent"
+
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt}
+                ]
+            }
+        ]
+    }
+
+    response = requests.post(
+        url,
+        params={"key": GEMINI_API_KEY},
+        json=payload,
+        timeout=60
+    )
+
+    response.raise_for_status()
+    data = response.json()
+
+    return data["candidates"][0]["content"]["parts"][0]["text"]
 
 def send_to_feishu(text):
     payload = {
@@ -48,26 +97,18 @@ def send_to_feishu(text):
         }
     }
 
-    response = requests.post(WEBHOOK_URL, json=payload)
+    response = requests.post(FEISHU_WEBHOOK_URL, json=payload, timeout=30)
     print(response.status_code)
     print(response.text)
 
-def format_message(news):
+if __name__ == "__main__":
     today = datetime.now().strftime("%Y-%m-%d")
+    news = fetch_news()
 
     if not news:
-        return f"🏃 体育零售行业日报 | {today}\n\n今天暂时没有抓到匹配新闻。"
+        message = f"🏃 Sports Retail Intelligence Brief | {today}\n\n今天没有抓到相关新闻。"
+    else:
+        ai_summary = summarize_with_gemini(news)
+        message = f"🏃 Sports Retail Intelligence Brief | {today}\n\n{ai_summary}"
 
-    lines = [f"🏃 体育零售行业日报 | {today}\n"]
-
-    for i, item in enumerate(news, 1):
-        lines.append(
-            f"{i}. 【{item['source']}】{item['title']}\n{item['link']}\n"
-        )
-
-    return "\n".join(lines)
-
-if __name__ == "__main__":
-    news = fetch_news()
-    message = format_message(news)
     send_to_feishu(message)
