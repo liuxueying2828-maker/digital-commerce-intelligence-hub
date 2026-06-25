@@ -65,7 +65,7 @@ News:
 {news_text}
 """
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
 
     payload = {
         "contents": [
