@@ -134,9 +134,21 @@ if __name__ == "__main__":
     news = fetch_news()
 
     if not news:
-        message = f"🏃 Sports Retail Intelligence Brief | {today}\n\n今天没有抓到相关新闻。"
+        message = f"""==================================================
+Sports Retail Intelligence Brief
+Date: {today}
+==================================================
+
+今天没有抓到相关新闻。
+"""
     else:
         ai_summary = summarize_with_gemini(news)
-        message = f"🏃 Sports Retail Intelligence Brief\n📅 {today}\n\n{ai_summary}"
+        message = f"""==================================================
+Sports Retail Intelligence Brief
+Date: {today}
+==================================================
+
+{ai_summary}
+"""
 
     send_to_feishu(message)
