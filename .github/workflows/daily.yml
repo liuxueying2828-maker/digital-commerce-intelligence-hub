@@ -1,4 +1,4 @@
-name: Daily News Push
+name: Digital Commerce Intelligence Brief
 
 'on':
   workflow_dispatch:
@@ -6,7 +6,7 @@ name: Daily News Push
     - cron: "50 3 * * *"
 
 jobs:
-  push-news:
+  push-intelligence-brief:
     runs-on: ubuntu-latest
 
     steps:
