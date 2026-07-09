@@ -5,9 +5,17 @@ name: Digital Commerce Intelligence Brief
   schedule:
     - cron: "50 3 * * *"
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   push-intelligence-brief:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repo
@@ -21,8 +29,21 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Run script
         env:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         run: python main.py
+
+      - name: Upload dashboard artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+
+      - name: Deploy dashboard to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

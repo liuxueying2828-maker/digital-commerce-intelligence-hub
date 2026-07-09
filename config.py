@@ -5,8 +5,9 @@ PROJECT_NAME = "Digital Commerce Intelligence Hub"
 
 BASE_DIR = Path(__file__).resolve().parent
 MANUAL_INPUT_PATH = BASE_DIR / "manual_sources" / "daily_input.md"
+HTML_OUTPUT_PATH = BASE_DIR / "output" / "index.html"
 
-MAX_ITEMS_FOR_GEMINI = 28
+MAX_ITEMS_FOR_GEMINI = 24
 RSS_ITEMS_PER_FEED = 8
 GOOGLE_NEWS_ITEMS_PER_QUERY = 6
 

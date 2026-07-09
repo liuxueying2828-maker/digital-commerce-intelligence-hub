@@ -1,23 +1,21 @@
 # Digital Commerce Intelligence Hub
 
-An AI intelligence workflow for Decathlon China DTC / Digital Commerce opportunity discovery.
+An AI intelligence dashboard for Decathlon China DTC / Digital Commerce opportunity discovery.
 
-This project has been upgraded from a simple news push bot into an industry intelligence system:
+This project has been upgraded from a simple news push bot into a web-based intelligence dashboard:
 
-GitHub Actions -> Python source collectors -> Unified Information Pool -> Gemini analysis -> Feishu text push
+GitHub Actions -> Python source collectors -> Unified Information Pool -> Gemini JSON analysis -> HTML Dashboard -> GitHub Pages + Feishu link push
 
 ## What It Does
 
-The system collects external and manual signals, then asks Gemini to produce an Executive Intelligence Brief focused on:
+The system collects external signals, then asks Gemini to produce short structured dashboard content focused on:
 
-- Business Signals
-- AI & Technology Trends
-- Platform Strategy Changes
-- Retail & Commerce Trends
-- DTC Opportunity Implications
-- Recommended Actions
+- Platform Watch
+- AI Watch
+- Retail Watch
+- One Thing Worth Watching
 
-It is designed for Decathlon China DTC / Digital Commerce / E-commerce teams, with special attention to AI, CRM, membership, retail media, omnichannel, store digitization, supply chain, personalization, and China platform ecosystem changes.
+The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes.
 
 ## Information Sources
 
@@ -27,16 +25,9 @@ Automatic sources:
 - Google News RSS keyword searches
 - Official blogs
 
-Manual sources:
+Manual sources are kept in the codebase for future use, but this dashboard stage does not include manual input in the daily run.
 
-- `manual_sources/daily_input.md`
-- WeChat articles copied manually
-- Industry report summaries
-- JD / Alibaba / ByteDance official updates
-- Leader or mentor feedback
-- Meeting notes
-
-Future sources can be added as new modules under `sources/`, such as PDF, Feishu Docs, or internal business data.
+Future sources can be added as new modules under `sources/`, such as manual notes, PDF, Feishu Docs, or internal business data.
 
 ## Project Structure
 
@@ -60,20 +51,28 @@ Future sources can be added as new modules under `sources/`, such as PDF, Feishu
 │   ├── prompt.py
 │   └── gemini.py
 └── output/
-    └── feishu.py
+    ├── feishu.py
+    ├── html.py
+    └── index.html
 ```
 
-## Manual Input
+## Dashboard Output
 
-Paste high-priority manual content into:
+Running the script generates:
 
 ```text
-manual_sources/daily_input.md
+output/index.html
 ```
 
-If the file is empty, the system skips it without error.
+GitHub Actions publishes this file to GitHub Pages.
 
-Manual input is treated as a high-priority Internal Signal in the Unified Information Pool.
+Feishu only receives a short message:
+
+```text
+Digital Commerce Intelligence 已更新
+今日重点：...
+查看完整页面：...
+```
 
 ## GitHub Secrets
 
@@ -90,8 +89,11 @@ The API keys are loaded from environment variables. Do not hard-code them in the
 pip install -r requirements.txt
 export GEMINI_API_KEY="your-gemini-api-key"
 export FEISHU_WEBHOOK_URL="your-feishu-webhook-url"
+export DASHBOARD_URL="https://your-name.github.io/your-repo/"
 python main.py
 ```
+
+Local output will be written to `output/index.html`.
 
 ## GitHub Actions
 
@@ -99,5 +101,10 @@ The workflow supports:
 
 - Manual run through `workflow_dispatch`
 - Daily scheduled run through cron in UTC
+- GitHub Pages deployment from `output/index.html`
+
+Before the first deployment, set repository Pages source to GitHub Actions in GitHub:
+
+Settings -> Pages -> Build and deployment -> Source -> GitHub Actions
 
 See `.github/workflows/daily.yml`.

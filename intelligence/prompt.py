@@ -1,78 +1,62 @@
 from datetime import datetime
 
 
-def build_executive_brief_prompt(items):
+def build_dashboard_prompt(items):
     information_pool = _format_information_pool(items)
 
     return f"""
-你是一名服务于 Decathlon China DTC / Digital Commerce / E-commerce 团队的行业情报分析师，也是一位理解中国互联网平台、零售数字化和 AI 技术趋势的战略顾问。
+你是一名服务于 Decathlon China DTC / Digital Commerce / E-commerce 团队的行业情报分析师。
 
 项目名称：Digital Commerce Intelligence Hub
 
-你的任务不是总结新闻，而是从 Unified Information Pool 中识别对 DTC / Digital Commerce 有价值的趋势信号和机会点。
+你的任务不是写日报文章，而是从 Unified Information Pool 中提炼适合 Executive Dashboard 展示的短趋势信号。
 
-信息可能来自 RSS、Google News、官方 Blog、手动复制的微信公众号/行业报告摘要/会议反馈/Leader 观点。你不需要区分信息来源是否自动化，所有内容都应被视为可供分析的外部或内部信号。
+本阶段只关注外部公开信息源，不处理 manual input。
 
 请严格遵守：
-- 使用中文输出，必要时保留英文公司名、产品名和原始标题。
+- 只输出合法 JSON，不要输出 Markdown，不要输出解释文字。
 - 不要编造信息池中没有的事实。
-- 可以基于事实做清晰的商业推断，但必须避免过度确定。
-- 关注 Decathlon China DTC、会员、CRM、电商、全渠道、零售媒体、门店数字化、AI 应用和平台战略变化。
-- 不要做普通新闻摘要；每一段都要回答“这意味着什么”。
-- 手动输入、Leader/Mentor 反馈、行业报告摘要的优先级高于普通新闻。
-- 输出适合飞书 text message 阅读，不要使用复杂 Markdown，不要使用表格。
-- 控制在 1600 字以内。
+- 每条内容控制在 1-2 句话。
+- 不要输出 Why it matters。
+- 不要输出 Recommendation Actions。
+- 不要输出 DTC Opportunity Implications。
+- 不要堆大段文字。
+- 页面目标是让 Leader 在 2-3 分钟内扫完。
+- 使用中文，必要时保留 Alibaba、JD、ByteDance、Tencent、Meituan、PDD、AI Agent 等英文词。
 
-重点关注三类方向：
-1. AI 技术趋势：AI Agent、AI Search、AI Customer Service、AI Marketing、AI 在零售和电商中的应用。
-2. 数字化赋能趋势：会员、CRM、零售媒体、全渠道、门店数字化、供应链、个性化推荐等。
-3. 国内互联网头部平台趋势：阿里、京东、字节、腾讯、美团、拼多多的事业部发展、新业务布局、供应链能力、服务生态延展、入口变化。
+JSON schema 必须严格如下：
 
-输出格式必须严格遵循：
+{{
+  "date": "{datetime.now().strftime("%Y-%m-%d")}",
+  "headline": "一句话概括今日最重要信号，不超过 36 个中文字符",
+  "platform_watch": [
+    {{
+      "platform": "Alibaba / JD / ByteDance / Tencent / Meituan / PDD / Other",
+      "signal": "一句国内互联网平台趋势，关注事业部发展、新业务布局、供应链能力、服务生态延展或入口变化"
+    }}
+  ],
+  "ai_watch": [
+    {{
+      "topic": "AI Agent / AI Search / AI Customer Service / AI Marketing / AI Shopping / Other",
+      "signal": "一句 AI 技术趋势，关注零售和电商应用"
+    }}
+  ],
+  "retail_watch": [
+    {{
+      "topic": "Retail Media / Omnichannel / Membership / Supply Chain / Store Digitalization / Other",
+      "signal": "一句零售与电商趋势"
+    }}
+  ],
+  "one_thing_worth_watching": "今天最值得持续观察的一件事，只输出一句话"
+}}
 
-Digital Commerce Intelligence Brief
-Date: {datetime.now().strftime("%Y-%m-%d")}
-
-1. Top Business Signals
-- Signal:
-  Why it matters:
-  Evidence:
-
-最多 3 条。请优先选择对 DTC 机会判断最有价值的信号。
-
-2. AI & Technology Trends
-- Trend:
-  Implication for Decathlon DTC:
-
-最多 3 条。如果没有足够强的 AI 信号，可以写“今日未出现高置信度 AI 技术信号”。
-
-3. Platform & Internet Giants Watch
-- Platform:
-  Strategic change:
-  DTC relevance:
-
-重点看阿里、京东、字节、腾讯、美团、拼多多、小红书等平台。最多 4 条。
-
-4. Retail & Commerce Trends
-- Trend:
-  What is changing:
-  DTC relevance:
-
-最多 3 条。
-
-5. DTC Opportunity Implications
-- Opportunity:
-  Why now:
-  Possible experiment:
-
-提出 3 条机会点，必须和 Decathlon China DTC / Digital Commerce 有关，并能在 1-3 个月内启动小试点。
-
-6. Recommended Actions
-用 3 条具体行动建议收尾，每条一句话。
-不要写“持续关注”“加强建设”“提升体验”这类空话。
+数量要求：
+- platform_watch: 3-5 条
+- ai_watch: 2-4 条
+- retail_watch: 2-4 条
+- 如果某类信息不足，宁可少写，不要凑数。
 
 Unified Information Pool:
-
 {information_pool}
 """.strip()
 
