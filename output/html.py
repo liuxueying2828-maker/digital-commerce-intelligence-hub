@@ -2,6 +2,28 @@ from datetime import datetime
 from html import escape
 
 
+SECTIONS = [
+    {
+        "key": "platform_intelligence",
+        "title": "国内平台洞察",
+        "subtitle": "Platform Intelligence",
+        "tone": "blue",
+    },
+    {
+        "key": "ai_technology",
+        "title": "AI 技术前沿",
+        "subtitle": "AI Technology",
+        "tone": "violet",
+    },
+    {
+        "key": "retail_trends",
+        "title": "零售趋势",
+        "subtitle": "Retail Trends",
+        "tone": "green",
+    },
+]
+
+
 def render_dashboard(data, output_path):
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(build_dashboard_html(data), encoding="utf-8")
@@ -20,17 +42,19 @@ def build_dashboard_html(data):
   <title>Digital Commerce Intelligence</title>
   <style>
     :root {{
-      --bg: #f6f7f9;
+      --bg: #f7f8fb;
       --card: #ffffff;
       --ink: #172033;
-      --muted: #697386;
-      --line: #e7eaf0;
-      --blue: #1f5eff;
+      --muted: #687386;
+      --line: #e6e9ef;
+      --soft-line: #f0f2f6;
+      --blue: #2357d9;
       --blue-soft: #edf3ff;
-      --green: #0e8f68;
+      --green: #078365;
       --green-soft: #eaf8f2;
-      --violet: #7057d6;
-      --violet-soft: #f1effc;
+      --violet: #6f52d4;
+      --violet-soft: #f2effc;
+      --dark: #111827;
     }}
 
     * {{
@@ -49,7 +73,7 @@ def build_dashboard_html(data):
     .page {{
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 44px 0 40px;
+      padding: 44px 0 44px;
     }}
 
     .topbar {{
@@ -64,14 +88,14 @@ def build_dashboard_html(data):
       margin: 0 0 8px;
       color: var(--blue);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 750;
       letter-spacing: .08em;
       text-transform: uppercase;
     }}
 
     h1 {{
       margin: 0;
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(34px, 5vw, 54px);
       line-height: 1;
       letter-spacing: 0;
     }}
@@ -83,115 +107,163 @@ def build_dashboard_html(data):
       padding-top: 8px;
     }}
 
-    .hero {{
+    .focus {{
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 24px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }}
 
-    .hero-label {{
+    .focus-label {{
       color: var(--muted);
       font-size: 14px;
       margin-bottom: 8px;
     }}
 
-    .hero-text {{
+    .focus-text {{
       margin: 0;
       font-size: clamp(22px, 3vw, 32px);
       line-height: 1.25;
-      font-weight: 700;
+      font-weight: 760;
     }}
 
-    .grid {{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }}
-
-    .card {{
+    .section {{
+      margin-top: 22px;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 22px;
-      min-height: 360px;
     }}
 
-    .card-header {{
+    .section-head {{
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--soft-line);
       margin-bottom: 18px;
     }}
 
     h2 {{
       margin: 0;
-      font-size: 20px;
+      font-size: 24px;
       letter-spacing: 0;
     }}
 
-    .pill {{
+    .subtitle {{
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }}
+
+    .section-badge {{
       border-radius: 999px;
-      padding: 5px 10px;
+      padding: 6px 11px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 760;
       white-space: nowrap;
     }}
 
-    .pill.platform {{
-      color: var(--blue);
-      background: var(--blue-soft);
-    }}
+    .blue {{ color: var(--blue); background: var(--blue-soft); }}
+    .violet {{ color: var(--violet); background: var(--violet-soft); }}
+    .green {{ color: var(--green); background: var(--green-soft); }}
 
-    .pill.ai {{
-      color: var(--violet);
-      background: var(--violet-soft);
-    }}
-
-    .pill.retail {{
-      color: var(--green);
-      background: var(--green-soft);
-    }}
-
-    .signal-list {{
+    .cards {{
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }}
+
+    .card {{
+      display: flex;
+      flex-direction: column;
       gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      min-height: 260px;
     }}
 
-    .signal {{
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-    }}
-
-    .signal:first-child {{
-      padding-top: 0;
-      border-top: 0;
-    }}
-
-    .label {{
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }}
-
-    .signal p {{
+    .card-title {{
       margin: 0;
-      font-size: 16px;
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }}
+
+    .field {{
+      padding-top: 12px;
+      border-top: 1px solid var(--soft-line);
+    }}
+
+    .field-label {{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 780;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }}
+
+    .field p {{
+      margin: 0;
+      font-size: 15px;
+    }}
+
+    .trend {{
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f3f5f8;
+      color: #344054;
+      font-size: 13px;
+      font-weight: 720;
+    }}
+
+    .read-button {{
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 38px;
+      padding: 8px 13px;
+      border-radius: 8px;
+      background: var(--dark);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 760;
+    }}
+
+    .read-button.disabled {{
+      background: #eef1f5;
+      color: #8792a2;
+      pointer-events: none;
+    }}
+
+    .empty {{
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fbfcfe;
     }}
 
     .watching {{
-      margin-top: 20px;
-      background: #111827;
+      margin-top: 22px;
+      background: var(--dark);
       color: white;
       border-radius: 8px;
       padding: 24px;
     }}
 
-    .watching .label {{
+    .watching .field-label {{
       color: #a9b4c7;
       margin-bottom: 8px;
     }}
@@ -200,7 +272,7 @@ def build_dashboard_html(data):
       margin: 0;
       font-size: clamp(20px, 3vw, 28px);
       line-height: 1.3;
-      font-weight: 700;
+      font-weight: 760;
     }}
 
     .warning {{
@@ -213,17 +285,42 @@ def build_dashboard_html(data):
       font-size: 13px;
     }}
 
-    @media (max-width: 900px) {{
-      .grid {{
+    @media (max-width: 760px) {{
+      .page {{
+        width: min(100% - 24px, 1120px);
+        padding-top: 28px;
+      }}
+
+      .topbar {{
+        display: block;
+        margin-bottom: 20px;
+      }}
+
+      .date {{
+        margin-top: 12px;
+      }}
+
+      .focus,
+      .section,
+      .watching {{
+        padding: 18px;
+      }}
+
+      .section-head {{
+        display: block;
+      }}
+
+      .section-badge {{
+        display: inline-flex;
+        margin-top: 10px;
+      }}
+
+      .cards {{
         grid-template-columns: 1fr;
       }}
 
       .card {{
         min-height: auto;
-      }}
-
-      .topbar {{
-        display: block;
       }}
     }}
   </style>
@@ -238,19 +335,15 @@ def build_dashboard_html(data):
       <div class="date">{escape(date)}</div>
     </section>
 
-    <section class="hero">
-      <div class="hero-label">Today’s Focus</div>
-      <p class="hero-text">{escape(headline)}</p>
+    <section class="focus">
+      <div class="focus-label">Today’s Focus</div>
+      <p class="focus-text">{escape(headline)}</p>
     </section>
 
-    <section class="grid" aria-label="Signal dashboard">
-      {_render_card("Platform Watch", "平台", "platform", data.get("platform_watch", []), "platform", "signal")}
-      {_render_card("AI Watch", "AI", "ai", data.get("ai_watch", []), "topic", "signal")}
-      {_render_card("Retail Watch", "零售", "retail", data.get("retail_watch", []), "topic", "signal")}
-    </section>
+    {_render_sections(data)}
 
     <section class="watching">
-      <div class="label">One Thing Worth Watching</div>
+      <div class="field-label">One Thing Worth Watching</div>
       <p>{escape(data.get("one_thing_worth_watching") or headline)}</p>
     </section>
 
@@ -261,38 +354,59 @@ def build_dashboard_html(data):
 """
 
 
-def _render_card(title, pill_text, pill_class, items, label_key, text_key):
-    signals = "\n".join(_render_signal(item, label_key, text_key) for item in items[:5])
-    if not signals:
-        signals = '<div class="signal"><p>今日未出现高置信度信号。</p></div>'
+def _render_sections(data):
+    return "\n".join(_render_section(section, data.get(section["key"], [])) for section in SECTIONS)
+
+
+def _render_section(section, cards):
+    rendered_cards = "\n".join(_render_card(card) for card in cards[:6])
+    if not rendered_cards:
+        rendered_cards = '<div class="empty">今日未出现高置信度信号。</div>'
 
     return f"""
-      <article class="card">
-        <div class="card-header">
-          <h2>{escape(title)}</h2>
-          <span class="pill {escape(pill_class)}">{escape(pill_text)}</span>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>{escape(section["title"])}</h2>
+          <div class="subtitle">{escape(section["subtitle"])}</div>
         </div>
-        <div class="signal-list">
-          {signals}
-        </div>
-      </article>
+        <span class="section-badge {escape(section["tone"])}">{len(cards[:6])} Signals</span>
+      </div>
+      <div class="cards">
+        {rendered_cards}
+      </div>
+    </section>
     """
 
 
-def _render_signal(item, label_key, text_key):
-    if isinstance(item, str):
-        label = ""
-        text = item
-    else:
-        label = item.get(label_key, "")
-        text = item.get(text_key, "")
+def _render_card(card):
+    if isinstance(card, str):
+        card = {"name": "Signal", "news": card, "why_this_matters": "", "trend": "Signal", "link": ""}
 
-    label_html = f'<div class="label">{escape(label)}</div>' if label else ""
+    link = card.get("link", "")
+    button = (
+        f'<a class="read-button" href="{escape(link, quote=True)}" target="_blank" rel="noopener noreferrer">阅读全文</a>'
+        if link
+        else '<span class="read-button disabled">暂无原文链接</span>'
+    )
+
     return f"""
-      <div class="signal">
-        {label_html}
-        <p>{escape(text)}</p>
+    <article class="card">
+      <h3 class="card-title">{escape(card.get("name") or "Signal")}</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>{escape(card.get("news") or "")}</p>
       </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>{escape(card.get("why_this_matters") or "")}</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">{escape(card.get("trend") or "Trend")}</span>
+      </div>
+      {button}
+    </article>
     """
 
 

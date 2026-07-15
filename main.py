@@ -9,11 +9,13 @@ from config import (
 
 
 def collect_information_pool():
-    from config import FEEDS, GOOGLE_NEWS_QUERIES
+    from config import FEEDS, GOOGLE_NEWS_QUERIES, MANUAL_INPUT_PATH
     from sources.google_news import fetch_google_news_items
+    from sources.manual import fetch_manual_items
     from sources.rss import fetch_rss_items
 
     items = []
+    items.extend(fetch_manual_items(MANUAL_INPUT_PATH))
     items.extend(fetch_rss_items(FEEDS))
     items.extend(fetch_google_news_items(GOOGLE_NEWS_QUERIES))
     return prepare_information_pool(items)
@@ -61,10 +63,10 @@ def build_empty_dashboard_data():
     return {
         "date": today,
         "headline": "今天没有抓到高置信度外部信号",
-        "platform_watch": [],
-        "ai_watch": [],
-        "retail_watch": [],
-        "one_thing_worth_watching": "今天没有抓到高置信度外部信号，建议等待下一次自动更新。",
+        "platform_intelligence": [],
+        "ai_technology": [],
+        "retail_trends": [],
+        "one_thing_worth_watching": "今天没有抓到高置信度外部信号，页面已正常更新。",
     }
 
 

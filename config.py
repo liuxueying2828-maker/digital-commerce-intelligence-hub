@@ -56,6 +56,22 @@ FEEDS = [
 
 GOOGLE_NEWS_QUERIES = [
     {
+        "query": "OpenAI new model AI agent",
+        "domain": "AI & Technology",
+    },
+    {
+        "query": "DeepSeek model AI infrastructure",
+        "domain": "AI & Technology",
+    },
+    {
+        "query": "Anthropic Claude AI agent",
+        "domain": "AI & Technology",
+    },
+    {
+        "query": "NVIDIA AI inference infrastructure",
+        "domain": "AI & Technology",
+    },
+    {
         "query": "Alibaba retail strategy",
         "domain": "Platform & Internet Giants",
     },
@@ -87,6 +103,23 @@ GOOGLE_NEWS_QUERIES = [
 
 SIGNAL_KEYWORDS = [
     "ai",
+    "openai",
+    "deepmind",
+    "anthropic",
+    "deepseek",
+    "claude",
+    "nvidia",
+    "multimodal",
+    "computer use",
+    "inference",
+    "api",
+    "open-source model",
+    "foundation model",
+    "豆包",
+    "通义",
+    "混元",
+    "kimi",
+    "manus",
     "agent",
     "search",
     "customer service",
