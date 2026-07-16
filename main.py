@@ -65,7 +65,8 @@ def build_empty_dashboard_data():
         "headline": "今天没有抓到高置信度外部信号",
         "platform_intelligence": [],
         "ai_technology": [],
-        "retail_trends": [],
+        "sports_outdoor": [],
+        "retail_innovation": [],
         "one_thing_worth_watching": "今天没有抓到高置信度外部信号，页面已正常更新。",
     }
 

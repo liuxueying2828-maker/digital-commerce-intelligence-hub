@@ -66,3 +66,24 @@ def make_item(
         "origin_type": origin_type,
         "priority": priority,
     }
+
+
+def text_contains_any(text, keywords):
+    lower_text = text.lower()
+    return any(keyword.lower() in lower_text for keyword in keywords)
+
+
+def should_keep_auto_item(title, summary, signal_keywords, excluded_keywords, override_keywords, low_value_keywords, high_relevance_keywords):
+    text = f"{title} {summary}"
+    if not text_contains_any(text, signal_keywords):
+        return False
+
+    has_override = text_contains_any(text, override_keywords)
+    if text_contains_any(text, excluded_keywords) and not has_override:
+        return False
+
+    has_high_relevance = text_contains_any(text, high_relevance_keywords)
+    if text_contains_any(text, low_value_keywords) and not has_high_relevance:
+        return False
+
+    return True

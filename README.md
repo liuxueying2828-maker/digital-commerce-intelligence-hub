@@ -8,11 +8,12 @@ GitHub Actions -> Python source collectors -> Unified Information Pool -> Gemini
 
 ## What It Does
 
-The system collects external signals, then asks Gemini to produce short structured dashboard content focused on:
+The system collects automatic and manual signals, then asks Gemini to produce short structured dashboard content focused on:
 
-- Platform Watch
-- AI Watch
-- Retail Watch
+- 国内电商平台 / Platform Intelligence
+- AI 技术前沿 / AI Technology
+- 体育与户外行业 / Sports & Outdoor
+- 传统零售创新 / Retail Innovation
 - One Thing Worth Watching
 
 The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes.
@@ -25,9 +26,13 @@ Automatic sources:
 - Google News RSS keyword searches
 - Official blogs
 
-Manual sources are kept in the codebase for future use, but this dashboard stage does not include manual input in the daily run.
+Manual source:
 
-Future sources can be added as new modules under `sources/`, such as manual notes, PDF, Feishu Docs, or internal business data.
+- `manual_sources/daily_input.md`
+
+Automatic filtering excludes low-relevance retail media, advertising, campaign, celebrity, sponsorship, and ordinary product-launch news unless the item also includes platform capability, ecommerce product, search, recommendation, membership, fulfillment, supply chain, AI technology, sports retail, apparel retail, or digital innovation signals.
+
+Future sources can be added as new modules under `sources/`, such as PDF, Feishu Docs, or internal business data.
 
 ## Project Structure
 

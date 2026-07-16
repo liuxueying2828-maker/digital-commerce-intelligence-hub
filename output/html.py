@@ -5,7 +5,7 @@ from html import escape
 SECTIONS = [
     {
         "key": "platform_intelligence",
-        "title": "国内平台洞察",
+        "title": "国内电商平台",
         "subtitle": "Platform Intelligence",
         "tone": "blue",
     },
@@ -16,9 +16,15 @@ SECTIONS = [
         "tone": "violet",
     },
     {
-        "key": "retail_trends",
-        "title": "零售趋势",
-        "subtitle": "Retail Trends",
+        "key": "sports_outdoor",
+        "title": "体育与户外行业",
+        "subtitle": "Sports & Outdoor",
+        "tone": "orange",
+    },
+    {
+        "key": "retail_innovation",
+        "title": "传统零售创新",
+        "subtitle": "Retail Innovation",
         "tone": "green",
     },
 ]
@@ -52,6 +58,8 @@ def build_dashboard_html(data):
       --blue-soft: #edf3ff;
       --green: #078365;
       --green-soft: #eaf8f2;
+      --orange: #b25a00;
+      --orange-soft: #fff3e6;
       --violet: #6f52d4;
       --violet-soft: #f2effc;
       --dark: #111827;
@@ -170,6 +178,7 @@ def build_dashboard_html(data):
     .blue {{ color: var(--blue); background: var(--blue-soft); }}
     .violet {{ color: var(--violet); background: var(--violet-soft); }}
     .green {{ color: var(--green); background: var(--green-soft); }}
+    .orange {{ color: var(--orange); background: var(--orange-soft); }}
 
     .cards {{
       display: grid;

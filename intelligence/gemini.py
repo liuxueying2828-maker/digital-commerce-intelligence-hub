@@ -8,7 +8,12 @@ from intelligence.prompt import build_dashboard_prompt
 GEMINI_MODEL = "gemini-2.5-flash"
 
 
-SECTION_KEYS = ["platform_intelligence", "ai_technology", "retail_trends"]
+SECTION_ALIASES = {
+    "platform_intelligence": ["platform", "platform_intelligence", "platform_watch"],
+    "ai_technology": ["ai", "ai_technology", "ai_watch"],
+    "sports_outdoor": ["sports", "sports_outdoor", "sports_and_outdoor"],
+    "retail_innovation": ["retail", "retail_innovation", "retail_trends", "retail_watch"],
+}
 
 
 def generate_dashboard_data(items):
@@ -52,14 +57,22 @@ def normalize_dashboard_data(data):
     normalized = {
         "date": data.get("date", ""),
         "headline": data.get("headline") or data.get("one_thing_worth_watching") or "今日信号已更新",
-        "platform_intelligence": _normalize_cards(data.get("platform_intelligence") or data.get("platform_watch") or []),
-        "ai_technology": _normalize_cards(data.get("ai_technology") or data.get("ai_watch") or []),
-        "retail_trends": _normalize_cards(data.get("retail_trends") or data.get("retail_watch") or []),
+        "platform_intelligence": _normalize_cards(_first_section(data, "platform_intelligence")),
+        "ai_technology": _normalize_cards(_first_section(data, "ai_technology")),
+        "sports_outdoor": _normalize_cards(_first_section(data, "sports_outdoor")),
+        "retail_innovation": _normalize_cards(_first_section(data, "retail_innovation")),
         "one_thing_worth_watching": data.get("one_thing_worth_watching") or data.get("headline") or "今日信号已更新",
     }
     if data.get("parse_warning"):
         normalized["parse_warning"] = data["parse_warning"]
     return normalized
+
+
+def _first_section(data, canonical_key):
+    for key in SECTION_ALIASES[canonical_key]:
+        if data.get(key):
+            return data[key]
+    return []
 
 
 def _normalize_cards(items):
@@ -105,7 +118,8 @@ def build_dashboard_fallback(raw_text):
             }
         ],
         "ai_technology": [],
-        "retail_trends": [],
+        "sports_outdoor": [],
+        "retail_innovation": [],
         "one_thing_worth_watching": fallback_signal,
         "parse_warning": "Gemini JSON parse failed; rendered fallback content.",
     }
