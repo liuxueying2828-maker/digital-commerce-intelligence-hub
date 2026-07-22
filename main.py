@@ -5,11 +5,12 @@ from config import (
     HTML_OUTPUT_PATH,
     MAX_ITEMS_FOR_GEMINI,
     PROJECT_NAME,
+    SECTION_ORDER,
 )
 
 
 def collect_information_pool():
-    from config import FEEDS, MANUAL_INPUT_PATH, SEARCH_QUERIES, SECTION_ORDER
+    from config import FEEDS, MANUAL_INPUT_PATH, SEARCH_QUERIES
     from sources.google_news import fetch_google_news_items
     from sources.manual import fetch_manual_items
     from sources.rss import fetch_rss_items
