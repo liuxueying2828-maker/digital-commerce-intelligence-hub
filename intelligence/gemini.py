@@ -58,7 +58,7 @@ def normalize_dashboard_data(data):
         "date": data.get("date", ""),
         "headline": data.get("headline") or data.get("one_thing_worth_watching") or "今日信号已更新",
         "platform_intelligence": _normalize_cards(_first_section(data, "platform_intelligence")),
-        "ai_technology": _normalize_cards(_first_section(data, "ai_technology")),
+        "ai_technology": _normalize_ai_cards(_first_section(data, "ai_technology")),
         "sports_outdoor": _normalize_cards(_first_section(data, "sports_outdoor")),
         "retail_innovation": _normalize_cards(_first_section(data, "retail_innovation")),
         "one_thing_worth_watching": data.get("one_thing_worth_watching") or data.get("headline") or "今日信号已更新",
@@ -96,6 +96,38 @@ def _normalize_cards(items):
                 "news": _shorten(item.get("news") or item.get("signal") or "", 90),
                 "why_this_matters": _shorten(item.get("why_this_matters") or item.get("why") or "", 110),
                 "trend": item.get("trend") or "Trend",
+                "link": item.get("link") or "",
+            }
+        )
+    return cards
+
+
+def _normalize_ai_cards(items):
+    cards = []
+    for item in items[:6]:
+        if isinstance(item, str):
+            cards.append(
+                {
+                    "name": "AI 能力变化",
+                    "title": "AI 能力变化",
+                    "capability": _shorten(item, 150),
+                    "industry_impact": "该技术信号需要结合原文进一步判断行业影响。",
+                    "trend": "AI 能力",
+                    "link": "",
+                }
+            )
+            continue
+
+        title = item.get("title") or item.get("name") or item.get("topic") or item.get("platform") or "AI 能力变化"
+        capability = item.get("capability") or item.get("news") or item.get("signal") or ""
+        industry_impact = item.get("industry_impact") or item.get("why_this_matters") or item.get("why") or ""
+        cards.append(
+            {
+                "name": title,
+                "title": title,
+                "capability": _shorten(capability, 180),
+                "industry_impact": _shorten(industry_impact, 180),
+                "trend": item.get("trend") or "AI 能力",
                 "link": item.get("link") or "",
             }
         )

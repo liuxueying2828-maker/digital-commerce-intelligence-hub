@@ -11,8 +11,8 @@ SECTIONS = [
     },
     {
         "key": "ai_technology",
-        "title": "AI 技术前沿",
-        "subtitle": "AI Technology",
+        "title": "AI 能力与行业影响",
+        "subtitle": "AI Capabilities & Industry Impact",
         "tone": "violet",
     },
     {
@@ -184,6 +184,7 @@ def build_dashboard_html(data):
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
+      align-items: start;
     }}
 
     .card {{
@@ -194,7 +195,7 @@ def build_dashboard_html(data):
       border-radius: 8px;
       padding: 18px;
       background: #fff;
-      min-height: 260px;
+      min-height: 0;
     }}
 
     .card-title {{
@@ -220,7 +221,8 @@ def build_dashboard_html(data):
 
     .field p {{
       margin: 0;
-      font-size: 15px;
+      font-size: 15.5px;
+      line-height: 1.62;
     }}
 
     .trend {{
@@ -368,7 +370,7 @@ def _render_sections(data):
 
 
 def _render_section(section, cards):
-    rendered_cards = "\n".join(_render_card(card) for card in cards[:6])
+    rendered_cards = "\n".join(_render_card(card, section["key"]) for card in cards[:6])
     if not rendered_cards:
         rendered_cards = '<div class="empty">今日未出现高置信度信号。</div>'
 
@@ -388,7 +390,7 @@ def _render_section(section, cards):
     """
 
 
-def _render_card(card):
+def _render_card(card, section_key):
     if isinstance(card, str):
         card = {"name": "Signal", "news": card, "why_this_matters": "", "trend": "Signal", "link": ""}
 
@@ -398,6 +400,9 @@ def _render_card(card):
         if link
         else '<span class="read-button disabled">暂无原文链接</span>'
     )
+
+    if section_key == "ai_technology":
+        return _render_ai_card(card, button)
 
     return f"""
     <article class="card">
@@ -413,6 +418,27 @@ def _render_card(card):
       <div class="field">
         <div class="field-label">Trend</div>
         <span class="trend">{escape(card.get("trend") or "Trend")}</span>
+      </div>
+      {button}
+    </article>
+    """
+
+
+def _render_ai_card(card, button):
+    return f"""
+    <article class="card">
+      <h3 class="card-title">{escape(card.get("title") or card.get("name") or "AI 能力变化")}</h3>
+      <div class="field">
+        <div class="field-label">Capability</div>
+        <p>{escape(card.get("capability") or card.get("news") or "")}</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Industry Impact</div>
+        <p>{escape(card.get("industry_impact") or card.get("why_this_matters") or "")}</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">{escape(card.get("trend") or "AI 能力")}</span>
       </div>
       {button}
     </article>
