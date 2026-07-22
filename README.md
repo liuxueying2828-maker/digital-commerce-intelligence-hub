@@ -22,9 +22,16 @@ The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerc
 
 Automatic sources:
 
-- RSS feeds
-- Google News RSS keyword searches
+- RSS feeds filtered by section profile
+- Google News RSS keyword searches grouped by section
 - Official blogs
+
+Automatic retrieval is sectioned before Gemini analysis. The four automatic sections are:
+
+- 国内电商平台 / Platform Intelligence
+- AI 能力与行业影响 / AI Capabilities & Industry Impact
+- 体育与户外行业 / Sports & Outdoor
+- 传统零售创新 / Retail Innovation
 
 Manual source:
 

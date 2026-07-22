@@ -41,18 +41,13 @@ def iso_date(value):
     return value or ""
 
 
-def contains_signal_keyword(title, summary, keywords):
-    text = f"{title} {summary}".lower()
-    return any(keyword.lower() in text for keyword in keywords)
-
-
 def make_item(
     source,
     title,
     summary,
     link="",
     published_date=None,
-    domain="Retail & Commerce",
+    domain="retail",
     origin_type="rss",
     priority=1,
 ):
@@ -73,17 +68,47 @@ def text_contains_any(text, keywords):
     return any(keyword.lower() in lower_text for keyword in keywords)
 
 
-def should_keep_auto_item(title, summary, signal_keywords, excluded_keywords, override_keywords, low_value_keywords, high_relevance_keywords):
+def should_keep_section_item(title, summary, profile):
     text = f"{title} {summary}"
-    if not text_contains_any(text, signal_keywords):
+    include_any = profile.get("include_any", [])
+    require_any = profile.get("require_any", [])
+    exclude_any = profile.get("exclude_any", [])
+    override_any = profile.get("override_any", [])
+
+    if include_any and not text_contains_any(text, include_any):
+        return False
+    if require_any and not text_contains_any(text, require_any):
         return False
 
-    has_override = text_contains_any(text, override_keywords)
-    if text_contains_any(text, excluded_keywords) and not has_override:
-        return False
-
-    has_high_relevance = text_contains_any(text, high_relevance_keywords)
-    if text_contains_any(text, low_value_keywords) and not has_high_relevance:
+    has_override = text_contains_any(text, override_any)
+    if exclude_any and text_contains_any(text, exclude_any) and not has_override:
         return False
 
     return True
+
+
+# Backward-compatible wrapper for older tests/imports.
+def contains_signal_keyword(title, summary, keywords):
+    return text_contains_any(f"{title} {summary}", keywords)
+
+
+def should_keep_auto_item(
+    title,
+    summary,
+    signal_keywords=None,
+    excluded_keywords=None,
+    override_keywords=None,
+    low_value_keywords=None,
+    high_relevance_keywords=None,
+    profile=None,
+):
+    if profile is not None:
+        return should_keep_section_item(title, summary, profile)
+
+    legacy_profile = {
+        "include_any": signal_keywords or [],
+        "require_any": [],
+        "exclude_any": (excluded_keywords or []) + (low_value_keywords or []),
+        "override_any": (override_keywords or []) + (high_relevance_keywords or []),
+    }
+    return should_keep_section_item(title, summary, legacy_profile)

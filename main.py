@@ -9,7 +9,7 @@ from config import (
 
 
 def collect_information_pool():
-    from config import FEEDS, GOOGLE_NEWS_QUERIES, MANUAL_INPUT_PATH
+    from config import FEEDS, MANUAL_INPUT_PATH, SEARCH_QUERIES, SECTION_ORDER
     from sources.google_news import fetch_google_news_items
     from sources.manual import fetch_manual_items
     from sources.rss import fetch_rss_items
@@ -17,7 +17,7 @@ def collect_information_pool():
     items = []
     items.extend(fetch_manual_items(MANUAL_INPUT_PATH))
     items.extend(fetch_rss_items(FEEDS))
-    items.extend(fetch_google_news_items(GOOGLE_NEWS_QUERIES))
+    items.extend(fetch_google_news_items(SEARCH_QUERIES))
     return prepare_information_pool(items)
 
 
@@ -38,9 +38,11 @@ def prepare_information_pool(items, limit=MAX_ITEMS_FOR_GEMINI):
         seen.add(dedupe_key)
         cleaned_items.append(item)
 
+    section_rank = {section: index for index, section in enumerate(SECTION_ORDER)}
     cleaned_items.sort(
         key=lambda item: (
             item.get("priority", 1),
+            -section_rank.get(item.get("domain", "retail"), len(section_rank)),
             item.get("published_date", ""),
         ),
         reverse=True,

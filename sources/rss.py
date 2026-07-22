@@ -1,14 +1,7 @@
 import feedparser
 
-from config import (
-    EXCLUDED_KEYWORDS,
-    EXCLUSION_OVERRIDE_KEYWORDS,
-    HIGH_RELEVANCE_KEYWORDS,
-    LOW_VALUE_KEYWORDS,
-    RSS_ITEMS_PER_FEED,
-    SIGNAL_KEYWORDS,
-)
-from sources.common import make_item, parse_date, should_keep_auto_item
+from config import FILTER_PROFILES, RSS_ITEMS_PER_FEED
+from sources.common import make_item, parse_date, should_keep_section_item
 
 
 def fetch_rss_items(feeds):
@@ -16,22 +9,18 @@ def fetch_rss_items(feeds):
 
     for feed_config in feeds:
         source = feed_config["source"]
-        domain = feed_config.get("domain", "retail")
+        section = feed_config.get("domain", "retail")
+        profile = FILTER_PROFILES.get(section)
+        if not profile:
+            continue
+
         parsed_feed = feedparser.parse(feed_config["url"])
 
         for entry in parsed_feed.entries[:RSS_ITEMS_PER_FEED]:
             title = entry.get("title", "")
             summary = entry.get("summary", "") or entry.get("description", "")
 
-            if not should_keep_auto_item(
-                title=title,
-                summary=summary,
-                signal_keywords=SIGNAL_KEYWORDS,
-                excluded_keywords=EXCLUDED_KEYWORDS,
-                override_keywords=EXCLUSION_OVERRIDE_KEYWORDS,
-                low_value_keywords=LOW_VALUE_KEYWORDS,
-                high_relevance_keywords=HIGH_RELEVANCE_KEYWORDS,
-            ):
+            if not should_keep_section_item(title=title, summary=summary, profile=profile):
                 continue
 
             items.append(
@@ -41,7 +30,7 @@ def fetch_rss_items(feeds):
                     summary=summary,
                     link=entry.get("link", ""),
                     published_date=parse_date(entry),
-                    domain=domain,
+                    domain=section,
                     origin_type="rss",
                     priority=1,
                 )
