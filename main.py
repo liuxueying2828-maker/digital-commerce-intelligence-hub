@@ -90,6 +90,7 @@ def get_dashboard_url():
 
 def main():
     from intelligence.gemini import generate_dashboard_data
+    from output.archive import save_dashboard_history
     from output.html import render_dashboard
     from output.feishu import send_text_message
 
@@ -99,11 +100,13 @@ def main():
     if not information_pool:
         dashboard_data = build_empty_dashboard_data()
         render_dashboard(dashboard_data, HTML_OUTPUT_PATH)
+        save_dashboard_history(dashboard_data, HTML_OUTPUT_PATH.parent)
         send_text_message(build_dashboard_notification(dashboard_data, page_url))
         return
 
     dashboard_data = generate_dashboard_data(information_pool)
     render_dashboard(dashboard_data, HTML_OUTPUT_PATH)
+    save_dashboard_history(dashboard_data, HTML_OUTPUT_PATH.parent)
     send_text_message(build_dashboard_notification(dashboard_data, page_url))
 
 

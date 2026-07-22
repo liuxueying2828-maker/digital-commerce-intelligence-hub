@@ -30,13 +30,13 @@ SECTIONS = [
 ]
 
 
-def render_dashboard(data, output_path):
+def render_dashboard(data, output_path, archive_href="./archive/"):
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(build_dashboard_html(data), encoding="utf-8")
+    output_path.write_text(build_dashboard_html(data, archive_href=archive_href), encoding="utf-8")
     return output_path
 
 
-def build_dashboard_html(data):
+def build_dashboard_html(data, archive_href="./archive/"):
     date = data.get("date") or datetime.now().strftime("%Y-%m-%d")
     headline = data.get("headline") or data.get("one_thing_worth_watching") or "Today’s signals are ready."
 
@@ -108,11 +108,37 @@ def build_dashboard_html(data):
       letter-spacing: 0;
     }}
 
-    .date {{
+    .header-actions {{
+      display: flex;
+      align-items: center;
+      gap: 12px;
       flex: 0 0 auto;
+      padding-top: 2px;
+    }}
+
+    .date {{
       color: var(--muted);
       font-size: 15px;
-      padding-top: 8px;
+    }}
+
+    .archive-link {{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 760;
+      white-space: nowrap;
+    }}
+
+    .archive-link:hover {{
+      border-color: #c8ced8;
     }}
 
     .focus {{
@@ -307,8 +333,9 @@ def build_dashboard_html(data):
         margin-bottom: 20px;
       }}
 
-      .date {{
-        margin-top: 12px;
+      .header-actions {{
+        margin-top: 14px;
+        justify-content: space-between;
       }}
 
       .focus,
@@ -343,7 +370,10 @@ def build_dashboard_html(data):
         <p class="eyebrow">Digital Commerce Intelligence</p>
         <h1>Today’s Signals</h1>
       </div>
-      <div class="date">{escape(date)}</div>
+      <div class="header-actions">
+        <div class="date">{escape(date)}</div>
+        <a class="archive-link" href="{escape(archive_href, quote=True)}">历史日报</a>
+      </div>
     </section>
 
     <section class="focus">

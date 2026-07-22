@@ -113,3 +113,15 @@ Before the first deployment, set repository Pages source to GitHub Actions in Gi
 Settings -> Pages -> Build and deployment -> Source -> GitHub Actions
 
 See `.github/workflows/daily.yml`.
+
+
+## History Archive
+
+Each run generates the latest dashboard at `output/index.html` and saves the same day into:
+
+```text
+output/archive/YYYY-MM-DD/index.html
+output/data/YYYY-MM-DD.json
+```
+
+`output/archive/index.html` lists all saved daily briefs in reverse date order. GitHub Actions commits `output/archive` and `output/data` back to the repository so GitHub Pages keeps historical pages across runs.

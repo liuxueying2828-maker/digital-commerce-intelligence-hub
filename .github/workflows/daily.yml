@@ -6,7 +6,7 @@ name: Digital Commerce Intelligence Brief
     - cron: "50 3 * * *"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -38,6 +38,20 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         run: python main.py
+
+
+      - name: Commit archive history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/archive output/data
+          if git diff --cached --quiet; then
+            echo "No archive changes to commit."
+          else
+            BRIEF_DATE=$(ls output/data/*.json | sed 's#.*/##; s#\.json$##' | sort | tail -n 1)
+            git commit -m "archive: save intelligence brief for ${BRIEF_DATE} [skip ci]"
+            git push
+          fi
 
       - name: Upload dashboard artifact
         uses: actions/upload-pages-artifact@v3
