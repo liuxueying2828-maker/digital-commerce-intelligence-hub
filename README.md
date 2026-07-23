@@ -1,8 +1,8 @@
 # Digital Commerce Intelligence Hub
 
-An AI intelligence dashboard for Decathlon China DTC / Digital Commerce opportunity discovery.
+A weekly industry intelligence dashboard for Decathlon China DTC / Digital Commerce opportunity discovery.
 
-This project has been upgraded from a simple news push bot into a web-based intelligence dashboard:
+This project has been upgraded from a simple news push bot into a weekly web-based intelligence dashboard:
 
 GitHub Actions -> Python source collectors -> Unified Information Pool -> Gemini JSON analysis -> HTML Dashboard -> GitHub Pages + Feishu link push
 
@@ -16,7 +16,7 @@ The system collects automatic and manual signals, then asks Gemini to produce sh
 - 传统零售创新 / Retail Innovation
 - One Thing Worth Watching
 
-The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes.
+The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes while still surfacing useful weekly industry intelligence when there is no major breaking news.
 
 ## Information Sources
 
@@ -26,7 +26,7 @@ Automatic sources:
 - Google News RSS keyword searches grouped by section
 - Official blogs
 
-Automatic retrieval is sectioned before Gemini analysis. The four automatic sections are:
+Automatic retrieval is sectioned before Gemini analysis. Each section uses its own keywords and searches recent information in widening windows: 3 days first, then 7 days, then 14 days. The four automatic sections are:
 
 - 国内电商平台 / Platform Intelligence
 - AI 能力与行业影响 / AI Capabilities & Industry Impact
@@ -37,7 +37,7 @@ Manual source:
 
 - `manual_sources/daily_input.md`
 
-Automatic filtering excludes low-relevance retail media, advertising, campaign, celebrity, sponsorship, and ordinary product-launch news unless the item also includes platform capability, ecommerce product, search, recommendation, membership, fulfillment, supply chain, AI technology, sports retail, apparel retail, or digital innovation signals.
+Automatic filtering ranks usefulness over recency. It excludes low-relevance retail media, ad-network, campaign, celebrity, sponsorship, and weak product-only items. AI filtering is business-first: pure model releases, parameter counts, benchmarks, papers, and low-level infrastructure details are ignored unless the item clearly introduces a business-understandable capability for retail, ecommerce, customer experience, operations, workflow, or enterprise adoption.
 
 Future sources can be added as new modules under `sources/`, such as PDF, Feishu Docs, or internal business data.
 

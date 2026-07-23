@@ -368,7 +368,7 @@ def build_dashboard_html(data, archive_href="./archive/"):
     <section class="topbar">
       <div>
         <p class="eyebrow">Digital Commerce Intelligence</p>
-        <h1>Today’s Signals</h1>
+        <h1>Weekly Signals</h1>
       </div>
       <div class="header-actions">
         <div class="date">{escape(date)}</div>
@@ -377,7 +377,7 @@ def build_dashboard_html(data, archive_href="./archive/"):
     </section>
 
     <section class="focus">
-      <div class="focus-label">Today’s Focus</div>
+      <div class="focus-label">Weekly Focus</div>
       <p class="focus-text">{escape(headline)}</p>
     </section>
 
@@ -402,7 +402,7 @@ def _render_sections(data):
 def _render_section(section, cards):
     rendered_cards = "\n".join(_render_card(card, section["key"]) for card in cards[:6])
     if not rendered_cards:
-        rendered_cards = '<div class="empty">今日未出现高置信度信号。</div>'
+        rendered_cards = '<div class="empty">本期未筛出高价值行业情报。</div>'
 
     return f"""
     <section class="section">

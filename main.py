@@ -44,6 +44,7 @@ def prepare_information_pool(items, limit=MAX_ITEMS_FOR_GEMINI):
         key=lambda item: (
             item.get("priority", 1),
             -section_rank.get(item.get("domain", "retail"), len(section_rank)),
+            -(item.get("search_window_days") or 0),
             item.get("published_date", ""),
         ),
         reverse=True,
@@ -57,7 +58,7 @@ def build_empty_message():
     return (
         f"{PROJECT_NAME}\n"
         f"Date: {today}\n\n"
-        "今天没有抓到可用于分析的 DTC / Digital Commerce 信号。"
+        "本期信息源未返回可用于分析的 DTC / Digital Commerce 情报。"
     )
 
 
@@ -65,12 +66,12 @@ def build_empty_dashboard_data():
     today = datetime.now().strftime("%Y-%m-%d")
     return {
         "date": today,
-        "headline": "今天没有抓到高置信度外部信号",
+        "headline": "本期信息源未返回高置信度外部情报",
         "platform_intelligence": [],
         "ai_technology": [],
         "sports_outdoor": [],
         "retail_innovation": [],
-        "one_thing_worth_watching": "今天没有抓到高置信度外部信号，页面已正常更新。",
+        "one_thing_worth_watching": "本期信息源未返回高置信度外部情报，页面已正常更新。",
     }
 
 

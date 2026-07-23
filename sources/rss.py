@@ -1,7 +1,7 @@
 import feedparser
 
-from config import FILTER_PROFILES, RSS_ITEMS_PER_FEED
-from sources.common import make_item, parse_date, should_keep_section_item
+from config import FILTER_PROFILES, RSS_ITEMS_PER_FEED, SEARCH_WINDOWS_DAYS
+from sources.common import is_within_days, make_item, parse_date, should_keep_section_item
 
 
 def fetch_rss_items(feeds):
@@ -20,6 +20,10 @@ def fetch_rss_items(feeds):
             title = entry.get("title", "")
             summary = entry.get("summary", "") or entry.get("description", "")
 
+            published_date = parse_date(entry)
+            if not is_within_days(published_date, max(SEARCH_WINDOWS_DAYS)):
+                continue
+
             if not should_keep_section_item(title=title, summary=summary, profile=profile):
                 continue
 
@@ -29,10 +33,11 @@ def fetch_rss_items(feeds):
                     title=title,
                     summary=summary,
                     link=entry.get("link", ""),
-                    published_date=parse_date(entry),
+                    published_date=published_date,
                     domain=section,
                     origin_type="rss",
                     priority=1,
+                    search_window_days=max(SEARCH_WINDOWS_DAYS),
                 )
             )
 

@@ -1,5 +1,5 @@
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html import unescape
 
@@ -41,6 +41,32 @@ def iso_date(value):
     return value or ""
 
 
+def coerce_datetime(value):
+    if isinstance(value, datetime):
+        parsed = value
+    elif isinstance(value, str) and value:
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+    else:
+        return None
+
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def is_within_days(value, days, now=None):
+    parsed = coerce_datetime(value)
+    if not parsed:
+        return True
+    current = now or datetime.now(timezone.utc)
+    if current.tzinfo is None:
+        current = current.replace(tzinfo=timezone.utc)
+    return parsed >= current.astimezone(timezone.utc) - timedelta(days=days)
+
+
 def make_item(
     source,
     title,
@@ -50,6 +76,7 @@ def make_item(
     domain="retail",
     origin_type="rss",
     priority=1,
+    search_window_days=None,
 ):
     return {
         "source": source,
@@ -60,6 +87,7 @@ def make_item(
         "domain": domain,
         "origin_type": origin_type,
         "priority": priority,
+        "search_window_days": search_window_days,
     }
 
 
@@ -73,7 +101,11 @@ def should_keep_section_item(title, summary, profile):
     include_any = profile.get("include_any", [])
     require_any = profile.get("require_any", [])
     exclude_any = profile.get("exclude_any", [])
+    hard_exclude_any = profile.get("hard_exclude_any", [])
     override_any = profile.get("override_any", [])
+
+    if hard_exclude_any and text_contains_any(text, hard_exclude_any):
+        return False
 
     if include_any and not text_contains_any(text, include_any):
         return False
