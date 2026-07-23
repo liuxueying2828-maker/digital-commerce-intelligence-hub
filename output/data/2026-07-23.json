@@ -1,0 +1,94 @@
+{
+  "date": "2026-07-23",
+  "today_focus": "AI驱动电商与零售新范式，平台与品牌加速创新",
+  "platform": [
+    {
+      "name": "京东",
+      "news": "京东发布“商家成长PLUS方法论”，350亿扶持资源助新商家增30%+，近千品牌登顶细分品类冠军。",
+      "why_this_matters": "平台通过体系化经营解决方案和专项扶持，吸引并培育新品牌，提升商家运营效率和成长确定性，强化平台生态。",
+      "trend": "平台赋能, 商家增长, 精细化运营",
+      "link": "https://mp.weixin.qq.com/s/nT1-VVWIYIN0_gF9qo2_nQ"
+    },
+    {
+      "name": "京东/淘宝/盒马",
+      "news": "Costco入驻京东，盒马亮相淘宝首页，即时零售成新竞争焦点。",
+      "why_this_matters": "头部零售商与电商平台深度融合，拓展即时零售场景，提升用户购物便利性，平台生态能力竞争加剧。",
+      "trend": "即时零售, 平台竞争, 全渠道",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNLXlmUHNCQjVXeE0zWkhEVDlfdThBUjNnYy11ckNNdUhrd19tRzhUd1dZQS03dDVmbFNDZkZ5eW51UXRFOERKQ0lqdUNVNkZENTA0OGx6Y0FnbUhJZUdoMElRajNoS3Jnd1Rub3dFLWpha1UwWUN0djg3TGJZV2FTOVZSNG5iQ3ZET25RaGd6TzZCNUJKVmczMzE0dWFXc25m?oc=5"
+    },
+    {
+      "name": "快手",
+      "news": "快手推出AI购物助手，为用户提供智能个性化导购服务，电商AI竞争升级。",
+      "why_this_matters": "AI技术在电商平台应用走向前台用户界面，提升购物体验和转化效率，是平台AI能力的重要体现。",
+      "trend": "AI导购, 购物体验, 智能推荐",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB2S3N0Y1JaSUI1ZGNTNmNtLV9BcC1SVVc4c3BDMVliRl9NOW1BcGVEd1BOOWItOFFQTE16YXFSMFMzUC1DZFJDYUt6OFlPenlWVzlBQmhFOVpuOTY0ZTZMSlFxYlZQRzFOVW5NbmdnU2o3NmZBc3c?oc=5"
+    }
+  ],
+  "ai": [
+    {
+      "name": "AI行业重心转向应用落地和智能体生态建设",
+      "title": "AI行业重心转向应用落地和智能体生态建设",
+      "capability": "AI不再仅停留在模型性能炫技，而是聚焦于将大模型能力转化为具体业务产品和可量化的价值，智能体被视为下一代生产力基础设施。",
+      "industry_impact": "推动企业将AI技术从概念阶段引入实际生产流程，实现效率提升、成本优化和商业模式创新，尤其在办公、工业、内容创作和营销等领域。",
+      "trend": "AI应用落地, 智能体Agent, 产业AI化, 生态合作",
+      "link": "https://mp.weixin.qq.com/s/5IUApcULipIRaW_q_k1p1g"
+    },
+    {
+      "name": "电商内容生产全面转向AI智能体驱动",
+      "title": "电商内容生产全面转向AI智能体驱动",
+      "capability": "AI创意智能体具备业务理解、任务规划、记忆偏好和多模态生成能力，能自动完成电商素材从抓图到成片的整个流程，并结合人群、竞品和趋势进行内容定制。",
+      "industry_impact": "大幅提升电商内容生产效率和质量，降低中小商家内容创作门槛，实现营销内容的个性化、精准化和高转化，直接赋能电商运营和营销增长。",
+      "trend": "AIGC, 电商营销, 智能创意, 生产力工具",
+      "link": "https://mp.weixin.qq.com/s/NndPRWv_FknVzJ6U6X0REQ"
+    },
+    {
+      "name": "京东工业通过AI智能体大幅优化供应链效率",
+      "title": "京东工业通过AI智能体大幅优化供应链效率",
+      "capability": "AI智能体在工业场景中能够进行复杂数据标准化、智能采购导购、备品备件数智运维等，实现跨系统、跨业务的智能化任务处理。",
+      "industry_impact": "显著提升工业供应链的运营效率、降低成本、保证合规与供应，将工业品数据治理、采购决策和现场运维等核心环节全面智能化。",
+      "trend": "产业互联网, 供应链AI, 工业智能体, 降本增效",
+      "link": ""
+    },
+    {
+      "name": "零售行业广泛采纳AI智能体提供购物与客户服务",
+      "title": "零售行业广泛采纳AI智能体提供购物与客户服务",
+      "capability": "AI智能体能作为客户服务助手、个性化购物导购，理解用户需求并提供定制化商品推荐和支持，甚至融入企业内部工作流。",
+      "industry_impact": "改变消费者购物决策过程，提升购物体验和转化率；优化企业客户支持和内部运营效率，实现零售服务和工作流程的智能化。",
+      "trend": "AI购物助手, 客户服务AI, 智能决策, 零售数字化",
+      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQX1ZkX2pSVHlXRThYV1RoYkpGWklhdDZ6S0VtdzBiY0dIYW9LLXFXTDVpZklKYU43MXRySWdUUEF4WS1pbmN6dVkzRjhCTWJ1Sm5kYkl1ZXdqaWRwWEs0bkZMeUJfQ0U0Wl9CZHlfMWN4Z2FWVjNRM3M0b19yekFrOUZoWnRkdTVuMkRnUnRUTGxXeFBaQUFXcE05aE1senVSdUlITC1yNWVqMjJuck1VRnpYV1VEUUJaNXZfSUlqMGtWX0FUY2FjUXUwT1JHbnBz0gHWAUFVX3lxTFB0WlFoaURYQUx0QW5Pby1vdUh0dmhZSmFaU1JKcTl0ZC1BYXZ2Y1hzUzRRUHJqQy1uaFZwS1VIaWE5WmR1c1lUZFhwbjMxVmdSS3l0Y0hyS0x0MTNGMFQ1bFFKWk40M21EUFRLbl9HSUhsek1ZUnhsN25KeHZhanZ0bTl6QjNNblowX2luSnlSa2VnWDdTWTBXZ3FtckNwRm1uOW93SEgtLVN1S1Z3VlZHUk45VVlGX0lHcVNrRGdpQ01ldlI4SEhQTmV4NUt6ZjhwVC1LcXc?oc=5"
+    }
+  ],
+  "sports": [
+    {
+      "name": "耐克",
+      "news": "耐克在中国市场削减数字平台投入，预示销售策略重大调整。",
+      "why_this_matters": "国际头部运动品牌在中国市场数字渠道策略的调整，对其他品牌具有借鉴意义，提示关注渠道效益和本地化策略。",
+      "trend": "数字渠道调整, 销售策略, 市场优化",
+      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQVTNleHgwa1BYczNhY0pRWnJKcGo5djlTZE9yRnk1b3l3Nk5tMVNrUVJzMlc4Z1Y0Tk04dW9KY0pKekdGMlJWVlo0bXNSQk9mWk5ZRGo2WkluczVuUS1sTTJFOWdDQlFITlRxanVzcG9SRTZ3VWQwU2FVeEVuMC1rNk1xV0tBOU5IS3BIcHg2ZHRqdEIyN1hTYmdHZExIZkE0ZWt3TndXVFo2eGtQajFYLWxDM3AwQms4OUNZR19lWFhUMnJmNFQxV2tTeS1JdVRv?oc=5"
+    },
+    {
+      "name": "Lululemon",
+      "news": "Lululemon通过门店扩张策略保持强劲增长，同时展现优秀的盈利能力，股价表现良好。",
+      "why_this_matters": "运动时尚品牌通过实体门店拓展和高效运营，提升品牌影响力和市场份额，值得关注其全渠道布局。",
+      "trend": "门店扩张, 盈利增长, 品牌策略",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPTlBsYzA2SkxPV0lXaVZPX1pONWNKSUxMVzg4aVlvdk5VTWJ1YW1IZFhxQVloVVZCRUFyRjdUekQtaXN4eGVfUWR6NGpPWUF0aDRxaVpvdXRtWkV5RnRDR2MxeFIwb3FINnc4V1cwb1FpSHEyVUNMV0VrY05oN0cxUXlFRkJ6SVNHWkh0Ry03MGo5RjdCRnZBUmpfVnBqTGZVcFYxM040U1ZjNHRnNl9STTc1YkxxTGtjSVhFbjU2YVBNNnRXMXNN?oc=5"
+    },
+    {
+      "name": "Amazfit",
+      "news": "Amazfit在澳大利亚开设线上店，发布新型可穿戴设备，拓展海外DTC电商渠道。",
+      "why_this_matters": "运动科技品牌通过DTC模式进行海外市场渗透和新品发布，提升品牌全球数字化运营能力。",
+      "trend": "DTC出海, 智能穿戴, 电商拓展",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOeWhnY0c2bGVEUDljSVN4Z0M5OHJrOUhPc0REaE5RMU9vOHctbTBLQjNPNWFYakFMUThhNFlibW80NGxPSzVGYlJ0T3pSUmxGYnlrWHUxdnlaOFV4MERNa0RSbVFQY3ZGdHNzT2ZSaC0yQkdDUDE2US1rZG1xM2hIYklJOFpyaUJ4c1FSN0ZiM1I1MWFNeW1SVGdn?oc=5"
+    }
+  ],
+  "retail": [
+    {
+      "name": "Michaels/Schnucks",
+      "news": "零售商Michaels和Schnucks分别引入了由Google或VitalityIP驱动的AI购物助手。这些智能助手能够提供个性化商品推荐，帮助顾客更高效地找到所需商品并做出购…",
+      "why_this_matters": "传统零售商通过集成AI技术，将人机交互引入购物旅程，重塑顾客发现和选择商品的体验，提升门店和线上购物的效率与满意度。",
+      "trend": "AI零售, 个性化服务, 购物体验",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVVN4RUx6Mno1Vjc4aF9heVZ4REplOXlJZm5JREtzNUlkOHhJR193MzlrTGVqWnkyb1hENzBUMXdpVVItczJPQW51S0xxaFp4QU9uSDV0NEhFLWRHX2I1UHRUVy11bm5TdUh5b3NZbXdzdVFiM051Ty1DMDJzcEpkeTdMb0JLUTJIay0zeEYxem1nS09kMVR6Ni1nWUw5bzNCVG5LX3FCTkxBTndqWkY0?oc=5"
+    }
+  ],
+  "one_thing_worth_watching": "AI智能体在电商内容生产和供应链中的深度应用"
+}
