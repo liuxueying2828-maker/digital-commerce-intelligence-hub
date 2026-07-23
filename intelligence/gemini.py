@@ -2,6 +2,7 @@ import os
 import json
 import re
 
+from config import MIN_SECTION_CANDIDATES, SECTION_ORDER
 from intelligence.prompt import build_dashboard_prompt
 
 
@@ -36,7 +37,7 @@ def generate_dashboard_data(items):
     )
 
     raw_text = response.text.strip()
-    return parse_dashboard_json(raw_text)
+    return ensure_minimum_dashboard_signals(parse_dashboard_json(raw_text), items)
 
 
 def parse_dashboard_json(raw_text):
@@ -155,6 +156,115 @@ def build_dashboard_fallback(raw_text):
         "one_thing_worth_watching": fallback_signal,
         "parse_warning": "Gemini JSON parse failed; rendered fallback content.",
     }
+
+
+def ensure_minimum_dashboard_signals(data, source_items):
+    normalized = normalize_dashboard_data(data)
+    items_by_domain = _items_by_domain(source_items)
+
+    for domain in SECTION_ORDER:
+        section_key = _canonical_section_key(domain)
+        cards = normalized.get(section_key, [])
+        minimum = MIN_SECTION_CANDIDATES.get(domain, 0)
+        if len(cards) >= minimum:
+            continue
+
+        used_links = {card.get("link") for card in cards if isinstance(card, dict) and card.get("link")}
+        for item in items_by_domain.get(domain, []):
+            if len(cards) >= minimum:
+                break
+            if item.get("link") in used_links:
+                continue
+            cards.append(_fallback_card_from_item(domain, item))
+            if item.get("link"):
+                used_links.add(item.get("link"))
+
+        normalized[section_key] = cards
+
+    return normalized
+
+
+def _items_by_domain(items):
+    grouped = {section: [] for section in SECTION_ORDER}
+    for item in items:
+        domain = item.get("domain")
+        if domain not in grouped:
+            continue
+        grouped[domain].append(item)
+
+    for section_items in grouped.values():
+        section_items.sort(
+            key=lambda item: (
+                item.get("relevance_score", 0),
+                item.get("priority", 1),
+                -(item.get("search_window_days") or 0),
+                item.get("published_date", ""),
+            ),
+            reverse=True,
+        )
+    return grouped
+
+
+def _canonical_section_key(domain):
+    return {
+        "platform": "platform_intelligence",
+        "ai": "ai_technology",
+        "sports": "sports_outdoor",
+        "retail": "retail_innovation",
+    }[domain]
+
+
+def _fallback_card_from_item(domain, item):
+    title = item.get("title") or "Signal"
+    summary = item.get("summary") or title
+    link = item.get("link") or ""
+    trend = _fallback_trend(item)
+
+    if domain == "ai":
+        return {
+            "name": _shorten(title, 42),
+            "title": _shorten(_business_ai_title(title), 42),
+            "capability": _shorten(summary, 150),
+            "industry_impact": "该信号与电商、零售或企业流程中的 AI 能力应用相关，适合作为本期业务情报补充。",
+            "trend": trend,
+            "link": link,
+        }
+
+    return {
+        "name": _shorten(_company_or_topic(title), 32),
+        "news": _shorten(summary, 90),
+        "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+        "trend": trend,
+        "link": link,
+    }
+
+
+def _business_ai_title(title):
+    lowered = title.lower()
+    if "search" in lowered:
+        return "AI 搜索能力进入业务流程"
+    if "customer service" in lowered or "客服" in title:
+        return "AI 客服能力继续增强"
+    if "shopping" in lowered or "购物" in title:
+        return "AI 购物助手能力继续增强"
+    if "agent" in lowered:
+        return "AI Agent 可处理连续业务任务"
+    if "workflow" in lowered or "operations" in lowered or "运营" in title:
+        return "AI 正在进入企业工作流"
+    return title
+
+
+def _company_or_topic(title):
+    return re.split(r"[-|:：]", title, maxsplit=1)[0].strip() or title
+
+
+def _fallback_trend(item):
+    if item.get("fallback_reason"):
+        return "高相关候选;周度补充"
+    window_days = item.get("search_window_days")
+    if window_days:
+        return f"近{window_days}天;行业情报"
+    return "行业情报"
 
 
 def _strip_json_fence(raw_text):

@@ -14,16 +14,16 @@ GOOGLE_NEWS_ITEMS_PER_QUERY = 5
 SECTION_ORDER = ["platform", "ai", "sports", "retail"]
 SEARCH_WINDOWS_DAYS = [3, 7, 14]
 MIN_SECTION_CANDIDATES = {
-    "platform": 2,
-    "ai": 2,
-    "sports": 2,
-    "retail": 2,
+    "platform": 4,
+    "ai": 4,
+    "sports": 3,
+    "retail": 3,
 }
 MAX_SECTION_CANDIDATES = {
-    "platform": 10,
-    "ai": 10,
-    "sports": 8,
-    "retail": 8,
+    "platform": 12,
+    "ai": 12,
+    "sports": 10,
+    "retail": 10,
 }
 
 FEEDS = [
@@ -71,6 +71,26 @@ SEARCH_QUERIES = {
         "Aldi retail automation checkout", "Lidl digital retail operations", "Sephora store digitalization", "Hema retail innovation supply chain", "Inditex RFID retail",
         "retail technology RFID inventory", "retail supply chain innovation", "store digitalization retail operations", "self checkout retail innovation", "retail omnichannel membership",
         "retail fulfillment inventory sharing", "retail returns app", "grocery fresh management retail", "store automation retail", "consumer behavior retail innovation",
+    ],
+}
+
+EXPANDED_SEARCH_QUERIES = {
+    "platform": [
+        "China ecommerce platform strategy", "China digital commerce merchant tools", "China ecommerce logistics fulfillment",
+        "China instant retail platform", "China platform AI ecommerce", "国内 电商 平台 战略", "即时零售 平台 能力",
+    ],
+    "ai": [
+        "business AI adoption retail ecommerce", "enterprise AI customer service workflow", "AI agents business operations",
+        "AI search shopping customer experience", "AI automation marketing operations", "AI productivity enterprise adoption",
+        "企业 AI 应用 零售 电商", "AI 客服 购物 搜索",
+    ],
+    "sports": [
+        "sports outdoor retail industry trends", "sports brand financial results ecommerce", "outdoor retail consumer trend",
+        "sports retail store expansion digital", "fitness wearable consumer trend", "运动户外 零售 趋势", "运动品牌 财报 电商",
+    ],
+    "retail": [
+        "retail innovation store operations", "retail technology inventory supply chain", "omnichannel retail membership",
+        "store digitalization self checkout", "retail consumer behavior innovation", "零售 创新 供应链 门店", "全渠道 会员 门店数字化",
     ],
 }
 

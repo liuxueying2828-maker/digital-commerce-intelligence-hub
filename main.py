@@ -4,6 +4,7 @@ import os
 from config import (
     HTML_OUTPUT_PATH,
     MAX_ITEMS_FOR_GEMINI,
+    MIN_SECTION_CANDIDATES,
     PROJECT_NAME,
     SECTION_ORDER,
 )
@@ -50,7 +51,29 @@ def prepare_information_pool(items, limit=MAX_ITEMS_FOR_GEMINI):
         reverse=True,
     )
 
-    return cleaned_items[:limit]
+    selected_items = []
+    selected_keys = set()
+
+    for section in SECTION_ORDER:
+        minimum = MIN_SECTION_CANDIDATES.get(section, 0)
+        section_items = [item for item in cleaned_items if item.get("domain") == section]
+        for item in section_items[:minimum]:
+            key = (item.get("title", "").lower(), item.get("link", "").strip())
+            if key in selected_keys:
+                continue
+            selected_keys.add(key)
+            selected_items.append(item)
+
+    for item in cleaned_items:
+        if len(selected_items) >= limit:
+            break
+        key = (item.get("title", "").lower(), item.get("link", "").strip())
+        if key in selected_keys:
+            continue
+        selected_keys.add(key)
+        selected_items.append(item)
+
+    return selected_items[:limit]
 
 
 def build_empty_message():

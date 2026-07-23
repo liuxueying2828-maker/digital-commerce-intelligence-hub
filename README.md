@@ -26,7 +26,7 @@ Automatic sources:
 - Google News RSS keyword searches grouped by section
 - Official blogs
 
-Automatic retrieval is sectioned before Gemini analysis. Each section uses its own keywords and searches recent information in widening windows: 3 days first, then 7 days, then 14 days. The four automatic sections are:
+Automatic retrieval is sectioned before Gemini analysis. Each section uses its own keywords and searches recent information in widening windows: 3 days first, then 7 days, then 14 days. If a section is still below its minimum, the collector expands keywords and reuses the highest-scored recent candidates so the dashboard does not output 0 signal. The four automatic sections are:
 
 - 国内电商平台 / Platform Intelligence
 - AI 能力与行业影响 / AI Capabilities & Industry Impact

@@ -95,6 +95,29 @@ def text_contains_any(text, keywords):
     lower_text = text.lower()
     return any(keyword.lower() in lower_text for keyword in keywords)
 
+def keyword_match_count(text, keywords):
+    lower_text = text.lower()
+    return sum(1 for keyword in keywords if keyword.lower() in lower_text)
+
+
+def score_section_item(title, summary, profile):
+    text = f"{title} {summary}"
+    hard_exclude_any = profile.get("hard_exclude_any", [])
+    if hard_exclude_any and text_contains_any(text, hard_exclude_any):
+        return -1
+
+    include_score = keyword_match_count(text, profile.get("include_any", []))
+    require_score = keyword_match_count(text, profile.get("require_any", []))
+    override_score = keyword_match_count(text, profile.get("override_any", []))
+    exclude_score = keyword_match_count(text, profile.get("exclude_any", []))
+
+    score = include_score * 3 + require_score * 4 + override_score * 5 - exclude_score * 6
+    if include_score == 0 and profile.get("include_any"):
+        score -= 5
+    if require_score == 0 and profile.get("require_any"):
+        score -= 4
+    return score
+
 
 def should_keep_section_item(title, summary, profile):
     text = f"{title} {summary}"
