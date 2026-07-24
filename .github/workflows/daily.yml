@@ -3,7 +3,7 @@ name: Digital Commerce Intelligence Brief
 'on':
   workflow_dispatch:
   schedule:
-    - cron: "50 3 * * *"
+    - cron: "50 3 * * 2"
 
 permissions:
   contents: write
