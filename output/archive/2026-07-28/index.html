@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Commerce Intelligence</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #687386;
+      --line: #e6e9ef;
+      --soft-line: #f0f2f6;
+      --blue: #2357d9;
+      --blue-soft: #edf3ff;
+      --green: #078365;
+      --green-soft: #eaf8f2;
+      --orange: #b25a00;
+      --orange-soft: #fff3e6;
+      --violet: #6f52d4;
+      --violet-soft: #f2effc;
+      --dark: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0 44px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+      padding-top: 2px;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .archive-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .archive-link:hover {
+      border-color: #c8ced8;
+    }
+
+    .focus {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+
+    .focus-label {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .focus-text {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.25;
+      font-weight: 760;
+    }
+
+    .section {
+      margin-top: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--soft-line);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .section-badge {
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .blue { color: var(--blue); background: var(--blue-soft); }
+    .violet { color: var(--violet); background: var(--violet-soft); }
+    .green { color: var(--green); background: var(--green-soft); }
+    .orange { color: var(--orange); background: var(--orange-soft); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      min-height: 0;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .field {
+      padding-top: 12px;
+      border-top: 1px solid var(--soft-line);
+    }
+
+    .field-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 780;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .field p {
+      margin: 0;
+      font-size: 15.5px;
+      line-height: 1.62;
+    }
+
+    .trend {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f3f5f8;
+      color: #344054;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .read-button {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 38px;
+      padding: 8px 13px;
+      border-radius: 8px;
+      background: var(--dark);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .read-button.disabled {
+      background: #eef1f5;
+      color: #8792a2;
+      pointer-events: none;
+    }
+
+    .empty {
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fbfcfe;
+    }
+
+    .watching {
+      margin-top: 22px;
+      background: var(--dark);
+      color: white;
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .watching .field-label {
+      color: #a9b4c7;
+      margin-bottom: 8px;
+    }
+
+    .watching p {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.3;
+      font-weight: 760;
+    }
+
+    .warning {
+      margin-top: 14px;
+      color: #8a5a00;
+      background: #fff7e6;
+      border: 1px solid #ffe1a6;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+        padding-top: 28px;
+      }
+
+      .topbar {
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .header-actions {
+        margin-top: 14px;
+        justify-content: space-between;
+      }
+
+      .focus,
+      .section,
+      .watching {
+        padding: 18px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-badge {
+        display: inline-flex;
+        margin-top: 10px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="topbar">
+      <div>
+        <p class="eyebrow">Digital Commerce Intelligence</p>
+        <h1>Weekly Signals</h1>
+      </div>
+      <div class="header-actions">
+        <div class="date">2026-07-28</div>
+        <a class="archive-link" href="../">历史日报</a>
+      </div>
+    </section>
+
+    <section class="focus">
+      <div class="focus-label">Weekly Focus</div>
+      <p class="focus-text">电商平台AI能力聚焦运营提效与内容创新</p>
+    </section>
+
+    
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>国内电商平台</h2>
+          <div class="subtitle">Platform Intelligence</div>
+        </div>
+        <span class="section-badge blue">5 Signals</span>
+      </div>
+      <div class="cards">
+        
+    <article class="card">
+      <h3 class="card-title">阿里妈妈</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>万相妙应升级Agent2.0，驱动电商内容从人工走向AI智能体驱动</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>通过智能体实现“一句话自动出片”，跨任务记忆偏好，大幅提升商家内容生产效率与转化率。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">电商AI工具、智能内容生成、商家赋能</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/NndPRWv_FknVzJ6U6X0REQ" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">京东</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>推出“商家成长PLUS方法论”，2026上半年新商家数量同比增长超30%，助新锐品牌夺冠。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>平台通过系统化策略和350亿扶持资源，吸引并赋能新商家与新锐品牌成长，强化生态协同。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">商家扶持、品牌增长、生态建设</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/nT1-VVWIYIN0_gF9qo2_nQ" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">京东物流</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>京东以AI驱动重塑物流网络，从“重资产”向“实体智能”转型。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>AI深度融入物流，将提升履约效率、降低成本，并优化供应链服务体验，对DTC业务有直接影响。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">智慧物流、供应链AI、效率优化</span>
+      </div>
+      <a class="read-button" href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNeE1kQVotUEtGNlRvZ0N2djROdDY4YllQTmdILWhVU0lRbXN2dk9SQUhJR3BsSHFDXzJWNHZ6SGIyVHkwTDdzMmdMUzZLb3hPd19yWnBNQlBaLUozQ3hYTDBvMnJEM19mU0RaaXlndXdrcjM0Ym9wSkZqYVFNXzl4T2ExckdSNlJINi1PUkwzak5pSGRtRjVOekhuVllQX2RnU3Zn?oc=5" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">京东工业</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>参与信通院终端智能体生态共建，以智能体推动产业AI落地，提升供应链人效。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>AI智能体在工业供应链场景的深度应用，如商品识别、预测、采销及商品管理，大幅提升效率，为其他业务场景提供借鉴。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">产业AI、智能体、供应链优化</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/oIMGgzSbndC5lo3kJHDt9g" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">Costco</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>Costco与京东合作，加速在中国市场的扩张，提升线上影响力。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>大型国际零售商借力国内电商平台进行数字化扩张，展现了京东在吸引国际品牌方面的平台能力和生态优势。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">跨境电商、平台合作、线上扩张</span>
+      </div>
+      <a class="read-button" href="https://news.google.com/rss/articles/CBMiswFBVV95cUxQOEpQb1o3VzI1REpxT1dLRGRVMXFKOUx5ZHZIMXQzWEJiZW92ZC1CSmxuOWh5dVRvTEt3VjVYYlo5M2kxLW44ODY4Z0tzazZ3VnR2QW55YlM2cXFObFllZThXa283ZEZudEliT05CRDRVcUhfaXlZeHFESXltcEhIMU5kN2Y3SlNpTVEtbVExbnpacDhPcms5Z2c4WFBTNXpEam9YWjREck1wMDhiU3hwbTVYUQ?oc=5" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+      </div>
+    </section>
+    
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>AI 能力与行业影响</h2>
+          <div class="subtitle">AI Capabilities &amp; Industry Impact</div>
+        </div>
+        <span class="section-badge violet">5 Signals</span>
+      </div>
+      <div class="cards">
+        
+    <article class="card">
+      <h3 class="card-title">AI智能体驱动企业级生产力与生态构建</h3>
+      <div class="field">
+        <div class="field-label">Capability</div>
+        <p>腾讯混元大模型聚焦高性价比，推出智能体开发平台ADP及WorkBuddy、CodeBuddy等应用，并将WorkBuddy独立App化，延伸至可穿戴设备，并构建SkillHub技能市场，提供技能分发、调用与支付闭环。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Industry Impact</div>
+        <p>降低大模型商用成本，提升职场效率，将AI入口扩展至端侧硬件，为开发者提供变现途径，加速智能体生态建设，推动AI从技术竞赛走向应用落地。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">AI智能体、企业AI应用、端侧AI、AI生态经济</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/5IUApcULipIRaW_q_k1p1g" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">垂直场景具身智能与企业级AI应用深化</h3>
+      <div class="field">
+        <div class="field-label">Capability</div>
+        <p>网易灵动工业机器人实现规模化商用，替代人进入危险作业环境；网易智企提供Agent Guard安全治理、ClawHive组织协作、AI私域助理/客服/销售宝等企业级AI应用。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Industry Impact</div>
+        <p>提升工业场景作业效率与安全性；通过AI解决企业在安全治理、团队协作、客户运营与销售转化中的实际痛点，实现AI的商业化确定性落地。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">具身智能、垂直行业AI、企业级应用</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/5IUApcULipIRaW_q_k1p1g" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">内容平台开放AI能力赋能用户共创</h3>
+      <div class="field">
+        <div class="field-label">Capability</div>
+        <p>B站赋能UP主AI创作；小红书推出RED Skill、Vibe Coding工具，将AI应用开发门槛拉低至用户层面，形成“内容即分发”模式；知乎开放专业语料数据基建。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Industry Impact</div>
+        <p>激发UGC内容创新，扩大创作者生态；缩短AI应用开发与分发路径，提升内容社区的创造力与用户粘性；将专业内容资产转化为数据服务，拓展商业模式。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">UGC AI、创作者经济、社区AI</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/5IUApcULipIRaW_q_k1p1g" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">AI商业价值从技术评估转向实际结果衡量</h3>
+      <div class="field">
+        <div class="field-label">Capability</div>
+        <p>行业竞争重心从模型能力转向应用价值和投资回报率（ROI），AI任务的真实成本包含调用、工具、返工和闲置资源，远超Token单价；具身智能注重稳定性和数据积累，企业AI落地需要解决信任机制和组织变革。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Industry Impact</div>
+        <p>引导企业更理性地评估AI投入，推动AI从概念走向可量化商业价值；促使企业重构流程，将AI智能体融入核心业务，而非仅作为辅助工具。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">AI价值评估、组织变革、数据驱动</span>
+      </div>
+      <a class="read-button" href="https://mp.weixin.qq.com/s/95ZIBz2VCWKULS3P7XQ_jg" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">AI购物助手提升B2B电商搜索体验</h3>
+      <div class="field">
+        <div class="field-label">Capability</div>
+        <p>HawkSearch整合AI购物助手，帮助企业B2B分销商提升站内搜索能力。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Industry Impact</div>
+        <p>增强B2B电商平台的用户体验和查找效率，通过智能化的产品推荐和信息匹配，有望提高采购转化率和客户满意度。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">AI购物助手、B2B电商、智能搜索</span>
+      </div>
+      <a class="read-button" href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxOVzJWb3lxeTJETElPekh6X0RqY1dSMGVqbm1Xbl9BZi11Y3R6cmlfUUNZODZMa1ptQmx1UWloRGxxM3VQc1hTbXIxclRoNmZaejR4azd0X09mWGFtM21iTXRfSlpSU3pES01kZjVzcVFQWW1MZGVLRGNtdHUtZXQ2RkhjdXNFZlhvQnc0blBBWVNHblNaeldwX2Fyd01QaGhrRHBYWlVQUXktWHpYTlRPdnFyWHFCX1NEZzhGWHhHcDVyVHRGRFpzcm1CYmlMMmZ2MGtDalRKNVZwOFpiWk9rUFlCNUg?oc=5" target="_blank" rel="noopener noreferrer">阅读全文</a>
+    </article>
+    
+      </div>
+    </section>
+    
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>体育与户外行业</h2>
+          <div class="subtitle">Sports &amp; Outdoor</div>
+        </div>
+        <span class="section-badge orange">3 Signals</span>
+      </div>
+      <div class="cards">
+        
+    <article class="card">
+      <h3 class="card-title">户外运动消费</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>随着健康生活理念普及，城市居民对徒步、露营等户外运动的热情持续高涨，推动相关装备和服装市场快速增长。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>反映了大众对户外生活方式的追求，为Decathlon带来品类增长机会，需关注产品创新和线上销售策略。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">户外热潮、品类增长、健康生活</span>
+      </div>
+      <span class="read-button disabled">暂无原文链接</span>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">可持续运动服装</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>消费者对环保和可持续性的关注提升，推动运动服装品牌在材料选择、生产过程和回收机制上加大投入。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>迪卡侬作为自有品牌零售商，应关注可持续供应链建设和绿色产品线的开发，以满足市场新需求。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">可持续发展、绿色产品、环保材料</span>
+      </div>
+      <span class="read-button disabled">暂无原文链接</span>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">运动数字化体验</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>智能穿戴设备、线上健身课程和运动社区日益融合，消费者对个性化、数据驱动的运动体验需求增加。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>迪卡侬可探索DTC渠道的会员服务、智能硬件结合和线上内容策略，提供更全面的运动解决方案。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">智能穿戴、线上健身、会员服务</span>
+      </div>
+      <span class="read-button disabled">暂无原文链接</span>
+    </article>
+    
+      </div>
+    </section>
+    
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>传统零售创新</h2>
+          <div class="subtitle">Retail Innovation</div>
+        </div>
+        <span class="section-badge green">3 Signals</span>
+      </div>
+      <div class="cards">
+        
+    <article class="card">
+      <h3 class="card-title">全渠道融合</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>零售商投资于线上线下体验的无缝衔接，如线上订单门店自提、门店发货，以提升顾客便利性和履约效率。这种模式使得顾客可以在任意触点购物，获得一致的服务体验。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>全渠道是DTC零售的核心，提升消费者体验和忠诚度，优化库存管理，为Decathlon的线上线下融合战略提供参考。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">全渠道、O2O、顾客体验</span>
+      </div>
+      <span class="read-button disabled">暂无原文链接</span>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">门店数字化转型</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>实体店引入智能屏幕、RFID技术和数据分析工具，成为集商品展示、互动体验和数据收集于一体的智能空间。这有助于零售商更好地理解顾客行为，并提供个性化服务。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>门店数字化是提升零售效率和顾客参与度的关键，Decathlon可借鉴其在库存管理、消费者洞察和互动体验方面的应用。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">门店科技、RFID、数据分析</span>
+      </div>
+      <span class="read-button disabled">暂无原文链接</span>
+    </article>
+    
+
+    <article class="card">
+      <h3 class="card-title">会员忠诚度计划升级</h3>
+      <div class="field">
+        <div class="field-label">News</div>
+        <p>零售商通过大数据分析，为会员提供更加个性化的商品推荐、专属折扣和增值服务，从简单的积分制度转向以情感连接和社区运营为核心的忠诚度体系。这有助于提高会员复购率和终身价值。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Why this matters</div>
+        <p>会员运营是DTC策略的重要组成部分， Decathlon应持续优化会员体系，通过个性化服务和社区互动增强用户粘性。</p>
+      </div>
+      <div class="field">
+        <div class="field-label">Trend</div>
+        <span class="trend">会员经济、个性化、社群运营</span>
+      </div>
+      <span class="read-button disabled">暂无原文链接</span>
+    </article>
+    
+      </div>
+    </section>
+    
+
+    <section class="watching">
+      <div class="field-label">One Thing Worth Watching</div>
+      <p>AI智能体在电商运营和内容生产中的落地应用及生态模式演进</p>
+    </section>
+
+    
+  </main>
+</body>
+</html>
