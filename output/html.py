@@ -2,6 +2,30 @@ from datetime import datetime
 from html import escape
 
 
+def safe_text(value):
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, list):
+        return ", ".join(part for part in (safe_text(item) for item in value) if part)
+    if isinstance(value, dict):
+        return ", ".join(
+            f"{safe_text(key)}: {safe_text(item)}"
+            for key, item in value.items()
+            if safe_text(key) or safe_text(item)
+        )
+    return str(value)
+
+
+def safe_escape(value, quote=True):
+    return escape(safe_text(value), quote=quote)
+
+
+def safe_cards(value):
+    return value if isinstance(value, list) else []
+
+
 SECTIONS = [
     {
         "key": "platform_intelligence",
@@ -371,21 +395,21 @@ def build_dashboard_html(data, archive_href="./archive/"):
         <h1>Weekly Signals</h1>
       </div>
       <div class="header-actions">
-        <div class="date">{escape(date)}</div>
-        <a class="archive-link" href="{escape(archive_href, quote=True)}">历史日报</a>
+        <div class="date">{safe_escape(date)}</div>
+        <a class="archive-link" href="{safe_escape(archive_href, quote=True)}">历史日报</a>
       </div>
     </section>
 
     <section class="focus">
       <div class="focus-label">Weekly Focus</div>
-      <p class="focus-text">{escape(headline)}</p>
+      <p class="focus-text">{safe_escape(headline)}</p>
     </section>
 
     {_render_sections(data)}
 
     <section class="watching">
       <div class="field-label">One Thing Worth Watching</div>
-      <p>{escape(data.get("one_thing_worth_watching") or headline)}</p>
+      <p>{safe_escape(data.get("one_thing_worth_watching") or headline)}</p>
     </section>
 
     {_render_warning(data)}
@@ -396,7 +420,7 @@ def build_dashboard_html(data, archive_href="./archive/"):
 
 
 def _render_sections(data):
-    return "\n".join(_render_section(section, data.get(section["key"], [])) for section in SECTIONS)
+    return "\n".join(_render_section(section, safe_cards(data.get(section["key"], []))) for section in SECTIONS)
 
 
 def _render_section(section, cards):
@@ -408,10 +432,10 @@ def _render_section(section, cards):
     <section class="section">
       <div class="section-head">
         <div>
-          <h2>{escape(section["title"])}</h2>
-          <div class="subtitle">{escape(section["subtitle"])}</div>
+          <h2>{safe_escape(section["title"])}</h2>
+          <div class="subtitle">{safe_escape(section["subtitle"])}</div>
         </div>
-        <span class="section-badge {escape(section["tone"])}">{len(cards[:6])} Signals</span>
+        <span class="section-badge {safe_escape(section["tone"])}">{len(cards[:6])} Signals</span>
       </div>
       <div class="cards">
         {rendered_cards}
@@ -424,9 +448,9 @@ def _render_card(card, section_key):
     if isinstance(card, str):
         card = {"name": "Signal", "news": card, "why_this_matters": "", "trend": "Signal", "link": ""}
 
-    link = card.get("link", "")
+    link = safe_text(card.get("link", ""))
     button = (
-        f'<a class="read-button" href="{escape(link, quote=True)}" target="_blank" rel="noopener noreferrer">阅读全文</a>'
+        f'<a class="read-button" href="{safe_escape(link, quote=True)}" target="_blank" rel="noopener noreferrer">阅读全文</a>'
         if link
         else '<span class="read-button disabled">暂无原文链接</span>'
     )
@@ -436,18 +460,18 @@ def _render_card(card, section_key):
 
     return f"""
     <article class="card">
-      <h3 class="card-title">{escape(card.get("name") or "Signal")}</h3>
+      <h3 class="card-title">{safe_escape(card.get("name") or "Signal")}</h3>
       <div class="field">
         <div class="field-label">News</div>
-        <p>{escape(card.get("news") or "")}</p>
+        <p>{safe_escape(card.get("news") or "")}</p>
       </div>
       <div class="field">
         <div class="field-label">Why this matters</div>
-        <p>{escape(card.get("why_this_matters") or "")}</p>
+        <p>{safe_escape(card.get("why_this_matters") or "")}</p>
       </div>
       <div class="field">
         <div class="field-label">Trend</div>
-        <span class="trend">{escape(card.get("trend") or "Trend")}</span>
+        <span class="trend">{safe_escape(card.get("trend") or "Trend")}</span>
       </div>
       {button}
     </article>
@@ -457,18 +481,18 @@ def _render_card(card, section_key):
 def _render_ai_card(card, button):
     return f"""
     <article class="card">
-      <h3 class="card-title">{escape(card.get("title") or card.get("name") or "AI 能力变化")}</h3>
+      <h3 class="card-title">{safe_escape(card.get("title") or card.get("name") or "AI 能力变化")}</h3>
       <div class="field">
         <div class="field-label">Capability</div>
-        <p>{escape(card.get("capability") or card.get("news") or "")}</p>
+        <p>{safe_escape(card.get("capability") or card.get("news") or "")}</p>
       </div>
       <div class="field">
         <div class="field-label">Industry Impact</div>
-        <p>{escape(card.get("industry_impact") or card.get("why_this_matters") or "")}</p>
+        <p>{safe_escape(card.get("industry_impact") or card.get("why_this_matters") or "")}</p>
       </div>
       <div class="field">
         <div class="field-label">Trend</div>
-        <span class="trend">{escape(card.get("trend") or "AI 能力")}</span>
+        <span class="trend">{safe_escape(card.get("trend") or "AI 能力")}</span>
       </div>
       {button}
     </article>
@@ -479,4 +503,4 @@ def _render_warning(data):
     warning = data.get("parse_warning")
     if not warning:
         return ""
-    return f'<div class="warning">{escape(warning)}</div>'
+    return f'<div class="warning">{safe_escape(warning)}</div>'
