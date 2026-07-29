@@ -1,0 +1,102 @@
+{
+  "date": "2026-07-29",
+  "today_focus": "AI驱动电商零售体验变革，平台加速全球化与生态融合",
+  "platform": [
+    {
+      "name": "京东",
+      "news": "京东连续11年登财富世界500强第41位，蝉联大陆民企第一，并以AI驱动建设全球最大物理世界运营中心，涵盖零售、物流、健康等3000+供应链场景。",
+      "why_this_matters": "京东强化其以供应链为基础的技术与服务企业定位，AI技术深入物流、零售及服务场景，提升效率并拓展全球化布局。",
+      "trend": "平台战略, AI赋能供应链, 全球化",
+      "link": "https://mp.weixin.qq.com/s/B_ohoWnktDOP_CGotKbinA"
+    },
+    {
+      "name": "阿里巴巴",
+      "news": "阿里巴巴在华为鸿蒙系统推出20多款应用，集成50多项创新功能，包括通义千问AI Agent和高德地图AR导航。",
+      "why_this_matters": "阿里生态深度融入主流智能操作系统，通过AI Agent和AR等技术提升用户体验，拓宽服务边界，对DTC平台获客和互动有启示。",
+      "trend": "平台生态整合, AI应用, AR导航",
+      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBRTmFXbUd3cnVzdG9JM3B6VW1SUkpoY0dlYk1GM2RTdjZMd3ZKeGdya0l5VnphY0RwbDl5Sk9EWEVnTGZuRlE4WF9RY2xTaklBc09iOEdOcHJPYXZNRVdpaG5MYmJtQXZEWmpJcElYYnYyd1VzbGU2Zg?oc=5"
+    },
+    {
+      "name": "京东/Costco",
+      "news": "Costco与京东合作，利用京东的供应链和零售能力扩展在中国的业务，涵盖欧洲线上零售及物流，体现了国内平台对国际品牌的吸引力。",
+      "why_this_matters": "体现了国内电商平台在赋能国际品牌进入中国市场和全球化供应链方面的能力和价值，为迪卡侬的平台策略提供参考。",
+      "trend": "跨境电商, 平台赋能, 供应链合作",
+      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1FMVRLcE85NHRtMnhXYXdocUJMM0RQbXZOR2wzZE1CakRyby1SZV9fWVc2R3JjS2hWcDNIbVYwVmQxODc2b2dzc2owWkxsZVlvOUJMZ0hYbWd5V1lMZXBvNGx0dkcyV01zVXBmMUY0czVLR0x3Z1I2UzNhR1U?oc=5"
+    }
+  ],
+  "ai": [
+    {
+      "name": "Algolia推出代理式商务AI购物体验",
+      "title": "Algolia推出代理式商务AI购物体验",
+      "capability": "Algolia为零售商提供基于可信商品数据的AI代理式购物体验，该代理能理解客户意图并提供个性化推荐。",
+      "industry_impact": "这将增强电商平台和门店的购物体验，通过智能代理提升商品发现效率和转化率，实现更精准的消费者互动，值得迪卡侬关注。",
+      "trend": "代理式商务, AI购物, 个性化推荐",
+      "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNUjB3RzZiQl9YUGxtV0FxMW5aNTFucVlXTjFCdEluUmlCNHJaRXRlaVVvV2RaejdYa2d6Z01COGFpeHNOWjlfeHBnZjM3QkJRbjNpZDlVcTVCa3ZzUVNiMmtMdXhNbFZ1c0hEb2J2WmRVTzR3UmlhTUxHU2tlNEg5WkE5OFpyS0tyR002QkhCWVAwdEtDaUhfREJUcmpia0hlZ1dtNkpFMk1xM3p3aU5YOU9QdHpvMTJjcV9nb3c1M0hyeHZXSms1NVZ1M3FuYXpNLU5XM2d3S1F2U3U4dDZFYXBFcVF2cmxNMEdPV0lZZGRJSkh4OUI3NTlPTi1VQWd2MHRqUWZycjFPOWU1N0FpdVhn?oc=5"
+    },
+    {
+      "name": "Michaels AI购物助手显著提升转化率",
+      "title": "Michaels AI购物助手显著提升转化率",
+      "capability": "Michaels零售商的AI购物助手能引导顾客完成购买，通过提供相关信息和建议，将商品转化率提高一倍以上。",
+      "industry_impact": "AI购物助手在零售电商中具有提升用户参与度和销售转化的巨大潜力，可优化线上购物流程和客服效率，直接影响DTC业绩。",
+      "trend": "AI购物助手, 转化率提升, 客户服务",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQOUZNVl92Z1J4bE54dFhYR09SZ2EyVjRuNWV2SUxvR3dOYS1fajVzQVpNY1I4TVhvTFRlVllyamdFRzl2SG5NQVhuWGc1eFlfYmlCQWtJdWZBTGNrUnhLdHJQZFAxM0lmd1ROSUtGdkRhMmpVU3NBOXhtdi1seU1PeXBtQ1loZGhhM3c?oc=5"
+    },
+    {
+      "name": "Adobe发布AI搜索产品目录优化工具",
+      "title": "Adobe发布AI搜索产品目录优化工具",
+      "capability": "Adobe新AI工具能够优化产品目录的搜索功能，通过AI理解产品属性和消费者查询意图，提升搜索结果相关性。",
+      "industry_impact": "零售商和电商平台可利用该工具改进商品搜索体验，提高商品发现效率，从而影响销售和库存管理，对迪卡侬提升商品可见性有益。",
+      "trend": "AI搜索, 产品目录优化, 提升发现",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQVm9XLVVCaTVjU2sxWUFIYWNxN3Z0dHdXb0h3dXJYVmZ3NXdET3VDTS11amRRTXZxWFI1WEMtWkNZNm9tR0hhdkM3b1ZCX2xYRUtCb0FzQTVkaE1QakRnS2l3OXJUMDhyLUV6QmMycWR2MFFWLVpoVnJDRzNWeXhGZnctT0h1VGtfZ0FCN2M3MHMzQU9DbGtTcWVOZHhBSTBxMEF3cElLbVkyZXFpUTBfdmVTc1RydTk4ZXlIMVVzbEdab0E?oc=5"
+    },
+    {
+      "name": "Zenity推出企业级AI代理安全平台",
+      "title": "Zenity推出企业级AI代理安全平台",
+      "capability": "Zenity发布AI安全平台，旨在保护企业自动化工作流和AI代理的安全性，防范潜在风险和滥用，确保AI系统合规运行。",
+      "industry_impact": "随着企业广泛采用AI代理，安全平台变得至关重要，它能帮助迪卡侬等公司降低数据泄露和业务中断风险，确保AI工具的稳健应用。",
+      "trend": "AI安全, 企业AI治理, 代理应用",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPVzlwQ2Y0N0FMS3RTTENOdlZOb3NVVndpOG9tMFI0SnAzNEp0UnNLSmxjQ0VlczZ5SGNsNlB0WmJHcHIyLWhJMTBDSTgtUUVpSDhOSj1LOEhLeUdNcmpPdGJiZkdkSXd6UmU3dnVodHpHWlI2UjBJZUI5SmtVaDFrRDZzWkxPeDN1Wi1xbzFEak1QLXB1YnFodnlNaC1mSXQxTm1BZWl4Vk9GVGNDaEFYMjhlMlhScS02RlZxcUZ6RVpBcS1IQUlDbHJ5azhUWktWV0ROLVl3?oc=5"
+    },
+    {
+      "name": "Tines发布3B平台治理企业AI工作流",
+      "title": "Tines发布3B平台治理企业AI工作流",
+      "capability": "Tines推出3B平台，帮助企业有效治理和管理其AI工作流、应用程序和智能代理，确保其高效、安全运行。",
+      "industry_impact": "企业可以更好地控制和扩展AI应用，确保其与业务目标对齐，提升运营效率并符合内部合规要求，对迪卡侬管理内部AI工具至关重要。",
+      "trend": "AI治理, 工作流自动化, 企业AI应用",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQcWxMMzMxWTl5WjhVVm4zUEZIblVSOFlOd3BtMFhNWE1SZkRyYURxSnJnLTE2T056akRXR3RzTDBWZTlJV0VlR0o0bmIyZWFpLXhZbmJWUldTLS1MbEE2UlpVOHMyMWpqWDVFWFpBWDRXh2E4WHV6RURTS0xTNURxdDl4VFRUMWs4VHA1Tkl5VW1UWWQ3dHBXNXZ2Y1pDNGMybjAzS1hYZl9lV1lud18tS0hDU1Fyb2dYSThhbG0wV01YUUx2aFVLOGJSUA?oc=5"
+    }
+  ],
+  "sports": [
+    {
+      "name": "亚太健身追踪器市场",
+      "news": "亚太地区健身追踪器市场通过智能手表和在线零售渠道获得增长动力，显示出强劲的市场势头，预计未来仍将持续增长。",
+      "why_this_matters": "健身科技产品（如智能手表）与电商渠道的结合是重要趋势，预示着运动智能硬件DTC和线上销售的巨大潜力，迪卡侬可关注此品类及渠道。",
+      "trend": "健身科技, 在线零售, 智能穿戴",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxObWN3OWpBMmlRNEhsYnM4RzYtc2FGODVKUEVkV281dldXVl9nV3VGYXRockZsbEJrSDc3OTB6QXhsdkhlSTY3RWtIb283SDUyVjhSeW5GUWwwa1kxaGlydE0xMnRCN0NYdzZaeUEzblR6enBVTm8ybk85eUswaWI3Z1dkcXJmb1hxdXl5Qi1xNVNBdF84Sjg4em5R?oc=5"
+    },
+    {
+      "name": "T100 三项赛",
+      "news": "T100三项赛系列赛事引入智能眼镜作为可穿戴技术，探索运动中不同科技应用路径，以提升运动员表现和观赛体验。",
+      "why_this_matters": "运动赛事正在积极拥抱前沿可穿戴技术，这预示着运动装备的创新方向和消费者对科技感运动产品的需求，为迪卡侬产品研发提供灵感。",
+      "trend": "智能穿戴, 运动科技, 赛事创新",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOT05fT09SbVY5SXVSNkVLRUFpUFNvc1h4Zzh1eHJBVkRxRXZjdjZUcTc2NHF6dDJCaVJMM2Qtb2dzQjhfaTVVZ3FucC1VWmUwbVc4YWhhbXZzU2psbmFZaTIySFdxZmh5LUYtYzRMeFN2N0ZGWnN3UFV4QUExVldpeUZEWUtZcXZ6YTIwTWRQRjIzcEwx?oc=5"
+    }
+  ],
+  "retail": [
+    {
+      "name": "亚马逊",
+      "news": "亚马逊的传统搜索栏正在被聊天功能超越，75%的用户每周考虑通过聊天方式购物。这表明消费者在购物过程中更倾向于互动式、对话式的体验，而非纯关键词搜索。",
+      "why_this_matters": "传统电商搜索模式面临AI对话交互的挑战，零售商需关注用户购物路径的变化，探索如何将AI聊天融入购物体验，以提升用户留存和转化。",
+      "trend": "AI对话购物, 搜索模式演进, 消费者行为",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNMDJlRFZHV1BZSlNLTjdYTFEzb3ZwbEEwR2pxN0sycjZYRW9raGkzQlVYVXFLc0haZ2pTNnFxQzg3dkZwWmxsVGZYVURnTDJhc0dEV0Myc0FRZ1lSZWtjbXdkbVRVVHE1X1BVcU9PcmR6STFPUWZ2M0ZiYUZDR1RDTlM0Z1dDUWNsRVdPTg?oc=5"
+    },
+    {
+      "name": "FARM Rio",
+      "news": "巴西时尚生活品牌FARM Rio采用Inspectorio的AI驱动供应链技术，以提高质量控制和供应商合规性，从而优化其全球供应链的效率和透明度。",
+      "why_this_matters": "AI在零售供应链中的应用日益深入，能够解决复杂环节的效率问题，提升产品质量和合规性，对DTC品牌的履约和品牌声誉有重要意义。",
+      "trend": "AI供应链, 质量控制, 零售技术",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOb25BWkxJZzJPTHdrX2xuYXRkTzdPOVZPdktxN2Nkb3lrYU1IckczSmE4dndIM1Q2QThCVThTYklEN1VKUnVpWjRxTzdjdEloTmRyMVFrMk85bl9OczN1SF9jN2hzUC02TkxrNnVEeTNwNmJHeGNYcmN1ZWdGU1EyWXhMek5MX1lRcVlIVGNIelFOLWVxTmdoWTRjc3BEQlVZenFyUWtKX2JKdXB2Z0NtWl9rREd2S254RGtLeFd3Z0RSNnN5TnVJMUtXRk8wWFFtanBlRnd3?oc=5"
+    }
+  ],
+  "one_thing_worth_watching": "AI代理和对话式购物的兴起，对传统电商搜索和客户服务模式的冲击及重塑。"
+}
