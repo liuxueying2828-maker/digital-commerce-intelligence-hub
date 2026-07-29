@@ -37,7 +37,7 @@ def generate_dashboard_data(items):
     )
 
     raw_text = response.text.strip()
-    return ensure_minimum_dashboard_signals(parse_dashboard_json(raw_text), items)
+    return parse_dashboard_json(raw_text)
 
 
 def parse_dashboard_json(raw_text):
@@ -136,25 +136,15 @@ def _normalize_ai_cards(items):
 
 
 def build_dashboard_fallback(raw_text):
-    text = re.sub(r"\s+", " ", raw_text).strip()
-    fallback_signal = text[:160] if text else "今日外部信号已更新，但结构化解析失败。"
     return {
         "date": "",
-        "headline": "今日外部信号已更新",
-        "platform_intelligence": [
-            {
-                "name": "Signal",
-                "news": fallback_signal[:90],
-                "why_this_matters": "Gemini 返回内容未能解析为标准 JSON，已保留核心文本。",
-                "trend": "JSON fallback",
-                "link": "",
-            }
-        ],
+        "headline": "Gemini 返回内容未能解析为标准 JSON",
+        "platform_intelligence": [],
         "ai_technology": [],
         "sports_outdoor": [],
         "retail_innovation": [],
-        "one_thing_worth_watching": fallback_signal,
-        "parse_warning": "Gemini JSON parse failed; rendered fallback content.",
+        "one_thing_worth_watching": "Gemini 返回内容未能解析为标准 JSON，已按 empty 结果处理。",
+        "parse_warning": "Gemini JSON parse failed; rendered empty fallback content.",
     }
 
 

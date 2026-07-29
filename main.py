@@ -107,6 +107,14 @@ def build_dashboard_notification(data, page_url):
     )
 
 
+def send_optional_feishu_test_message(data, page_url):
+    if os.getenv("ENABLE_FEISHU_TEST") != "true":
+        return
+    from output.feishu import send_text_message
+
+    send_text_message(build_dashboard_notification(data, page_url))
+
+
 def get_dashboard_url():
     return (
         os.getenv("DASHBOARD_URL")
@@ -118,8 +126,8 @@ def get_dashboard_url():
 def main():
     from intelligence.gemini import generate_dashboard_data
     from output.archive import save_dashboard_history
+    from output.email import send_brief_email
     from output.html import render_dashboard
-    from output.feishu import send_text_message
 
     information_pool = collect_information_pool()
     page_url = get_dashboard_url()
@@ -128,13 +136,15 @@ def main():
         dashboard_data = build_empty_dashboard_data()
         render_dashboard(dashboard_data, HTML_OUTPUT_PATH)
         save_dashboard_history(dashboard_data, HTML_OUTPUT_PATH.parent)
-        send_text_message(build_dashboard_notification(dashboard_data, page_url))
+        send_brief_email(dashboard_data, page_url)
+        send_optional_feishu_test_message(dashboard_data, page_url)
         return
 
     dashboard_data = generate_dashboard_data(information_pool)
     render_dashboard(dashboard_data, HTML_OUTPUT_PATH)
     save_dashboard_history(dashboard_data, HTML_OUTPUT_PATH.parent)
-    send_text_message(build_dashboard_notification(dashboard_data, page_url))
+    send_brief_email(dashboard_data, page_url)
+    send_optional_feishu_test_message(dashboard_data, page_url)
 
 
 if __name__ == "__main__":

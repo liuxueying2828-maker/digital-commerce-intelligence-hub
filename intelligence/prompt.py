@@ -13,13 +13,14 @@ def build_dashboard_prompt(items):
 
 请严格遵守：
 - 只输出合法 JSON，不要输出 Markdown，不要输出解释文字。
-- 不要编造信息池中没有的事实。
+- 禁止生成信息池中不存在的新闻、公司动作、数据、结论或链接。
+- 所有 signal 必须来自 Sectioned Candidate Pool 中的真实 source，并且必须使用对应原文链接。
+- 如果某条候选没有可靠来源、缺少原文链接、无法确认事实，必须忽略。
+- 如果某个板块没有可靠新闻，返回空数组；允许 Dashboard 出现 empty，不要根据行业常识、历史趋势或推测补充。
 - 按“对 Decathlon Digital Commerce 的参考价值”排序，而不是按发布时间排序。
-- 如果 3 天内信号不足，可以使用 7 天或 14 天内更有价值的行业情报；绝不使用超过 14 天的信息。
-- Dashboard 不应输出 0 signal；如果没有突发新闻，要从近 14 天候选池中选择最有价值的行业情报补足。
-- 无法明确归类、价值较低或不符合其候选板块要求的新闻直接忽略，不要硬塞；但不能因为没有当天新闻就留空。
+- 无法明确归类、价值较低或不符合其候选板块要求的新闻直接忽略，不要硬塞。
 - 不要输出 retail_media、marketing、advertising、consumer、opportunity、action 等分类。
-- Link 必须使用原始文章链接；如果信息池没有链接，输出空字符串。
+- Link 必须使用信息池中的原始文章链接；如果信息池没有链接，该 signal 不允许输出。
 - 不要输出对迪卡侬意味着什么。
 - 不要输出 DTC Opportunity、Recommended Actions、Possible Experiment。
 - 不要建议成立团队，不要建议持续关注。
@@ -72,12 +73,11 @@ JSON schema 必须严格如下：
 }}
 
 数量要求：
-- Dashboard 不输出 0 signal。
-- 检索策略已经按 3 天 -> 7 天 -> 14 天 -> 扩展关键词 -> 最高相关性候选补足执行。
-- platform: 最少 4 条，最多 5 条；人工输入质量高时优先人工输入，其余用近 14 天高价值平台情报补足。
-- ai: 最少 4 条，最多 5 条；每条控制在 100-150 个中文字，重点是 Capability 与 Industry Impact；纯模型版本、参数或 Benchmark 新闻必须过滤。
-- sports: 最少 3 条，最多 5 条；可使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内信息补足。
-- retail: 最少 3 条，最多 5 条；每条控制在 120-180 个中文字，News 必须足够完整；严禁 Retail Media。
+- platform: 最多 5 条；人工输入质量高时优先人工输入，但必须有真实来源或明确人工输入内容支撑。
+- ai: 最多 5 条；每条控制在 100-150 个中文字，重点是 Capability 与 Industry Impact；纯模型版本、参数或 Benchmark 新闻必须过滤。
+- sports: 最多 5 条；可以使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内可靠信息。
+- retail: 最多 5 条；每条控制在 120-180 个中文字，News 必须足够完整；严禁 Retail Media。
+- 如果某板块没有可靠新闻，输出空数组 []，不要补齐数量。
 - 排序按对 Decathlon Digital Commerce 的参考价值，不按发布时间。
 
 Sectioned Candidate Pool:

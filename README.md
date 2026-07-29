@@ -4,7 +4,7 @@ A weekly industry intelligence dashboard for Decathlon China DTC / Digital Comme
 
 This project has been upgraded from a simple news push bot into a weekly web-based intelligence dashboard:
 
-GitHub Actions -> Python source collectors -> Unified Information Pool -> Gemini JSON analysis -> HTML Dashboard -> GitHub Pages + Feishu link push
+GitHub Actions -> Python source collectors -> Unified Information Pool -> Gemini JSON analysis -> HTML Dashboard -> GitHub Pages + Email notification
 
 ## What It Does
 
@@ -16,7 +16,7 @@ The system collects automatic and manual signals, then asks Gemini to produce sh
 - 传统零售创新 / Retail Innovation
 - One Thing Worth Watching
 
-The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes while still surfacing useful weekly industry intelligence when there is no major breaking news.
+The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes. Gemini may return empty sections when no reliable source-backed signals are available.
 
 ## Information Sources
 
@@ -26,7 +26,7 @@ Automatic sources:
 - Google News RSS keyword searches grouped by section
 - Official blogs
 
-Automatic retrieval is sectioned before Gemini analysis. Each section uses its own keywords and searches recent information in widening windows: 3 days first, then 7 days, then 14 days. If a section is still below its minimum, the collector expands keywords and reuses the highest-scored recent candidates so the dashboard does not output 0 signal. The four automatic sections are:
+Automatic retrieval is sectioned before Gemini analysis. Each section uses its own keywords and searches recent information in widening windows: 3 days first, then 7 days, then 14 days. The four automatic sections are:
 
 - 国内电商平台 / Platform Intelligence
 - AI 能力与行业影响 / AI Capabilities & Industry Impact
@@ -63,6 +63,7 @@ Future sources can be added as new modules under `sources/`, such as PDF, Feishu
 │   ├── prompt.py
 │   └── gemini.py
 └── output/
+    ├── email.py
     ├── feishu.py
     ├── html.py
     └── index.html
@@ -78,12 +79,18 @@ output/index.html
 
 GitHub Actions publishes this file to GitHub Pages.
 
-Feishu only receives a short message:
+Email notification sends a plain-text brief after each GitHub Actions run. It does not send the full HTML dashboard code.
 
 ```text
-Digital Commerce Intelligence 已更新
-今日重点：...
-查看完整页面：...
+Subject: Digital Commerce Intelligence Brief - YYYY-MM-DD
+
+Today's Focus
+...
+
+Platform Intelligence
+News: ...
+Why this matters: ...
+Trend: ...
 ```
 
 ## GitHub Secrets
@@ -91,16 +98,20 @@ Digital Commerce Intelligence 已更新
 Add these repository secrets:
 
 - `GEMINI_API_KEY`
-- `FEISHU_WEBHOOK_URL`
+- `EMAIL_TO`
+- `EMAIL_API_KEY`
+- `EMAIL_FROM` optional, depending on your email API sender setup
 
-The API keys are loaded from environment variables. Do not hard-code them in the project.
+The API keys are loaded from environment variables. Do not hard-code them in the project. The existing Feishu module is retained for optional testing with `ENABLE_FEISHU_TEST=true` and `FEISHU_WEBHOOK_URL`.
 
 ## Run Locally
 
 ```bash
 pip install -r requirements.txt
 export GEMINI_API_KEY="your-gemini-api-key"
-export FEISHU_WEBHOOK_URL="your-feishu-webhook-url"
+export EMAIL_TO="Lyra.liu@decathlon.com"
+export EMAIL_API_KEY="your-email-api-key"
+export EMAIL_FROM="Digital Commerce Intelligence <your-verified-sender@example.com>"
 export DASHBOARD_URL="https://your-name.github.io/your-repo/"
 python main.py
 ```
@@ -112,7 +123,7 @@ Local output will be written to `output/index.html`.
 The workflow supports:
 
 - Manual run through `workflow_dispatch`
-- Daily scheduled run through cron in UTC
+- Weekly scheduled run every Tuesday through cron in UTC
 - GitHub Pages deployment from `output/index.html`
 
 Before the first deployment, set repository Pages source to GitHub Actions in GitHub:
@@ -131,4 +142,4 @@ output/archive/YYYY-MM-DD/index.html
 output/data/YYYY-MM-DD.json
 ```
 
-`output/archive/index.html` lists all saved daily briefs in reverse date order. GitHub Actions commits `output/archive` and `output/data` back to the repository so GitHub Pages keeps historical pages across runs.
+`output/archive/index.html` lists all saved intelligence briefs in reverse date order. GitHub Actions commits `output/archive` and `output/data` back to the repository so GitHub Pages keeps historical pages across runs.
