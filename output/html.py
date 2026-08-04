@@ -1,6 +1,8 @@
 from datetime import datetime
 from html import escape
 
+from utils.date_utils import report_date_parts
+
 
 def safe_text(value):
     if value is None:
@@ -62,14 +64,15 @@ def render_dashboard(data, output_path, archive_href="./archive/"):
 
 def build_dashboard_html(data, archive_href="./archive/"):
     date = data.get("date") or datetime.now().strftime("%Y-%m-%d")
-    headline = data.get("headline") or data.get("one_thing_worth_watching") or "Today’s signals are ready."
+    date_parts = report_date_parts(date)
+    report_date_label = f"{date_parts['iso_week']} · {date_parts['formatted_date']}"
 
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital Commerce Intelligence</title>
+  <title>Weekly Industry Intelligence</title>
   <style>
     :root {{
       --bg: #f7f8fb;
@@ -163,27 +166,6 @@ def build_dashboard_html(data, archive_href="./archive/"):
 
     .archive-link:hover {{
       border-color: #c8ced8;
-    }}
-
-    .focus {{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 22px;
-    }}
-
-    .focus-label {{
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 8px;
-    }}
-
-    .focus-text {{
-      margin: 0;
-      font-size: clamp(22px, 3vw, 32px);
-      line-height: 1.25;
-      font-weight: 760;
     }}
 
     .section {{
@@ -316,26 +298,6 @@ def build_dashboard_html(data, archive_href="./archive/"):
       background: #fbfcfe;
     }}
 
-    .watching {{
-      margin-top: 22px;
-      background: var(--dark);
-      color: white;
-      border-radius: 8px;
-      padding: 24px;
-    }}
-
-    .watching .field-label {{
-      color: #a9b4c7;
-      margin-bottom: 8px;
-    }}
-
-    .watching p {{
-      margin: 0;
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 1.3;
-      font-weight: 760;
-    }}
-
     .warning {{
       margin-top: 14px;
       color: #8a5a00;
@@ -362,9 +324,7 @@ def build_dashboard_html(data, archive_href="./archive/"):
         justify-content: space-between;
       }}
 
-      .focus,
-      .section,
-      .watching {{
+      .section {{
         padding: 18px;
       }}
 
@@ -391,26 +351,16 @@ def build_dashboard_html(data, archive_href="./archive/"):
   <main class="page">
     <section class="topbar">
       <div>
-        <p class="eyebrow">Digital Commerce Intelligence</p>
-        <h1>Weekly Signals</h1>
+        <p class="eyebrow">Digital Commerce Intelligence Hub</p>
+        <h1>Weekly Industry Intelligence</h1>
       </div>
       <div class="header-actions">
-        <div class="date">{safe_escape(date)}</div>
+        <div class="date">{safe_escape(report_date_label)}</div>
         <a class="archive-link" href="{safe_escape(archive_href, quote=True)}">历史日报</a>
       </div>
     </section>
 
-    <section class="focus">
-      <div class="focus-label">Weekly Focus</div>
-      <p class="focus-text">{safe_escape(headline)}</p>
-    </section>
-
     {_render_sections(data)}
-
-    <section class="watching">
-      <div class="field-label">One Thing Worth Watching</div>
-      <p>{safe_escape(data.get("one_thing_worth_watching") or headline)}</p>
-    </section>
 
     {_render_warning(data)}
   </main>
