@@ -356,7 +356,7 @@ def build_dashboard_html(data, archive_href="./archive/"):
       </div>
       <div class="header-actions">
         <div class="date">{safe_escape(report_date_label)}</div>
-        <a class="archive-link" href="{safe_escape(archive_href, quote=True)}">历史日报</a>
+        <a class="archive-link" href="{safe_escape(archive_href, quote=True)}">历史周报</a>
       </div>
     </section>
 

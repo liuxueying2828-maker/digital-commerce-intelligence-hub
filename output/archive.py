@@ -77,14 +77,14 @@ def render_archive_index(archive_dir, output_dir):
 def build_archive_index_html(dates):
     cards = "\n".join(_render_date_card(date) for date in dates)
     if not cards:
-        cards = '<div class="empty">还没有历史日报。</div>'
+        cards = '<div class="empty">还没有历史周报。</div>'
 
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>历史日报 | Digital Commerce Intelligence</title>
+  <title>历史周报 | Digital Commerce Intelligence</title>
   <style>
     :root {{
       --bg: #f7f8fb;
@@ -209,8 +209,8 @@ def build_archive_index_html(dates):
   <main class="page">
     <section class="topbar">
       <div>
-        <p class="eyebrow">Daily Intelligence Archive</p>
-        <h1>历史日报</h1>
+        <p class="eyebrow">Weekly Intelligence Archive</p>
+        <h1>历史周报</h1>
       </div>
       <a class="home-link" href="../">返回今日首页</a>
     </section>
@@ -227,17 +227,17 @@ def _render_date_card(date):
     return f"""
       <a class="card" href="{escape(date, quote=True)}/">
         <div>
-          <div class="date">{escape(format_chinese_date(date))}</div>
+          <div class="date">{escape(format_week_label(date))}</div>
           <div class="label">Digital Commerce Intelligence Brief</div>
         </div>
-        <div class="arrow">查看日报 →</div>
+        <div class="arrow">查看周报 →</div>
       </a>
     """
 
 
-def format_chinese_date(date):
+def format_week_label(date):
     try:
         parsed = datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
         return date
-    return f"{parsed.year}年{parsed.month}月{parsed.day}日"
+    return f"Week {parsed.isocalendar()[1]}"
