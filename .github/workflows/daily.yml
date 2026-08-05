@@ -38,7 +38,7 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_API_KEY: ${{ secrets.EMAIL_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/index.html
         run: python main.py
 
 
