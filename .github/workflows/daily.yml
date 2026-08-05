@@ -2,7 +2,7 @@ name: Digital Commerce Intelligence Brief
 
 'on':
   workflow_dispatch:
-  schedule:
+
     
 
 permissions:
