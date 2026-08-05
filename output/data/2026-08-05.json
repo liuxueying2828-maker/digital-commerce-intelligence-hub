@@ -1,0 +1,81 @@
+{
+  "date": "2026-08-05",
+  "today_focus": "AI购物与智能体成新热点，平台供应链提速，零售更重体验",
+  "platform": [
+    {
+      "name": "阿里巴巴 (Accio)",
+      "news": "推出Agentic AI驱动的B2B采购工具Accio，重塑B2B采购规则。",
+      "why_this_matters": "通过智能体提升企业采购效率与匹配精准度，对商家供应链管理和寻源能力有直接影响。",
+      "trend": "B2B采购, 智能体AI",
+      "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPQmFuczY3WDhkWWgxOGo5eW1yM25VaThfN01zendBNVVuMU15UnFIYUJiaEtUb3RicGNRaU9WcEpodUFHMlZBYVBFZ2NzT29vT3BLeFFHQWp1d0NSSU5pSW9qTzlWZk9hZ0lob0dlZ0lyeHlDNnZ4bDRwaFY4UC03MlVtREtHcl9ocjdnRmVHV2tyNjB0MTI4LUZscFJXWHRkSGxMRlBjV005VVZfaUJTRmpjTEFxOE5XX0FVSDNtelI3U2N1X3RLcHFoOFh0Y1NjYS1vaWxsc1U3Y0NQX2ZISnFKMVY5UQ?oc=5"
+    },
+    {
+      "name": "菜鸟 (Cainiao)",
+      "news": "在西班牙和荷兰启动智能仓储项目，拓展国际物流网络。",
+      "why_this_matters": "提升其在全球范围内的物流履约效率与供应链能力，可能为商家提供更优质的跨境电商服务。",
+      "trend": "跨境物流, 智能仓储",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQV2Z3OGVoN1IyUGkzWTJxYVc1eXRtUGxSN3Uxc05Kekd3QW01RlBiUXdNallNQlpPOFM0MFdBYnlkN01mU2h4d3V2anB2QktoNFg3R2oxTVMzTjVkb2xuY25rXzk3Ti1lVjM4SUxiWkpUOTRidmdLaVRXcGgwX2VLWXBnR1oyWjIwX2tCQkVqdjFFMDl3TmVJSkJ4Y2FsSEZ3ZTZNWTdXR1dUb2VSckR1aGptM1lVZi03VXJlb2tWbkg?oc=5"
+    }
+  ],
+  "ai": [
+    {
+      "name": "AI可穿戴设备向“身体器官”演进，AI主动感知用户",
+      "title": "AI可穿戴设备向“身体器官”演进，AI主动感知用户",
+      "capability": "新一代AI可穿戴设备正从被动工具向主动感知用户生理与情感状态的“身体器官”转变，实现无感交互和全时域数据监测。",
+      "industry_impact": "这将深刻影响健康管理、个性化推荐和生活服务，为品牌提供更深入的用户洞察和更贴身的智能体验。",
+      "trend": "AI可穿戴, 无感交互, 情绪感知",
+      "link": "https://www.36kr.com/p/3894915480615814"
+    },
+    {
+      "name": "阶跃星辰推出AI智能体手机，探索模型与终端结合",
+      "title": "阶跃星辰推出AI智能体手机，探索模型与终端结合",
+      "capability": "AI创业公司阶跃星辰推出首款智能体手机STEPX Neo，旨在将大模型、操作系统与终端硬件深度融合，实现AI能力直接触达用户。",
+      "industry_impact": "这预示着AI将从纯模型能力走向与消费硬件的紧密结合，为用户提供由AI驱动的全新交互体验和商业闭环。",
+      "trend": "AI终端, 智能体手机, 模型落地",
+      "link": "https://mp.weixin.qq.com/s/tlZV0Bchn8FYDuVZfIcMQA"
+    },
+    {
+      "name": "AI购物搜索量激增200%，电商加速转向",
+      "title": "AI购物搜索量激增200%，电商加速转向",
+      "capability": "电子商务领域AI购物搜索量飙升200%，表明消费者在购物过程中对AI辅助的依赖度显著提高。",
+      "industry_impact": "电商平台和品牌需优化AI搜索策略和内容，以适应消费者新的购物习惯，抓住AI驱动的增长机遇。",
+      "trend": "AI购物, 搜索量增长, 电商转型",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPbTk0b3JDd24wSUs4eFRBUXhVVU9LY2NQTExlYUdXR19DYVZVanJkeUFqOTZweUdoZHI4ZEQtUl_0US1OSklMbEdPc1g0MnQ0aDhTcTI1bkNMZ2ZKMDhMLTROb3VqcWFvWUR1RE83Rnc3VHhTY2V1cF9OUkFoZnBCQVc3OTNMNVA1WTdxVHZZQnNpbFE?oc=5"
+    },
+    {
+      "name": "AI搜索能力拓展至零售8万余种商品",
+      "title": "AI搜索能力拓展至零售8万余种商品",
+      "capability": "某零售企业将AI搜索技术应用扩展到其约80,000种商品组合中，提升商品检索效率和用户体验。",
+      "industry_impact": "大规模商品目录的AI搜索能力，将显著优化顾客在线购物的发现路径，减少决策时间，提高转化率。",
+      "trend": "AI搜索, 商品发现, 零售数字化",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPLTJRSmNBanN3UTRhS3I4S21nUDFUV3pDbUdTb3o3dHlDVHZHOUZrbUtDTFRmcWF3cW5BZnVlVlB4VEszR3dLVENmeWNGUThZX2UteG1xc3k1bkJFdjlhc21SNV8xd3NEM3BwWklGbmQ1UWRFUm5ySzJ2UVJXSFBOaVVHUUpfUWg3SEZOdmZfTWZOakpCRnNLS2NDNEhBQk5QbDkyOUxsQkZkVGh5S2otd2N4dDFYRjJFR3NRcw?oc=5"
+    },
+    {
+      "name": "Kohl's推出AI购物助手，拓展购物路径",
+      "title": "Kohl's推出AI购物助手，拓展购物路径",
+      "capability": "Kohl's上线AI购物助手，为顾客提供新的商品发现和购买途径，可能包含个性化推荐和智能导购功能。",
+      "industry_impact": "AI购物助手能提升消费者购物体验和转化效率，是零售商在数字商务中增强客户互动的重要手段。",
+      "trend": "AI购物助手, 零售创新, 顾客体验",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOSXQzNzlzZkYwMFdYLXZSS2V3azFlQjQwRHE0NDA4TUlkZktpdzRZQmJjNzZTcFB0TlNzcWtuU2RYbk1GWUlCOVFYT3pTQlROaWRuekhzU2ltWnF6RWR1YVU3NlZ0SXFRNTdtVDE0VTRRSTdYYldHV2s1U25FQml6bmtTdlRsc1JIQnluU0dzNEUyVG1mQ3c?oc=5"
+    }
+  ],
+  "sports": [
+    {
+      "name": "运动科技 (Wearable Tech)",
+      "news": "可穿戴技术正在革新运动员的训练和康复方式。",
+      "why_this_matters": "运动员利用可穿戴设备进行数据监测，优化训练方案，加速伤病恢复，提升运动表现。",
+      "trend": "运动科技, 可穿戴设备, 训练优化",
+      "link": "https://news.google.com/rss/articles/CBMizgJBVV95cUxOQ2Y0di1BSWptczBWRUZ5am5aQVR2RTRtSVM2aGtUcGhOemQtTEg0QzVBNHRqMnJrUE56dkxyYm52cEM0ck5oMUJfTUUzYklmbUQ0X2hkazdKcmxCWUNIT3lZZTVnWWkwRllFUzlHV2MycVVHUkZaZDA5UW9meVNVRXlGUURjcWRaclhvUmNJUEhoVkZHMEJoTDRZYlJzRVJFN0w3eWp2LUtOcHh6RC1uRkl4NEJtckJwWGZHVDdiYmxTX2E2dWRxVjR0anhfSFU3OHB4c2NoR1ZpdFNpb0dRcmQ2SzFJWWJULVVoTEJYWmhrbDliMkY3TTE2ZHFGX3FHUWxtWEN6Q3dRXzBFczNHMjBZZHE0eW0zSDZFaG54d2NOeFhtaWxQVGFGUVdhRDhCbEtGajdkbnJxTWdLUnc2Q1piR2ZydWttZkdUN2Z3?oc=5"
+    }
+  ],
+  "retail": [
+    {
+      "name": "沃尔玛 (Walmart)",
+      "news": "沃尔玛重新评估其自助结账策略。为优先保障顾客体验，该公司正考虑调整或取消部分门店的自助结账选项，以解决因技术导致的服务不畅和客户满意度下降问题。",
+      "why_this_matters": "零售商在门店数字化转型中，需平衡效率与顾客满意度，避免技术部署损害购物体验。",
+      "trend": "门店运营, 顾客体验, 自助结账",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQTkFrRmN0QlBYUlF2Q0d2NkZCR0ZsWTVLZW9QOExBY01NNzQtcXRQdUY0LWJ1Q2lKR1ZtNVlSN082c2gtbkZIM20wbGVjMVBKY0o4WEdmMnFjVnE2VDR0ZjZqeXBoclZwTkladGttYkVFYkVCNVNRNUVMQmZEWlY2SUZKem1nMEc0a3ZuY2l2Y3JGTlB5M2VtbmVoMjdwY01Sc2VWRjY4bG1qT2o3Z2E4VVpOcXNaa0l0VlllaWJsb1Q2ZGpG?oc=5"
+    }
+  ],
+  "one_thing_worth_watching": "AI智能体在多终端渗透，重塑消费者购物体验和行业交互模式。"
+}
