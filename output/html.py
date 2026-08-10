@@ -130,7 +130,7 @@ def build_dashboard_html(data, archive_href="./archive/"):
 
     h1 {{
       margin: 0;
-      font-size: clamp(34px, 5vw, 54px);
+      font-size: clamp(30px, 4.4vw, 48px);
       line-height: 1;
       letter-spacing: 0;
     }}

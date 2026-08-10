@@ -18,6 +18,7 @@ def build_dashboard_prompt(items):
 - 如果某条候选没有可靠来源、缺少原文链接、无法确认事实，必须忽略。
 - 如果某个板块没有可靠新闻，返回空数组；允许 Dashboard 出现 empty，不要根据行业常识、历史趋势或推测补充。
 - 按“对 Decathlon Digital Commerce 的参考价值”排序，而不是按发布时间排序。
+- 来源优先级：manual_sources/daily_input.md 中的人工输入新闻来源最高，其次才是 AI 自动抓取的 Google News/RSS/官方 Blog；当 manual input 与自动来源主题重复或冲突时，优先采用 manual input，并只用自动来源作补充验证。
 - 无法明确归类、价值较低或不符合其候选板块要求的新闻直接忽略，不要硬塞。
 - 不要输出 retail_media、marketing、advertising、consumer、opportunity、action 等分类。
 - Link 必须使用信息池中的原始文章链接；如果信息池没有链接，该 signal 不允许输出。
@@ -41,7 +42,7 @@ Retail Media、Retail Media Network、Advertising business、Ad tech、CTV adver
 栏目定义：
 
 platform / 国内电商平台 / Platform Intelligence
-重点关注阿里巴巴、淘宝、天猫、1688、京东、京东零售、京东物流、抖音电商、字节跳动、拼多多、美团、微信、小红书、快手。重点新闻类型包括新事业部或新业务、平台战略变化、搜索、推荐、会员、商家工具、履约、供应链、物流、即时零售、本地生活、平台开放能力、AI 在平台中的真实落地、组织调整或事业部方向变化。人工输入优先于自动来源；如果人工输入已有 1-3 条高质量平台内容，不需要用低价值自动新闻凑满。不要抓普通促销、明星代言、单纯销售战报、普通营销 Campaign、广告预算新闻。
+重点关注阿里巴巴、淘宝、天猫、1688、京东、京东零售、京东物流、抖音电商、字节跳动、拼多多、美团、微信、小红书、快手。重点新闻类型包括新事业部或新业务、平台战略变化、搜索、推荐、会员、商家工具、履约、供应链、物流、即时零售、本地生活、平台开放能力、AI 在平台中的真实落地、组织调整或事业部方向变化。manual_sources/daily_input.md 人工输入优先于 AI 抓取的 Google News/RSS 自动来源；如果人工输入已有 1-3 条高质量平台内容，不需要用低价值自动新闻凑满。不要抓普通促销、明星代言、单纯销售战报、普通营销 Campaign、广告预算新闻。
 
 ai / AI for Business / AI Capabilities & Industry Impact
 只保留业务团队能理解、能借鉴的 AI 能力变化。重点关注 AI used in retail、AI shopping、AI customer service、AI search、AI recommendation、AI productivity、AI agent、AI commerce、AI workflow、AI marketing、AI operations、Model routing、Enterprise AI、Business AI adoption。可以关注 OpenAI、Google Gemini、Anthropic Claude、DeepSeek、豆包、字节 Seed、通义千问/Qwen、腾讯混元、Kimi、Manus、Microsoft Copilot、Apple Intelligence、NVIDIA、Hugging Face，但不要收集纯模型发布新闻，例如 Gemini 3、Claude 5、GPT-6、Qwen 4、DeepSeek V4，除非它们明确引入搜索、客服、购物、推荐、运营、企业流程、商品理解、供应链或开发效率等业务能力。不要把模型版本号、模型排行榜、参数规模、Benchmark、论文、训练方法或复杂技术参数作为内容重点。每条 AI 内容必须说明 Capability 和 Industry Impact；如果无法解释新增能力或业务流程影响，直接忽略。

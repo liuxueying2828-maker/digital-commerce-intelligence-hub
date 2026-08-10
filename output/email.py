@@ -76,7 +76,7 @@ def build_email_html(data, dashboard_url=""):
                 <div style="font-size:12px; line-height:1.4; color:#667085; letter-spacing:.08em; text-transform:uppercase; font-weight:700; margin-bottom:10px;">
                   Decathlon China Digital Commerce
                 </div>
-                <h1 style="margin:0; color:#111827; font-size:30px; line-height:1.15; font-weight:760;">
+                <h1 style="margin:0; color:#111827; font-size:26px; line-height:1.15; font-weight:760;">
                   Weekly Industry Intelligence
                 </h1>
                 <div style="margin-top:10px; color:#5b6475; font-size:15px; line-height:1.6;">
