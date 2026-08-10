@@ -222,3 +222,5 @@ __marimo__/
 
 # Generated dashboard
 output/index.html
+!output/preview/
+!output/preview/**

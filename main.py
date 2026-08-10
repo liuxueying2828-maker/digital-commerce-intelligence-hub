@@ -1,13 +1,19 @@
 from datetime import datetime
+import json
 import os
 
 from config import (
     HTML_OUTPUT_PATH,
     MAX_ITEMS_FOR_GEMINI,
     MIN_SECTION_CANDIDATES,
+    PREVIEW_DATA_PATH,
+    PREVIEW_OUTPUT_PATH,
     PROJECT_NAME,
     SECTION_ORDER,
 )
+
+
+REPORT_MODES = {"preview", "publish"}
 
 
 def collect_information_pool():
@@ -115,36 +121,91 @@ def send_optional_feishu_test_message(data, page_url):
     send_text_message(build_dashboard_notification(data, page_url))
 
 
-def get_dashboard_url():
-    return (
-        os.getenv("DASHBOARD_URL")
-        or os.getenv("PAGES_URL")
-        or "output/index.html"
-    )
+def get_report_mode():
+    mode = (os.getenv("REPORT_MODE") or "publish").strip().lower()
+    if mode not in REPORT_MODES:
+        raise ValueError(f"REPORT_MODE must be one of {sorted(REPORT_MODES)}, got: {mode}")
+    return mode
 
 
-def main():
-    from intelligence.gemini import generate_dashboard_data
+def get_dashboard_url(mode):
+    configured_url = os.getenv("DASHBOARD_URL") or os.getenv("PAGES_URL")
+    if configured_url:
+        return configured_url
+
+    base_url = (os.getenv("DASHBOARD_BASE_URL") or "").strip()
+    if base_url:
+        base_url = base_url.rstrip("/") + "/"
+        if mode == "preview":
+            return base_url + "preview/index.html"
+        return base_url + "index.html"
+
+    if mode == "preview":
+        return "output/preview/index.html"
+    return "output/index.html"
+
+
+def generate_dashboard_data():
+    from intelligence.gemini import generate_dashboard_data as generate_with_gemini
+
+    information_pool = collect_information_pool()
+    if not information_pool:
+        return build_empty_dashboard_data()
+    return generate_with_gemini(information_pool)
+
+
+def save_preview_data(data):
+    PREVIEW_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PREVIEW_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def load_preview_data():
+    if not PREVIEW_DATA_PATH.exists():
+        return None
+    return json.loads(PREVIEW_DATA_PATH.read_text(encoding="utf-8"))
+
+
+def run_preview_mode():
+    from output.email import send_brief_email
+    from output.html import render_dashboard
+
+    dashboard_data = generate_dashboard_data()
+    render_dashboard(dashboard_data, PREVIEW_OUTPUT_PATH, archive_href="../archive/")
+    save_preview_data(dashboard_data)
+
+    page_url = get_dashboard_url("preview")
+    send_brief_email(dashboard_data, page_url)
+    send_optional_feishu_test_message(dashboard_data, page_url)
+    print(f"Preview dashboard generated: {PREVIEW_OUTPUT_PATH}")
+
+
+def run_publish_mode():
     from output.archive import save_dashboard_history
     from output.email import send_brief_email
     from output.html import render_dashboard
 
-    information_pool = collect_information_pool()
-    page_url = get_dashboard_url()
+    dashboard_data = load_preview_data()
+    if dashboard_data is None:
+        print("No preview data found. Generating a fresh publish version.")
+        dashboard_data = generate_dashboard_data()
+    else:
+        print(f"Publishing reviewed preview data: {PREVIEW_DATA_PATH}")
 
-    if not information_pool:
-        dashboard_data = build_empty_dashboard_data()
-        render_dashboard(dashboard_data, HTML_OUTPUT_PATH)
-        save_dashboard_history(dashboard_data, HTML_OUTPUT_PATH.parent)
-        send_brief_email(dashboard_data, page_url)
-        send_optional_feishu_test_message(dashboard_data, page_url)
-        return
-
-    dashboard_data = generate_dashboard_data(information_pool)
     render_dashboard(dashboard_data, HTML_OUTPUT_PATH)
     save_dashboard_history(dashboard_data, HTML_OUTPUT_PATH.parent)
+
+    page_url = get_dashboard_url("publish")
     send_brief_email(dashboard_data, page_url)
     send_optional_feishu_test_message(dashboard_data, page_url)
+    print(f"Published dashboard generated: {HTML_OUTPUT_PATH}")
+
+
+def main():
+    mode = get_report_mode()
+    if mode == "preview":
+        run_preview_mode()
+        return
+    run_publish_mode()
 
 
 if __name__ == "__main__":
