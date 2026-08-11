@@ -60,6 +60,16 @@ def prepare_information_pool(items, limit=MAX_ITEMS_FOR_GEMINI):
     selected_items = []
     selected_keys = set()
 
+    manual_items = [item for item in cleaned_items if item.get("origin_type") == "manual"]
+    for item in manual_items:
+        if len(selected_items) >= limit:
+            break
+        key = (item.get("title", "").lower(), item.get("link", "").strip())
+        if key in selected_keys:
+            continue
+        selected_keys.add(key)
+        selected_items.append(item)
+
     for section in SECTION_ORDER:
         minimum = MIN_SECTION_CANDIDATES.get(section, 0)
         section_items = [item for item in cleaned_items if item.get("domain") == section]

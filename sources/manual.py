@@ -23,6 +23,12 @@ FIELD_ALIASES = {
     "内容": "content",
     "summary": "content",
     "摘要": "content",
+    "keywords": "keywords",
+    "关键词": "keywords",
+    "source": "source",
+    "来源": "source",
+    "date": "date",
+    "日期": "date",
 }
 
 
@@ -37,15 +43,22 @@ def fetch_manual_items(path):
     entries = _parse_manual_entries(content)
     items = []
     for entry in entries:
+        if _is_placeholder_entry(entry):
+            continue
         title = entry.get("title") or _extract_title(entry.get("content", ""))
         body = _format_manual_summary(entry)
+        source = entry.get("source")
         item = make_item(
-            source="Manual Input",
+            source=f"Manual Input - {source}" if source else "Manual Input",
             title=title,
             summary=body,
             link=entry.get("link", ""),
-            published_date=datetime.now(timezone.utc),
-            domain=_infer_domain(entry.get("category", ""), entry.get("company", ""), body),
+            published_date=_parse_manual_date(entry.get("date")) or datetime.now(timezone.utc),
+            domain=_infer_domain(
+                entry.get("category", ""),
+                entry.get("company", ""),
+                f"{entry.get('keywords', '')} {body}",
+            ),
             origin_type="manual",
             priority=3,
         )
@@ -61,7 +74,7 @@ def _extract_title(content):
         cleaned = clean_text(line).lstrip("#").strip()
         if cleaned:
             return cleaned[:120]
-    return "Manual DTC / Digital Commerce Signal"
+    return "Manual Digital Commerce Signal"
 
 
 def _parse_manual_entries(content):
@@ -83,6 +96,11 @@ def _parse_manual_entry(chunk):
         if not line:
             if current_field == "content":
                 content_lines.append("")
+            continue
+
+        if current_field and current_field != "content" and not entry.get(current_field):
+            entry[current_field] = clean_text(line)
+            current_field = None
             continue
 
         match = re.match(r"^[-*]?\s*([^:：]{1,24})\s*[:：]\s*(.*)$", line)
@@ -110,21 +128,48 @@ def _parse_manual_entry(chunk):
     return entry
 
 
+def _is_placeholder_entry(entry):
+    title = clean_text(entry.get("title", "")).lower()
+    content = clean_text(entry.get("content", "")).lstrip("#").strip().lower()
+    has_signal_fields = any(entry.get(key) for key in ["link", "source", "date", "keywords", "category", "company"])
+    return not has_signal_fields and title == "manual intelligence input" and content in {"", "manual intelligence input"}
+
+
 def _format_manual_summary(entry):
     parts = []
     if entry.get("category"):
         parts.append(f"Category: {entry['category']}")
+    if entry.get("keywords"):
+        parts.append(f"Keywords: {entry['keywords']}")
     if entry.get("company"):
         parts.append(f"Company: {entry['company']}")
+    if entry.get("source"):
+        parts.append(f"Source: {entry['source']}")
+    if entry.get("date"):
+        parts.append(f"Date: {entry['date']}")
     if entry.get("content"):
         parts.append(f"Content: {entry['content']}")
     return "\n".join(parts) or entry.get("title", "")
 
 
+def _parse_manual_date(value):
+    if not value:
+        return None
+    cleaned = clean_text(value)
+    for pattern in ["%Y-%m-%d", "%Y/%m/%d", "%Y.%m.%d"]:
+        try:
+            return datetime.strptime(cleaned, pattern).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+    return None
+
+
 def _infer_domain(category, company, content):
     text = f"{category} {company} {content}".lower()
+    if any(word in text for word in ["platform", "平台", "internet giants", "阿里", "alibaba", "淘宝", "天猫", "京东", "jd", "字节", "bytedance", "腾讯", "tencent", "美团", "meituan", "拼多多", "pdd", "小红书"]):
+        return "platform"
     if any(word in text for word in ["openai", "deepmind", "anthropic", "deepseek", "豆包", "通义", "kimi", "manus", "nvidia", "agent", "模型", "多模态"]):
-        return "AI & Technology"
-    if any(word in text for word in ["阿里", "alibaba", "京东", "jd", "字节", "bytedance", "腾讯", "tencent", "美团", "meituan", "拼多多", "pdd", "小红书"]):
-        return "Platform & Internet Giants"
-    return "Retail & Commerce"
+        return "ai"
+    if any(word in text for word in ["sports", "outdoor", "体育", "户外", "运动", "decathlon", "nike", "adidas", "lululemon", "anta", "li ning", "salomon"]):
+        return "sports"
+    return "retail"

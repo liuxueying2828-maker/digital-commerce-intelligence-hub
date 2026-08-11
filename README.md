@@ -1,6 +1,6 @@
 # Digital Commerce Intelligence Hub
 
-A weekly industry intelligence dashboard for Decathlon China DTC / Digital Commerce opportunity discovery.
+A weekly industry intelligence dashboard for Decathlon China digital commerce intelligence and opportunity discovery.
 
 This project has been upgraded from a simple news push bot into a weekly web-based intelligence dashboard:
 
@@ -16,7 +16,7 @@ The system collects automatic and manual signals, then asks Gemini to produce sh
 - 传统零售创新 / Retail Innovation
 - One Thing Worth Watching
 
-The dashboard is designed for Decathlon China DTC / Digital Commerce / E-commerce leaders to scan in 2-3 minutes. Gemini may return empty sections when no reliable source-backed signals are available.
+The dashboard is designed for Decathlon China digital commerce and e-commerce leaders to scan in 2-3 minutes. Gemini may return empty sections when no reliable source-backed signals are available.
 
 ## Information Sources
 

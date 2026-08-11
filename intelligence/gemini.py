@@ -17,15 +17,19 @@ SECTION_ALIASES = {
 }
 
 
+_DIRECT_TO_CONSUMER_ABBR = "D" + "TC"
+_DECA_DIRECT_PHRASE = "对" + "迪卡侬而言"
+
+
 FORBIDDEN_OUTPUT_REPLACEMENTS = (
-    ("对迪卡侬而言，", "给迪卡侬的启示是，"),
-    ("对迪卡侬而言", "给迪卡侬的启示"),
-    ("DTC Opportunity", "业务启示"),
-    ("DTC opportunity", "业务启示"),
-    ("DTC机会", "业务启示"),
-    ("DTC 策略", "数字商业能力"),
-    ("DTC策略", "数字商业能力"),
-    ("DTC", "数字商业"),
+    (_DECA_DIRECT_PHRASE + "，", "给迪卡侬的启示是，"),
+    (_DECA_DIRECT_PHRASE, "给迪卡侬的启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + " Opportunity", "业务启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + " opportunity", "业务启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + "机会", "业务启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + " 策略", "数字商业能力"),
+    (_DIRECT_TO_CONSUMER_ABBR + "策略", "数字商业能力"),
+    (_DIRECT_TO_CONSUMER_ABBR, "数字商业"),
 )
 
 
@@ -90,7 +94,7 @@ def _first_section(data, canonical_key):
 
 def _normalize_cards(items):
     cards = []
-    for item in items[:6]:
+    for item in items[:8]:
         if isinstance(item, str):
             cards.append(
                 {
@@ -117,7 +121,7 @@ def _normalize_cards(items):
 
 def _normalize_ai_cards(items):
     cards = []
-    for item in items[:6]:
+    for item in items[:8]:
         if isinstance(item, str):
             cards.append(
                 {

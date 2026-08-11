@@ -14,18 +14,19 @@ def build_dashboard_prompt(items):
 请严格遵守：
 - 只输出合法 JSON，不要输出 Markdown，不要输出解释文字。
 - 禁止生成信息池中不存在的新闻、公司动作、数据、结论或链接。
-- 所有 signal 必须来自 Sectioned Candidate Pool 中的真实 source，并且必须使用对应原文链接。
-- 如果某条候选没有可靠来源、缺少原文链接、无法确认事实，必须忽略。
+- 所有 signal 必须来自 Sectioned Candidate Pool 中的真实 source。自动抓取来源必须使用对应原文链接；manual_sources/daily_input.md 的人工输入如果没有链接，但有清晰标题、公司/主题和内容，也允许输出，link 可以为空。
+- 如果某条自动候选没有可靠来源、缺少原文链接、无法确认事实，必须忽略。人工输入除非明显重复、完全无关或内容不足，否则不要删除。
 - 如果某个板块没有可靠新闻，返回空数组；允许 Dashboard 出现 empty，不要根据行业常识、历史趋势或推测补充。
 - 按“对 Decathlon China 数字商业团队的参考价值”排序，而不是按发布时间排序。
 - 来源优先级：manual_sources/daily_input.md 中的人工输入新闻来源最高，其次才是 AI 自动抓取的 Google News/RSS/官方 Blog；当 manual input 与自动来源主题重复或冲突时，优先采用 manual input，并只用自动来源作补充验证。
+- 人工输入默认是本期主编选择的高优先级信号。请优先保留并改写人工输入中的有效新闻；不要因为自动新闻更新、更短或有更多链接而替换掉人工输入。
 - 无法明确归类、价值较低或不符合其候选板块要求的新闻直接忽略，不要硬塞。
 - 不要输出 retail_media、marketing、advertising、consumer、opportunity、action 等分类。
-- Link 必须使用信息池中的原始文章链接；如果信息池没有链接，该 signal 不允许输出。
+- Link 必须使用信息池中的原始文章链接；自动来源如果没有链接，该 signal 不允许输出。人工输入没有链接时，link 输出为空字符串即可。
 - 不要输出对迪卡侬意味着什么。
-- 不要输出 DTC、DTC策略、DTC机会、DTC Opportunity、Recommended Actions、Possible Experiment。
-- 输出中禁止出现“DTC”或任何包含 DTC 的表达。最多只能使用“给迪卡侬的启示”“对迪卡侬有参考价值”这类中性表达，不要具体写成 DTC、业务策略、行动建议或实验建议。
-- why_this_matters 只解释行业变化、能力变化和模式变化；如果需要关联迪卡侬，只能写“给迪卡侬的启示/参考是……”。不要写“对迪卡侬而言……”，不要写“应该/可以/如何……”，不要把新闻延展成 Decathlon 的具体做法。
+- 不要输出 Direct-to-Consumer 相关英文缩写、该缩写的策略/机会表述、Recommended Actions、Possible Experiment。
+- 输出中禁止出现 Direct-to-Consumer 相关英文缩写或任何包含该缩写的表达。最多只能使用“给迪卡侬的启示”“对迪卡侬有参考价值”这类中性表达，不要具体写成业务策略、行动建议或实验建议。
+- why_this_matters 只解释行业变化、能力变化和模式变化；如果需要关联迪卡侬，只能写“给迪卡侬的启示/参考是……”。不要使用把新闻直接改写成迪卡侬具体动作的句式，不要写“应该/可以/如何……”，不要把新闻延展成 Decathlon 的具体做法。
 - 不要建议成立团队，不要建议持续关注。
 - 不要输出 Evidence 编号或长篇商业建议。
 
@@ -44,7 +45,7 @@ Retail Media、Retail Media Network、Advertising business、Ad tech、CTV adver
 栏目定义：
 
 platform / 国内电商平台 / Platform Intelligence
-重点关注阿里巴巴、淘宝、天猫、1688、京东、京东零售、京东物流、抖音电商、字节跳动、拼多多、美团、微信、小红书、快手。重点新闻类型包括新事业部或新业务、平台战略变化、搜索、推荐、会员、商家工具、履约、供应链、物流、即时零售、本地生活、平台开放能力、AI 在平台中的真实落地、组织调整或事业部方向变化。manual_sources/daily_input.md 人工输入优先于 AI 抓取的 Google News/RSS 自动来源；如果人工输入已有 1-3 条高质量平台内容，不需要用低价值自动新闻凑满。不要抓普通促销、明星代言、单纯销售战报、普通营销 Campaign、广告预算新闻。
+重点关注阿里巴巴、淘宝、天猫、1688、京东、京东零售、京东物流、抖音电商、字节跳动、拼多多、美团、微信、小红书、快手。重点新闻类型包括新事业部或新业务、平台战略变化、搜索、推荐、会员、商家工具、履约、供应链、物流、即时零售、本地生活、平台开放能力、AI 在平台中的真实落地、组织调整或事业部方向变化。manual_sources/daily_input.md 人工输入优先于 AI 抓取的 Google News/RSS 自动来源；如果人工输入已有高质量平台内容，不需要用低价值自动新闻凑满。不要抓普通促销、明星代言、单纯销售战报、普通营销 Campaign、广告预算新闻。
 
 ai / AI for Business / AI Capabilities & Industry Impact
 只保留业务团队能理解、能借鉴的 AI 能力变化。重点关注 AI used in retail、AI shopping、AI customer service、AI search、AI recommendation、AI productivity、AI agent、AI commerce、AI workflow、AI marketing、AI operations、Model routing、Enterprise AI、Business AI adoption。可以关注 OpenAI、Google Gemini、Anthropic Claude、DeepSeek、豆包、字节 Seed、通义千问/Qwen、腾讯混元、Kimi、Manus、Microsoft Copilot、Apple Intelligence、NVIDIA、Hugging Face，但不要收集纯模型发布新闻，例如 Gemini 3、Claude 5、GPT-6、Qwen 4、DeepSeek V4，除非它们明确引入搜索、客服、购物、推荐、运营、企业流程、商品理解、供应链或开发效率等业务能力。不要把模型版本号、模型排行榜、参数规模、Benchmark、论文、训练方法或复杂技术参数作为内容重点。每条 AI 内容必须说明 Capability 和 Industry Impact；如果无法解释新增能力或业务流程影响，直接忽略。
@@ -76,10 +77,10 @@ JSON schema 必须严格如下：
 }}
 
 数量要求：
-- platform: 最多 5 条；人工输入质量高时优先人工输入，但必须有真实来源或明确人工输入内容支撑；每条 news 和 why_this_matters 各控制在 100-170 个中文字。
-- ai: 最多 5 条；每条整体控制在 200-270 个中文字，重点是 Capability 与 Industry Impact；纯模型版本、参数或 Benchmark 新闻必须过滤。
-- sports: 最多 5 条；可以使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内可靠信息；每条 news 和 why_this_matters 各控制在 100-170 个中文字。
-- retail: 最多 5 条；每条整体控制在 200-270 个中文字，News 必须足够完整；严禁 Retail Media。
+- platform: 最多 8 条；人工输入质量高时优先人工输入，但必须有真实来源或明确人工输入内容支撑；每条 news 和 why_this_matters 各控制在 100-170 个中文字。
+- ai: 最多 8 条；每条整体控制在 200-270 个中文字，重点是 Capability 与 Industry Impact；纯模型版本、参数或 Benchmark 新闻必须过滤。
+- sports: 最多 8 条；可以使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内可靠信息；每条 news 和 why_this_matters 各控制在 100-170 个中文字。
+- retail: 最多 8 条；每条整体控制在 200-270 个中文字，News 必须足够完整；严禁 Retail Media。
 - 如果某板块没有可靠新闻，输出空数组 []，不要补齐数量。
 - 排序按对 Decathlon China 数字商业团队的参考价值，不按发布时间。
 

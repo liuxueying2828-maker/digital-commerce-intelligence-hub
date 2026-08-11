@@ -152,11 +152,11 @@ FILTER_PROFILES = {
             "迪卡侬", "耐克", "阿迪达斯", "安踏", "李宁", "户外", "运动品牌", "体育零售",
         ],
         "require_any": [
-            "ecommerce", "dtc", "membership", "digital", "store innovation", "supply chain", "fulfillment", "product experience", "search", "recommendation", "consumer trend", "organization", "strategy", "omnichannel", "new retail", "store expansion", "product launch", "financial results", "industry report", "wearable", "sports technology",
+            "ecommerce", "direct commerce", "membership", "digital", "store innovation", "supply chain", "fulfillment", "product experience", "search", "recommendation", "consumer trend", "organization", "strategy", "omnichannel", "new retail", "store expansion", "product launch", "financial results", "industry report", "wearable", "sports technology",
             "电商", "会员", "数字化", "门店创新", "供应链", "履约", "商品体验", "搜索", "推荐", "消费趋势", "组织战略", "新零售", "门店", "新品", "财报", "行业报告", "可穿戴", "运动科技",
         ],
         "exclude_any": COMMON_EXCLUDED_KEYWORDS + ["celebrity", "ambassador", "endorsement", "collaboration", "sponsorship", "sponsored", "campaign", "明星", "代言", "联名", "赞助", "赛事赞助"],
-        "override_any": ["dtc", "ecommerce", "membership", "digital", "supply chain", "fulfillment", "strategy", "omnichannel", "store expansion", "financial results", "industry report", "consumer trend", "电商", "会员", "数字化", "供应链", "履约", "战略", "门店", "财报", "行业报告", "消费趋势"],
+        "override_any": ["ecommerce", "direct commerce", "membership", "digital", "supply chain", "fulfillment", "strategy", "omnichannel", "store expansion", "financial results", "industry report", "consumer trend", "电商", "会员", "数字化", "供应链", "履约", "战略", "门店", "财报", "行业报告", "消费趋势"],
     },
     "retail": {
         "include_any": [

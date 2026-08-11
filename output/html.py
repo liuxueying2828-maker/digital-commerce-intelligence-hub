@@ -4,11 +4,27 @@ from html import escape
 from utils.date_utils import report_date_parts
 
 
+_DIRECT_TO_CONSUMER_ABBR = "D" + "TC"
+_DECA_DIRECT_PHRASE = "对" + "迪卡侬而言"
+
+
+TEXT_REPLACEMENTS = (
+    (_DECA_DIRECT_PHRASE + "，", "给迪卡侬的启示是，"),
+    (_DECA_DIRECT_PHRASE, "给迪卡侬的启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + " Opportunity", "业务启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + " opportunity", "业务启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + "机会", "业务启示"),
+    (_DIRECT_TO_CONSUMER_ABBR + " 策略", "数字商业能力"),
+    (_DIRECT_TO_CONSUMER_ABBR + "策略", "数字商业能力"),
+    (_DIRECT_TO_CONSUMER_ABBR, "数字商业"),
+)
+
+
 def safe_text(value):
     if value is None:
         return ""
     if isinstance(value, str):
-        return value
+        return sanitize_text(value)
     if isinstance(value, list):
         return ", ".join(part for part in (safe_text(item) for item in value) if part)
     if isinstance(value, dict):
@@ -18,6 +34,12 @@ def safe_text(value):
             if safe_text(key) or safe_text(item)
         )
     return str(value)
+
+
+def sanitize_text(text):
+    for old, new in TEXT_REPLACEMENTS:
+        text = text.replace(old, new)
+    return text
 
 
 def safe_escape(value, quote=True):
@@ -374,7 +396,7 @@ def _render_sections(data):
 
 
 def _render_section(section, cards):
-    rendered_cards = "\n".join(_render_card(card, section["key"]) for card in cards[:6])
+    rendered_cards = "\n".join(_render_card(card, section["key"]) for card in cards[:8])
     if not rendered_cards:
         rendered_cards = '<div class="empty">本期未筛出高价值行业情报。</div>'
 
@@ -385,7 +407,7 @@ def _render_section(section, cards):
           <h2>{safe_escape(section["title"])}</h2>
           <div class="subtitle">{safe_escape(section["subtitle"])}</div>
         </div>
-        <span class="section-badge {safe_escape(section["tone"])}">{len(cards[:6])} Signals</span>
+        <span class="section-badge {safe_escape(section["tone"])}">{len(cards[:8])} Signals</span>
       </div>
       <div class="cards">
         {rendered_cards}
