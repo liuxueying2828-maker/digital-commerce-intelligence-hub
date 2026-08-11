@@ -87,7 +87,7 @@ def build_empty_message():
     return (
         f"{PROJECT_NAME}\n"
         f"Date: {today}\n\n"
-        "本期信息源未返回可用于分析的 DTC / Digital Commerce 情报。"
+        "本期信息源未返回可用于分析的数字商业 / 电商情报。"
     )
 
 

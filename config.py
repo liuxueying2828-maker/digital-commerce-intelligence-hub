@@ -60,11 +60,11 @@ SEARCH_QUERIES = {
         "AI 商品理解 电商", "多模态 商品搜索", "AI 生成 商品内容", "AI 供应链优化", "AI 库存预测", "AI 门店运营", "企业级 AI 工具",
     ],
     "sports": [
-        "Decathlon ecommerce digital strategy", "Decathlon store expansion retail", "Nike DTC financial results", "Nike membership digital", "Adidas ecommerce strategy",
+        "Decathlon ecommerce digital strategy", "Decathlon store expansion retail", "Nike ecommerce financial results", "Nike membership digital", "Adidas ecommerce strategy",
         "Lululemon membership store expansion", "Anta financial results digital strategy", "Li Ning ecommerce consumer trend", "On Running retail expansion", "Salomon outdoor retail",
         "Columbia sportswear ecommerce", "Arc'teryx retail strategy", "outdoor consumer trends report", "sports retail industry report", "fitness wearable retail",
         "running consumer trend sports retail", "cycling retail consumer trend", "camping outdoor retail trend", "sports technology wearable", "sports equipment ecommerce",
-        "迪卡侬 电商 数字化", "迪卡侬 门店 扩张", "耐克 DTC 财报", "阿迪达斯 电商 战略", "Lululemon 会员 门店",
+        "迪卡侬 电商 数字化", "迪卡侬 门店 扩张", "耐克 电商 财报", "阿迪达斯 电商 战略", "Lululemon 会员 门店",
         "安踏 财报 数字化", "李宁 电商 消费趋势", "户外 消费趋势 报告", "运动零售 行业报告", "运动科技 可穿戴",
     ],
     "retail": [

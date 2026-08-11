@@ -5,7 +5,7 @@ def build_dashboard_prompt(items):
     information_pool = _format_information_pool(items)
 
     return f"""
-你是一名服务于 Decathlon China DTC / Digital Commerce / E-commerce 团队的行业情报分析师。
+你是一名服务于 Decathlon China 数字商业 / 电商团队的行业情报分析师。
 
 项目名称：Digital Commerce Intelligence Hub
 
@@ -17,13 +17,15 @@ def build_dashboard_prompt(items):
 - 所有 signal 必须来自 Sectioned Candidate Pool 中的真实 source，并且必须使用对应原文链接。
 - 如果某条候选没有可靠来源、缺少原文链接、无法确认事实，必须忽略。
 - 如果某个板块没有可靠新闻，返回空数组；允许 Dashboard 出现 empty，不要根据行业常识、历史趋势或推测补充。
-- 按“对 Decathlon Digital Commerce 的参考价值”排序，而不是按发布时间排序。
+- 按“对 Decathlon China 数字商业团队的参考价值”排序，而不是按发布时间排序。
 - 来源优先级：manual_sources/daily_input.md 中的人工输入新闻来源最高，其次才是 AI 自动抓取的 Google News/RSS/官方 Blog；当 manual input 与自动来源主题重复或冲突时，优先采用 manual input，并只用自动来源作补充验证。
 - 无法明确归类、价值较低或不符合其候选板块要求的新闻直接忽略，不要硬塞。
 - 不要输出 retail_media、marketing、advertising、consumer、opportunity、action 等分类。
 - Link 必须使用信息池中的原始文章链接；如果信息池没有链接，该 signal 不允许输出。
 - 不要输出对迪卡侬意味着什么。
-- 不要输出 DTC Opportunity、Recommended Actions、Possible Experiment。
+- 不要输出 DTC、DTC策略、DTC机会、DTC Opportunity、Recommended Actions、Possible Experiment。
+- 输出中禁止出现“DTC”或任何包含 DTC 的表达。最多只能使用“给迪卡侬的启示”“对迪卡侬有参考价值”这类中性表达，不要具体写成 DTC、业务策略、行动建议或实验建议。
+- why_this_matters 只解释行业变化、能力变化和模式变化；如果需要关联迪卡侬，只能写“给迪卡侬的启示/参考是……”。不要写“对迪卡侬而言……”，不要写“应该/可以/如何……”，不要把新闻延展成 Decathlon 的具体做法。
 - 不要建议成立团队，不要建议持续关注。
 - 不要输出 Evidence 编号或长篇商业建议。
 
@@ -48,7 +50,7 @@ ai / AI for Business / AI Capabilities & Industry Impact
 只保留业务团队能理解、能借鉴的 AI 能力变化。重点关注 AI used in retail、AI shopping、AI customer service、AI search、AI recommendation、AI productivity、AI agent、AI commerce、AI workflow、AI marketing、AI operations、Model routing、Enterprise AI、Business AI adoption。可以关注 OpenAI、Google Gemini、Anthropic Claude、DeepSeek、豆包、字节 Seed、通义千问/Qwen、腾讯混元、Kimi、Manus、Microsoft Copilot、Apple Intelligence、NVIDIA、Hugging Face，但不要收集纯模型发布新闻，例如 Gemini 3、Claude 5、GPT-6、Qwen 4、DeepSeek V4，除非它们明确引入搜索、客服、购物、推荐、运营、企业流程、商品理解、供应链或开发效率等业务能力。不要把模型版本号、模型排行榜、参数规模、Benchmark、论文、训练方法或复杂技术参数作为内容重点。每条 AI 内容必须说明 Capability 和 Industry Impact；如果无法解释新增能力或业务流程影响，直接忽略。
 
 sports / 体育与户外行业 / Sports & Outdoor
-重点关注 Decathlon、Nike、Adidas、Lululemon、Anta、Li Ning、On Running、Salomon、Columbia、Arc'teryx、Patagonia、Puma、Under Armour、Garmin，以及 Outdoor trends、Sports retail、Fitness、Running、Cycling、Camping、Sports technology、Wearables、Sports equipment。重点新闻类型包括电商、DTC、会员、数字化、门店创新、供应链、履约、商品体验、运动消费趋势、行业报告、财报、组织战略、门店扩张、新产品带来的品类或体验变化。普通明星合作、普通赛事赞助和纯广告 Campaign 直接忽略。
+重点关注 Decathlon、Nike、Adidas、Lululemon、Anta、Li Ning、On Running、Salomon、Columbia、Arc'teryx、Patagonia、Puma、Under Armour、Garmin，以及 Outdoor trends、Sports retail、Fitness、Running、Cycling、Camping、Sports technology、Wearables、Sports equipment。重点新闻类型包括电商、品牌直营、会员、数字化、门店创新、供应链、履约、商品体验、运动消费趋势、行业报告、财报、组织战略、门店扩张、新产品带来的品类或体验变化。普通明星合作、普通赛事赞助和纯广告 Campaign 直接忽略。
 
 retail / 传统零售创新 / Retail Innovation
 重点关注 Walmart、Costco、Target、Uniqlo、Muji、IKEA、Sam's Club、Aldi、Lidl、Sephora、Zara、Hema、Amazon、Inditex。重点新闻类型包括 Retail technology、RFID、Supply chain、Store digitalization、Self checkout、Inventory、Omnichannel、Membership、Store operations、Consumer behavior、Retail innovation。不要抓 Retail Media、广告网络、CTV、广告收入、普通营销活动、普通新品或促销。每条 retail 内容必须交代哪家企业或什么零售场景、采用了什么能力或做法、解决了什么问题或改变了什么流程；原文链接只是补充阅读，卡片本身必须能让读者理解核心内容。避免只写“RFID 正在改变零售”“AI 提升零售效率”“数字化转型加速”这类抽象结论。
@@ -79,7 +81,7 @@ JSON schema 必须严格如下：
 - sports: 最多 5 条；可以使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内可靠信息；每条 news 和 why_this_matters 各控制在 100-170 个中文字。
 - retail: 最多 5 条；每条整体控制在 200-270 个中文字，News 必须足够完整；严禁 Retail Media。
 - 如果某板块没有可靠新闻，输出空数组 []，不要补齐数量。
-- 排序按对 Decathlon Digital Commerce 的参考价值，不按发布时间。
+- 排序按对 Decathlon China 数字商业团队的参考价值，不按发布时间。
 
 Sectioned Candidate Pool:
 {information_pool}

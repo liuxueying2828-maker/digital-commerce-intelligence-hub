@@ -17,6 +17,18 @@ SECTION_ALIASES = {
 }
 
 
+FORBIDDEN_OUTPUT_REPLACEMENTS = (
+    ("对迪卡侬而言，", "给迪卡侬的启示是，"),
+    ("对迪卡侬而言", "给迪卡侬的启示"),
+    ("DTC Opportunity", "业务启示"),
+    ("DTC opportunity", "业务启示"),
+    ("DTC机会", "业务启示"),
+    ("DTC 策略", "数字商业能力"),
+    ("DTC策略", "数字商业能力"),
+    ("DTC", "数字商业"),
+)
+
+
 def generate_dashboard_data(items):
     try:
         from google import genai
@@ -66,7 +78,7 @@ def normalize_dashboard_data(data):
     }
     if data.get("parse_warning"):
         normalized["parse_warning"] = data["parse_warning"]
-    return normalized
+    return _sanitize_dashboard_terms(normalized)
 
 
 def _first_section(data, canonical_key):
@@ -171,7 +183,20 @@ def ensure_minimum_dashboard_signals(data, source_items):
 
         normalized[section_key] = cards
 
-    return normalized
+    return _sanitize_dashboard_terms(normalized)
+
+
+def _sanitize_dashboard_terms(value):
+    if isinstance(value, str):
+        text = value
+        for old, new in FORBIDDEN_OUTPUT_REPLACEMENTS:
+            text = text.replace(old, new)
+        return text
+    if isinstance(value, list):
+        return [_sanitize_dashboard_terms(item) for item in value]
+    if isinstance(value, dict):
+        return {key: _sanitize_dashboard_terms(item) for key, item in value.items()}
+    return value
 
 
 def _items_by_domain(items):
