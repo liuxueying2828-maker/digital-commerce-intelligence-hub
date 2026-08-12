@@ -1,7 +1,7 @@
 {
   "date": "2026-08-11",
-  "headline": "AI智能体驱动电商平台服务升级，零售与供应链同步智能创新",
-  "platform_intelligence": [
+  "today_focus": "AI智能体驱动电商平台服务升级，零售与供应链同步智能创新",
+  "platform": [
     {
       "name": "阿里巴巴/千问App",
       "news": "阿里旗下千问App更新，引入大量第三方智能体，如贝壳找房、顺丰速运、哈啰租车等，用户可通过对话直接完成寄快递、约保洁、租车等复杂服务，无需跳转应用，显著提升了服务体验和效率。这些…",
@@ -38,7 +38,7 @@
       "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE16TldmdGhqNFg0a0JSUnk4UE9HSVlHNEFQZXRSbG1HUFhKNGxxRWp1YWh6dTJUUDNzM1lwenNUeFV4elltaXdXNjk5SHc0S0pIMXNmMko5Qm5ObnpHbDZDVzhoQkhVUl94Z0JWYVdJMDlDNGt3UGc?oc=5"
     }
   ],
-  "ai_technology": [
+  "ai": [
     {
       "name": "AI代理融入消费决策，改变品牌营销重点",
       "title": "AI代理融入消费决策，改变品牌营销重点",
@@ -80,7 +80,7 @@
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPbEpDOF9RdUJyU2ljYk96WEVfUjcxSF9hNTl6OXB6SG04Nmc5MnREcVRaN1RNZXZMQjF1MlBoSlZBTTZCWm5HYmFYZDFSTnVrQzVRNHFFRWo1OGhHaERJQnNvZnlrZHVJdWdKNkFGMTN0TFctQWxIMmFveDNPbkFTSGNJZzRaR3l3MV9SaFBrSzRQRTdf?oc=5"
     }
   ],
-  "sports_outdoor": [
+  "sports": [
     {
       "name": "户外生活",
       "news": "亚马逊报告显示，越来越多日本消费者探索户外生活，寻找除了单调家庭生活之外的自我，推动日本成为全球第五大户外零售市场。户外活动不受年龄、性别、经济条件限制，从专业徒步攀岩到郊野野餐…",
@@ -103,7 +103,7 @@
       "link": "https://mp.weixin.qq.com/s/M4xFHZQqwmWVmT36B0HClw"
     }
   ],
-  "retail_innovation": [
+  "retail": [
     {
       "name": "家庭园艺",
       "news": "亚马逊报告显示，家庭园艺在美国成熟市场仍持续增长，尤其受到18-34岁千禧一代的青睐，他们倾向于功能性植物容器、多样化植物品种及智能园艺设备。这改变了传统园艺模式，催生了新的消费…",
