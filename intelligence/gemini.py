@@ -105,7 +105,7 @@ def _normalize_cards(items):
             cards.append(
                 {
                     "name": "Signal",
-                    "news": _shorten(item, 90),
+                    "news": _clean_text(item),
                     "why_this_matters": "该信号值得进一步阅读原文确认。",
                     "trend": "Signal",
                     "link": "",
@@ -116,8 +116,8 @@ def _normalize_cards(items):
         cards.append(
             {
                 "name": item.get("name") or item.get("platform") or item.get("topic") or "Signal",
-                "news": _shorten(item.get("news") or item.get("signal") or "", 90),
-                "why_this_matters": _shorten(item.get("why_this_matters") or item.get("why") or "", 110),
+                "news": _clean_text(item.get("news") or item.get("signal") or ""),
+                "why_this_matters": _clean_text(item.get("why_this_matters") or item.get("why") or ""),
                 "trend": item.get("trend") or "Trend",
                 "link": item.get("link") or "",
             }
@@ -133,7 +133,7 @@ def _normalize_ai_cards(items):
                 {
                     "name": "AI 能力变化",
                     "title": "AI 能力变化",
-                    "capability": _shorten(item, 150),
+                    "capability": _clean_text(item),
                     "industry_impact": "该技术信号需要结合原文进一步判断行业影响。",
                     "trend": "AI 能力",
                     "link": "",
@@ -148,8 +148,8 @@ def _normalize_ai_cards(items):
             {
                 "name": title,
                 "title": title,
-                "capability": _shorten(capability, 180),
-                "industry_impact": _shorten(industry_impact, 180),
+                "capability": _clean_text(capability),
+                "industry_impact": _clean_text(industry_impact),
                 "trend": item.get("trend") or "AI 能力",
                 "link": item.get("link") or "",
             }
@@ -321,3 +321,7 @@ def _shorten(text, limit):
     if len(text) <= limit:
         return text
     return text[: limit - 1].rstrip() + "…"
+
+
+def _clean_text(text):
+    return re.sub(r"\s+", " ", str(text)).strip()
