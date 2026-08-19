@@ -51,10 +51,10 @@ ai / AI for Business / AI Capabilities & Industry Impact
 只保留业务团队能理解、能借鉴的 AI 能力变化。重点关注 AI used in retail、AI shopping、AI customer service、AI search、AI recommendation、AI productivity、AI agent、AI commerce、AI workflow、AI marketing、AI operations、Model routing、Enterprise AI、Business AI adoption。可以关注 OpenAI、Google Gemini、Anthropic Claude、DeepSeek、豆包、字节 Seed、通义千问/Qwen、腾讯混元、Kimi、Manus、Microsoft Copilot、Apple Intelligence、NVIDIA、Hugging Face，但不要收集纯模型发布新闻，例如 Gemini 3、Claude 5、GPT-6、Qwen 4、DeepSeek V4，除非它们明确引入搜索、客服、购物、推荐、运营、企业流程、商品理解、供应链或开发效率等业务能力。不要把模型版本号、模型排行榜、参数规模、Benchmark、论文、训练方法或复杂技术参数作为内容重点。每条 AI 内容必须说明 Capability 和 Industry Impact；如果无法解释新增能力或业务流程影响，直接忽略。
 
 sports / 体育与户外行业 / Sports & Outdoor
-重点关注 Decathlon、Nike、Adidas、Lululemon、Anta、Li Ning、On Running、Salomon、Columbia、Arc'teryx、Patagonia、Puma、Under Armour、Garmin，以及 Outdoor trends、Sports retail、Fitness、Running、Cycling、Camping、Sports technology、Wearables、Sports equipment。重点新闻类型包括电商、品牌直营、会员、数字化、门店创新、供应链、履约、商品体验、运动消费趋势、行业报告、财报、组织战略、门店扩张、新产品带来的品类或体验变化。普通明星合作、普通赛事赞助和纯广告 Campaign 直接忽略。
+重点关注 Decathlon、Nike、Adidas、Lululemon、Anta、Li Ning、On Running、Salomon、Columbia、Arc'teryx、Patagonia、Puma、Under Armour、Garmin，以及 Outdoor trends、Sports retail、Fitness、Running、Cycling、Camping、Sports technology、Wearables、Sports equipment。重点新闻类型包括电商、品牌直营、会员、数字化、门店创新、供应链、履约、商品体验、运动消费趋势、行业报告、财报、组织战略、门店扩张、新产品带来的品类或体验变化。普通明星合作、普通赛事赞助和纯广告 Campaign 直接忽略；但如果联名、新品、赞助或内容活动同时涉及会员、App、小程序、社群运营、内容转化、搜索推荐、门店联动、履约供应链、商品体验升级或新人群拓展，可以保留，因为这类信息可能体现运动零售的渠道和用户经营变化。
 
 retail / 传统零售创新 / Retail Innovation
-重点关注 Walmart、Costco、Target、Uniqlo、Muji、IKEA、Sam's Club、Aldi、Lidl、Sephora、Zara、Hema、Amazon、Inditex。重点新闻类型包括 Retail technology、RFID、Supply chain、Store digitalization、Self checkout、Inventory、Omnichannel、Membership、Store operations、Consumer behavior、Retail innovation。不要抓 Retail Media、广告网络、CTV、广告收入、普通营销活动、普通新品或促销。每条 retail 内容必须交代哪家企业或什么零售场景、采用了什么能力或做法、解决了什么问题或改变了什么流程；原文链接只是补充阅读，卡片本身必须能让读者理解核心内容。避免只写“RFID 正在改变零售”“AI 提升零售效率”“数字化转型加速”这类抽象结论。
+重点关注 Walmart、Costco、Target、Uniqlo、Muji、IKEA、Sam's Club、Aldi、Lidl、Sephora、Zara、Hema、Amazon、Inditex。重点新闻类型包括 Retail technology、RFID、Supply chain、Store digitalization、Self checkout、Inventory、Omnichannel、Membership、Store operations、Consumer behavior、Retail innovation。不要抓普通 Retail Media、广告网络、CTV、广告收入、普通营销活动、普通新品或促销；但如果 Retail Media 或营销新闻本质上涉及会员数据、站内搜索推荐、闭环转化、App 个性化、线上线下联动或零售平台能力，可以作为零售创新候选保留。每条 retail 内容必须交代哪家企业或什么零售场景、采用了什么能力或做法、解决了什么问题或改变了什么流程；原文链接只是补充阅读，卡片本身必须能让读者理解核心内容。避免只写“RFID 正在改变零售”“AI 提升零售效率”“数字化转型加速”这类抽象结论。
 
 JSON schema 必须严格如下：
 

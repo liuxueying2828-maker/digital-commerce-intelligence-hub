@@ -64,8 +64,10 @@ SEARCH_QUERIES = {
         "Lululemon membership store expansion", "Anta financial results digital strategy", "Li Ning ecommerce consumer trend", "On Running retail expansion", "Salomon outdoor retail",
         "Columbia sportswear ecommerce", "Arc'teryx retail strategy", "outdoor consumer trends report", "sports retail industry report", "fitness wearable retail",
         "running consumer trend sports retail", "cycling retail consumer trend", "camping outdoor retail trend", "sports technology wearable", "sports equipment ecommerce",
+        "sports brand app membership community", "outdoor brand content commerce", "sports brand omnichannel store experience", "sports brand product experience young consumers",
         "迪卡侬 电商 数字化", "迪卡侬 门店 扩张", "耐克 电商 财报", "阿迪达斯 电商 战略", "Lululemon 会员 门店",
         "安踏 财报 数字化", "李宁 电商 消费趋势", "户外 消费趋势 报告", "运动零售 行业报告", "运动科技 可穿戴",
+        "运动品牌 会员 社群", "户外品牌 内容电商", "运动品牌 全渠道 门店体验", "运动品牌 商品体验 年轻消费者",
     ],
     "retail": [
         "Walmart retail innovation supply chain", "Walmart AI shopping store operations", "Costco membership digital retail", "Sam's Club digital store checkout", "Amazon retail innovation shopping AI",
@@ -73,6 +75,8 @@ SEARCH_QUERIES = {
         "Aldi retail automation checkout", "Lidl digital retail operations", "Sephora store digitalization", "Hema retail innovation supply chain", "Inditex RFID retail",
         "retail technology RFID inventory", "retail supply chain innovation", "store digitalization retail operations", "self checkout retail innovation", "retail omnichannel membership",
         "retail fulfillment inventory sharing", "retail returns app", "grocery fresh management retail", "store automation retail", "consumer behavior retail innovation",
+        "retail app loyalty personalization", "retail content commerce conversion", "retail search recommendation customer experience", "retail media closed-loop membership search conversion",
+        "零售 App 会员 个性化", "零售 内容电商 转化", "零售 搜索 推荐 用户体验", "零售 闭环数据 会员 转化",
     ],
 }
 
@@ -89,10 +93,12 @@ EXPANDED_SEARCH_QUERIES = {
     "sports": [
         "sports outdoor retail industry trends", "sports brand financial results ecommerce", "outdoor retail consumer trend",
         "sports retail store expansion digital", "fitness wearable consumer trend", "运动户外 零售 趋势", "运动品牌 财报 电商",
+        "sports brand community app commerce", "outdoor lifestyle content commerce", "运动品牌 社群 App 电商", "户外生活方式 内容转化",
     ],
     "retail": [
         "retail innovation store operations", "retail technology inventory supply chain", "omnichannel retail membership",
         "store digitalization self checkout", "retail consumer behavior innovation", "零售 创新 供应链 门店", "全渠道 会员 门店数字化",
+        "retail loyalty app personalization conversion", "retail closed-loop data commerce conversion", "零售 会员 App 个性化 转化", "零售 闭环数据 电商转化",
     ],
 }
 
@@ -109,6 +115,16 @@ COMMON_LOW_VALUE_KEYWORDS = [
     "new sneaker", "new shoe", "shoe release", "capsule collection", "limited edition", "celebrity", "ambassador",
     "endorsement", "collaboration", "sponsorship", "sponsored", "sale event", "discount", "promotion", "promo", "campaign",
     "明星", "代言", "联名", "新鞋", "折扣", "促销", "赞助", "赛事赞助", "销售战报",
+]
+
+COMMERCE_RELEVANCE_KEYWORDS = [
+    "ecommerce", "commerce", "membership", "loyalty", "app", "mini program", "community", "content commerce",
+    "social commerce", "conversion", "search", "recommendation", "personalization", "customer experience",
+    "store experience", "store traffic", "omnichannel", "fulfillment", "delivery", "supply chain", "inventory",
+    "product experience", "consumer segment", "gen z", "younger consumers", "direct commerce", "owned channel",
+    "电商", "会员", "忠诚度", "App", "小程序", "社群", "内容电商", "内容转化", "种草", "转化", "搜索", "推荐",
+    "个性化", "用户体验", "门店体验", "门店引流", "线上线下", "全渠道", "履约", "配送", "供应链", "库存",
+    "商品体验", "新人群", "年轻消费者", "品牌直营", "自有渠道",
 ]
 
 FILTER_PROFILES = {
@@ -156,7 +172,7 @@ FILTER_PROFILES = {
             "电商", "会员", "数字化", "门店创新", "供应链", "履约", "商品体验", "搜索", "推荐", "消费趋势", "组织战略", "新零售", "门店", "新品", "财报", "行业报告", "可穿戴", "运动科技",
         ],
         "exclude_any": COMMON_EXCLUDED_KEYWORDS + ["celebrity", "ambassador", "endorsement", "collaboration", "sponsorship", "sponsored", "campaign", "明星", "代言", "联名", "赞助", "赛事赞助"],
-        "override_any": ["ecommerce", "direct commerce", "membership", "digital", "supply chain", "fulfillment", "strategy", "omnichannel", "store expansion", "financial results", "industry report", "consumer trend", "电商", "会员", "数字化", "供应链", "履约", "战略", "门店", "财报", "行业报告", "消费趋势"],
+        "override_any": ["ecommerce", "direct commerce", "membership", "digital", "supply chain", "fulfillment", "strategy", "omnichannel", "store expansion", "financial results", "industry report", "consumer trend", "电商", "会员", "数字化", "供应链", "履约", "战略", "门店", "财报", "行业报告", "消费趋势"] + COMMERCE_RELEVANCE_KEYWORDS,
     },
     "retail": {
         "include_any": [
@@ -166,8 +182,7 @@ FILTER_PROFILES = {
             "omnichannel", "digital store", "membership", "supply chain", "fulfillment", "rfid", "self-checkout", "search", "recommendation", "ai shopping", "inventory sharing", "returns", "app", "ecommerce experience", "operations efficiency", "fresh management", "store automation",
             "全渠道", "门店数字化", "会员", "供应链", "履约", "自助结账", "搜索", "推荐", "库存共享", "退换货", "运营效率", "生鲜管理", "门店自动化",
         ],
-        "hard_exclude_any": COMMON_EXCLUDED_KEYWORDS,
-        "exclude_any": COMMON_LOW_VALUE_KEYWORDS,
-        "override_any": ["omnichannel", "digital store", "supply chain", "fulfillment", "rfid", "self-checkout", "self checkout", "inventory", "app", "operations", "全渠道", "供应链", "履约", "库存", "运营效率"],
+        "exclude_any": COMMON_LOW_VALUE_KEYWORDS + COMMON_EXCLUDED_KEYWORDS,
+        "override_any": ["omnichannel", "digital store", "supply chain", "fulfillment", "rfid", "self-checkout", "self checkout", "inventory", "app", "operations", "全渠道", "供应链", "履约", "库存", "运营效率"] + COMMERCE_RELEVANCE_KEYWORDS,
     },
 }
