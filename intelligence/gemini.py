@@ -47,10 +47,16 @@ def generate_dashboard_data(items):
 
     prompt = build_dashboard_prompt(items)
     client = genai.Client(api_key=api_key)
-    response = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=prompt,
-    )
+    try:
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt,
+        )
+    except Exception as exc:
+        return build_source_fallback(
+            items,
+            f"Gemini request failed; rendered source-based fallback content. Error: {exc}",
+        )
 
     raw_text = response.text.strip()
     return parse_dashboard_json(raw_text)
@@ -162,6 +168,14 @@ def build_dashboard_fallback(raw_text):
         "one_thing_worth_watching": "Gemini 返回内容未能解析为标准 JSON，已按 empty 结果处理。",
         "parse_warning": "Gemini JSON parse failed; rendered empty fallback content.",
     }
+
+
+def build_source_fallback(source_items, warning):
+    data = build_dashboard_fallback("")
+    data["headline"] = "Gemini 暂时不可用，已基于真实候选来源生成临时预览"
+    data["one_thing_worth_watching"] = data["headline"]
+    data["parse_warning"] = warning
+    return ensure_minimum_dashboard_signals(data, source_items)
 
 
 def ensure_minimum_dashboard_signals(data, source_items):
