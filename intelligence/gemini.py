@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import time
 
 from config import MIN_SECTION_CANDIDATES, SECTION_ORDER
 from intelligence.prompt import build_dashboard_prompt
@@ -47,12 +48,19 @@ def generate_dashboard_data(items):
 
     prompt = build_dashboard_prompt(items)
     client = genai.Client(api_key=api_key)
+
+    print("【DEBUG】开始调用 Gemini API，等待 5 秒缓冲...")
+    time.sleep(5)
+    
     try:
         response = client.models.generate_content(
             model=GEMINI_MODEL,
             contents=prompt,
         )
     except Exception as exc:
+        print(f"【DEBUG-致命错误】Gemini API 调用彻底失败！")
+        print(f"错误类型: {type(exc)}")
+        print(f"详细原因: {exc}")
         return build_source_fallback(
             items,
             f"Gemini request failed; rendered source-based fallback content. Error: {exc}",
