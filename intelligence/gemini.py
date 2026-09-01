@@ -212,6 +212,8 @@ def ensure_minimum_dashboard_signals(data, source_items):
                 break
             if item.get("link") in used_links:
                 continue
+            if _is_google_news_redirect(item.get("link")):
+                continue
             cards.append(_fallback_card_from_item(domain, item))
             if item.get("link"):
                 used_links.add(item.get("link"))
@@ -258,8 +260,9 @@ def _items_by_domain(items):
     for section_items in grouped.values():
         section_items.sort(
             key=lambda item: (
-                item.get("relevance_score", 0),
+                1 if item.get("origin_type") == "manual" else 0,
                 item.get("priority", 1),
+                item.get("relevance_score", 0),
                 -(item.get("search_window_days") or 0),
                 item.get("published_date", ""),
             ),
@@ -279,24 +282,28 @@ def _canonical_section_key(domain):
 
 def _fallback_card_from_item(domain, item):
     title = item.get("title") or "Signal"
-    summary = item.get("summary") or title
+    raw_summary = item.get("summary") or title
+    summary = _clean_text(raw_summary)
     link = item.get("link") or ""
     trend = _fallback_trend(item)
+    points = _summary_points(raw_summary)
 
     if domain == "ai":
         return {
             "name": _shorten(title, 42),
             "title": _shorten(_business_ai_title(title), 42),
-            "capability": _shorten(summary, 150),
-            "industry_impact": "该信号与电商、零售或企业流程中的 AI 能力应用相关，适合作为本期业务情报补充。",
+            "capability": summary,
+            "summary_points": points,
+            "industry_impact": "",
             "trend": trend,
             "link": link,
         }
 
     return {
         "name": _shorten(_company_or_topic(title), 32),
-        "news": _shorten(summary, 90),
-        "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+        "news": summary,
+        "summary_points": points,
+        "why_this_matters": "",
         "trend": trend,
         "link": link,
     }
@@ -358,11 +365,33 @@ def _clean_text(text):
 
 
 def _summary_points(value):
+    text = ""
     if isinstance(value, list):
         points = [_clean_text(item) for item in value if _clean_text(item)]
+        text = " ".join(points)
     else:
-        text = _clean_text(value)
-        points = [part.strip() for part in re.split(r"(?<=[。！？.!?])\s*", text) if part.strip()]
+        raw_text = str(value or "").strip()
+        line_points = _manual_structured_points(raw_text)
+        if line_points:
+            points = line_points
+        else:
+            text = _clean_text(raw_text)
+            points = [part.strip() for part in re.split(r"(?<=[。！？.!?])\s*", text) if part.strip()]
         if len(points) <= 1 and text:
             points = [text]
-    return points[:5]
+    return points[:6]
+
+
+def _manual_structured_points(text):
+    points = []
+    metadata_prefixes = ("Category:", "Keywords:", "Company:", "Source:", "Date:")
+    for raw_line in text.splitlines():
+        line = _clean_text(raw_line)
+        if not line or line.startswith(metadata_prefixes):
+            continue
+        if line.startswith("Content:"):
+            line = line[len("Content:") :].strip()
+        line = re.sub(r"^(?:[-*•]|\d+[.)、]|[一二三四五六七八九十]+[、.])\s*", "", line).strip()
+        if line:
+            points.append(line)
+    return points if len(points) > 1 else []

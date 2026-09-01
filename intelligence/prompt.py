@@ -27,7 +27,8 @@ def build_dashboard_prompt(items):
 - 不要输出对迪卡侬意味着什么。
 - 不要输出 Direct-to-Consumer 相关英文缩写、该缩写的策略/机会表述、Recommended Actions、Possible Experiment。
 - 输出中禁止出现 Direct-to-Consumer 相关英文缩写或任何包含该缩写的表达。最多只能使用“给迪卡侬的启示”“对迪卡侬有参考价值”这类中性表达，不要具体写成业务策略、行动建议或实验建议。
-- 每条 signal 只输出 summary_points，不要输出 why_this_matters 或 trend。summary_points 按原始新闻内容提炼 3-5 个要点，信息量要足够，让读者不点原文也能看懂公司、动作、数据、业务场景和变化。
+- 每条 signal 只输出 summary_points，不要输出 why_this_matters 或 trend。summary_points 按原始新闻内容提炼 3-6 个要点，信息量要足够，让读者不点原文也能看懂公司、动作、数据、业务场景和变化。
+- 如果候选新闻或 manual_sources/daily_input.md 人工输入本身已经包含分点、编号、小标题或段落结构，请尽量保留原有结构点，不要强行合并成一段，也不要改变新闻事实顺序。
 - 不要建议成立团队，不要建议持续关注。
 - 不要输出 Evidence 编号或长篇商业建议。
 
@@ -78,10 +79,10 @@ JSON schema 必须严格如下：
 }}
 
 数量要求：
-- platform: 最多 8 条；人工输入质量高时优先人工输入，但必须有真实来源或明确人工输入内容支撑；每条 3-5 个 summary_points，总字数约 450-750 个中文字。
-- ai: 最多 8 条；每条 3-5 个 summary_points，总字数约 450-750 个中文字，重点是业务可理解的 AI 能力和真实流程影响；纯模型版本、参数或 Benchmark 新闻必须过滤。
-- sports: 最多 8 条；可以使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内可靠信息；每条 3-5 个 summary_points，总字数约 450-750 个中文字。
-- retail: 最多 8 条；每条 3-5 个 summary_points，总字数约 450-750 个中文字，必须足够完整；严禁 Retail Media。
+- platform: 最多 8 条；人工输入质量高时优先人工输入，但必须有真实来源或明确人工输入内容支撑；每条 3-6 个 summary_points，总字数约 500 个中文字，信息复杂时可放宽到 800 个中文字。
+- ai: 最多 8 条；每条 3-6 个 summary_points，总字数约 500 个中文字，信息复杂时可放宽到 800 个中文字，重点是业务可理解的 AI 能力和真实流程影响；纯模型版本、参数或 Benchmark 新闻必须过滤。
+- sports: 最多 8 条；可以使用行业报告、财报、门店扩张、消费趋势、产品体验变化等近 14 天内可靠信息；每条 3-6 个 summary_points，总字数约 500 个中文字，信息复杂时可放宽到 800 个中文字。
+- retail: 最多 8 条；每条 3-6 个 summary_points，总字数约 500 个中文字，信息复杂时可放宽到 800 个中文字，必须足够完整；严禁 Retail Media。
 - 如果某板块没有可靠新闻，输出空数组 []，不要补齐数量。
 - 排序按对 Decathlon China 数字商业团队的参考价值，不按发布时间。
 
