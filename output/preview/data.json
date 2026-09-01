@@ -1,152 +1,116 @@
 {
-  "date": "2026-08-31",
-  "headline": "平台转向高质量发展，AI落地挑战与体育零售分化加剧",
+  "date": "",
+  "headline": "Gemini 暂时不可用，已基于真实候选来源生成临时预览",
   "platform_intelligence": [
     {
-      "name": "拼多多",
-      "summary_points": [
-        "拼多多二季度营收同比增长8%，净利润同比下降12%，研发投入增长40%。公司正主动放缓增长速度，将资源重点投入到平台治理、供应链标准化改造和产业带智能化。",
-        "平台从“流量和速度”转向“供应链深度和生态健康度”，通过对农产品和产业带的深度介入，建立长期壁垒和高质量发展模式，给迪卡侬的启示是，平台更注重供应链效率和用户体验的长期价值。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/T_JgIKquP3dGlCS46NeOfG"
+      "name": "Bulk",
+      "news": "Bulk-Power System Executive Order Adds a New Grid Supply Chain Compliance Layer JD Supra",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPUG4wNkRPSy1kY1RFUGROWU8xbHV5TV91RmplVVBLNWJmR0Nkd29yM3UyaWJrQXU0ajlFOHhYVUcxbGhjX3haeG84VEYzYVpFUkVKa3hpRl8wUzlmN1NoY3gwQUIzSnNpaDZ4UjhDSVh0bnVXS1hmUkNmdDVCZ0VzVmhTZU40bjQx?oc=5"
     },
     {
-      "name": "追觅科技与小红书",
-      "summary_points": [
-        "追觅科技起诉小红书名誉权纠纷案件已排期开庭，指控小红书平台存在有组织水军和虚假差评，且未及时有效处置内容，要求平台承担法律责任。",
-        "此案将厘清UGC平台对内容治理的责任边界，对在小红书等内容电商平台运营的品牌方具有重要参考价值，凸显品牌在维护线上声誉和平台共治中的挑战。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/rmdhP1m9KHocRcU8ZAAcKg?scene=1&click_id=36"
+      "name": "JD Health stock gains on Hang S…",
+      "news": "JD Health stock gains on Hang Seng Tech reshuffle ad-hoc-news.de",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPLUF1UGQzb1JzQjdBZHFHMGdMeXA0Y0ZGOUNWTGNfeDJUZGJBdlBCaGxxSmlfbFJ0QXF3TFNyZVZpZW9OZFQ2THQ3LXJHaFdvVUFZRHEzT1RCU1JaVGh0SnJjLXlGZHhKSm40bkN6SVR0UThvTjB2ZjVGQ3RFdDF3dHpVaF9XLXhvOUlqMTd5aFYxcmtnUzdZTV9QWTlkTEdoMXZSbHJsSmdNVVpp?oc=5"
     },
     {
-      "name": "微信小店",
-      "summary_points": [
-        "微信小店近期推出“限时秒杀”活动，重点面向10元以下高频消费商品招商，提供平台流量扶持和秒杀补贴，并以价格竞争力作为资源分配的重要指标。",
-        "微信电商正积极向低价、高频、下沉市场渗透，通过平台补贴和流量倾斜，意图复制拼多多模式抢占用户心智，这表明国内电商竞争加剧，低价策略成为重要战场。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/7PkvFBncL_T81KvagmHrXQ?scene=1"
+      "name": "Alibaba stock holds under $120…",
+      "news": "Alibaba stock holds under $120 as June quarter margin squeeze meets AI share sale ad-hoc-…",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQNnlHTE5ORlZ4MU92RXdPSEdHd1EyMEtOLU1wUTQzMjRlSExBa3VQdkxpR2RMWFVwbEtLMGtDZzc0U0Q0RDRTQkN0VWNQNlhzbzdteHVhMHVzNnVteTJ0WW1oRHF5U2VyN0FvTTgxMkZlSFdSSHRnNFNJN1c4WWp3Z0xQSVVfSEJoMGJCV2xSQjQ3cnFMVnlPQWU1XzdfdHVrWUhxMXRCeEZrQXBHaXFGMkVBR0E1blFlNnZGZVd1dUZPbXdXSGxn?oc=5"
     },
     {
-      "name": "京东快递",
-      "summary_points": [
-        "京东快递发布全新快递服务全景图，推出行业首创的生鲜餐前达、跨城4小时达等多款创新时效产品，全面升级寄递服务体系，强调精准交付、稳定服务。",
-        "快递行业竞争从“拼速度”转向“拼精准、拼稳定、拼高性价比”，通过细分场景的定制化服务，满足用户多元化、高确定性的寄递需求，提升用户体验和供应链效率。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/yINTM_dOkurzGjhNuBh0jQ?scene=1&click_id=37"
-    },
-    {
-      "name": "美团小象超市",
-      "summary_points": [
-        "美团小象超市在深圳开出华南首家线下大店，经营面积超3000平米，集结万款商品，配套明厨现制专区，采用店仓一体化精品超市模式。",
-        "即使是即时零售平台也在积极拓展线下实体门店，通过精品超市模式，打造线上线下一体化的消费体验，这反映了本地生活和即时零售服务边界的模糊与融合。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/7PkvFBncL_T81KvagmHrXQ?scene=1"
-    },
-    {
-      "name": "淘宝闪购",
-      "summary_points": [
-        "淘宝闪购联合药企和连锁药房，推出“闪购冷链”医药配送服务，为温控药品提供从药房到患者手中的全程温控保障，已在多个城市试点上线。",
-        "电商平台正通过定制化物流解决方案，深耕特定高价值/高门槛品类，提升对用户特殊需求的服务能力和信任度，这预示着未来精细化物流服务将成为竞争焦点。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/Mqkh9knBpZ8yfig8X2RtVg?scene=1"
-    },
-    {
-      "name": "抖音电商",
-      "summary_points": [
-        "抖音电商发布宠物消费报告，过去一年超1.03亿人在平台为宠物置办日用品，县域产业带贡献超九成成交额，AI智能养宠设备迎来爆发。",
-        "抖音电商通过内容兴趣匹配，成功挖掘新兴消费品类，并显著带动县域产业带发展，同时展现AI智能设备在垂直消费领域的强劲增长潜力。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/Mqkh9knBpZ8yfig8X2RtVg?scene=1"
-    },
-    {
-      "name": "美团闪购",
-      "summary_points": [
-        "美团闪购上线“实拍发货”新规，要求商家售卖单价300元以上酒水须先向用户发送实物照片，方可发货，以提升消费者对高价值商品的知情和信任。",
-        "平台正通过强化交易流程中的透明化和信任机制，解决高价值商品信息不对称问题，保障消费者权益，这对于建立高客单价商品的线上交易信任至关重要。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/7PkvFBncL_T81KvagmHrXQ?scene=1"
+      "name": "Richard Liu Secures RMB 200 Bil…",
+      "news": "Richard Liu Secures RMB 200 Billion Deal with Haier: Why Is JD.com Partnering with Haier?…",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZ1lwelBzR0VVeUxIbHJMSGE3ckw3SEZKMV9URG1XSEs2ZGFuVmxrWmFsQ0hrV0hwajJRUllrTDFMYXdvbzl6R3RuSTlreG4wMVZHQVJNa3djUVJlZEt2OTVTdG4yUklaTWwxN0FGUDRhaVIyZjNNdlowYWI4Y0l6MEdFWFdGWWxYN0RSbXY0MndZNTVVa04yWGdwaHp1UQ?oc=5"
     }
   ],
   "ai_technology": [
     {
-      "name": "AI项目落地困境与成功要素",
-      "title": "AI项目落地困境与成功要素",
-      "summary_points": [
-        "行业研究揭示企业AI项目普遍面临的挑战，如领导层对业务问题的误解、高质量数据缺乏、盲目追逐技术、部署及管理能力不足、应用场景选择不当。",
-        "指出零售电商行业高达80%的AI项目失败率，强调AI成功落地需聚焦业务问题、建立数据治理基础设施、理解AI局限，并投入人力、流程和文化转型而非仅技术采购。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/WYniwpI8qEKzAo1FIBbDew?scene=1"
+      "name": "Inside Z.ai’s turnaround after falling be…",
+      "title": "Inside Z.ai’s turnaround after falling be…",
+      "capability": "Inside Z.ai’s turnaround after falling behind in enterprise AI KrASIA",
+      "industry_impact": "该信号与电商、零售或企业流程中的 AI 能力应用相关，适合作为本期业务情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOLXo4WFg2WmhLT2xrQ2tVWm16SUpGT01DckZPNkp1QW9WaWdaMTlUV18xVHZQVXhIOW1KN1ZfTDVQZmhkeXRON05PV0pVTV80dkdwTF9KNDJFU2x4MDJXenZ0ZVJHbTJMbHlVd1hhSUtZUlZFU0RqVTIwTGpWVjZyYU1pSmNLZEtr?oc=5"
     },
     {
-      "name": "企业AI投资回报评估框架",
-      "title": "企业AI投资回报评估框架",
-      "summary_points": [
-        "艾瑞咨询开源TokenScope运营沙盘，提供SAPEB（评分、对齐、优先排序、执行、基准对标）方法论，帮助企业量化AI投入ROI，解决认知框架缺失、数据归因困难和决策工具缺位问题。",
-        "通过可视化和交互式工具，将AI成本治理从咨询服务转变为客户自主使用工具，显著提升企业在AI转型中的决策效率与成功率，降低验证成本。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/O-SV1-2kmNWWI4WOXAp2ig?scene=1&click_id=35"
+      "name": "How retail will need to adapt for differe…",
+      "title": "AI Agent 可处理连续业务任务",
+      "capability": "How retail will need to adapt for different agentic futures EY",
+      "industry_impact": "该信号与电商、零售或企业流程中的 AI 能力应用相关，适合作为本期业务情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQLVA3SW1waTBrMnlFcS1tTUc3X3ZFbi1zcnRMcHNVY1VST00xV0Y1WnFiSWdkSkRoNXdINkh6dHNTUDJuNW9jaUtzQzBIRnJwZUF6Mm9sOTA1bjA5LW5nNHQ3NllZVWhFQU1rX21DVjRCZjN2Y1Q5N29ublcySXp2YngxZEd1Vk5xSXFDejJjbDRWR2Z2bGI1dnBfaV9OQlhxMVE?oc=5"
     },
     {
-      "name": "支付宝构建超级服务智能体及跨端互联协议",
-      "title": "支付宝构建超级服务智能体及跨端互联协议",
-      "summary_points": [
-        "支付宝发布智能体商业底座及多智能体跨端互联AHA协议体系，旗下超级服务智能体“阿宝”已完成万余项服务AI化接入，并实现跨端连接手机厂商和车企。",
-        "平台通过统一的AI商业底座和互联协议，赋能商家将AI服务快速集成到多种消费场景，极大地拓展了AI在出行、餐饮、文旅等领域的应用广度和效率。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/Mqkh9knBpZ8yfig8X2RtVg?scene=1"
+      "name": "LogicGate Bets on AI Agents to Automate G…",
+      "title": "AI Agent 可处理连续业务任务",
+      "capability": "LogicGate Bets on AI Agents to Automate GRC Workflows BankInfoSecurity",
+      "industry_impact": "该信号与电商、零售或企业流程中的 AI 能力应用相关，适合作为本期业务情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxObVpKd2s4Qkltc2ExbE9peEFBcmFiQ2RKdlBjUVc0VjZwVEU1OHhSM1I0MWZXRDhGZmNjRFJpX1VRMzYtQ2dFLUlrYXVxdjVrVDA4QVpSUGxCbDUtbEg0SFhOTjFiYUF0a3Y0dzZOTWl1UE1BS3FiN2ZNTzlvQ1E5Z1UzeWVocXV2TlV1X0V5TGNZempSNkliSlpn?oc=5"
+    },
+    {
+      "name": "It Turns Out AI Agents Have Unpredictable…",
+      "title": "AI 购物助手能力继续增强",
+      "capability": "It Turns Out AI Agents Have Unpredictable Shopping Habits Forbes",
+      "industry_impact": "该信号与电商、零售或企业流程中的 AI 能力应用相关，适合作为本期业务情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOckkzUFZpVlRfNzhFQXJSNHNzekE5bHBZOEk3TWg5RDVYc0duWkNuY3NBWmIxa2dveFloM0gzMElGSXlnWHJ6YVlQUkRhdTJfalFLWkpsQWRlTjllVWVuc21zamZrSVpJdXhBV2ZjWjB3UnpZTWFUVE40NUNVQ1YwZk11WjNtSmtpX0FINFROZ05uTHZKUXNXbDdzanpOeGFHcGkzbnJKdDFaQ2JIemRNME1B?oc=5"
     }
   ],
   "sports_outdoor": [
     {
-      "name": "中国跑鞋市场",
-      "summary_points": [
-        "中国跑鞋市场在高速增长五年后进入价格战，国产品牌通过“对标”和快速生产大量中低端产品，导致市场同质化严重、价格急剧下降，高端竞速跑鞋成交价跌至500元左右。",
-        "跑鞋市场从专业装备向大众日用品转变，品牌在追求规模时，过早透支了产品创新和价格红利，给迪卡侬的启示是，细分市场的品类管理需警惕同质化和价格战风险。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/7L7wUORJr4oaFs4FZ7iQIQ"
+      "name": "Can Canadian Tire (TSX",
+      "news": "Can Canadian Tire (TSX:CTR) Strengthen Its Omnichannel Retail Advantage? Kalkine Media",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOcnJMYWJOeWFIQ0ZHWjhQQkNMRXV6eXB5RllDM3JnNjA4MnBVRzJrYXNTZi1wb25lSlpwY2huR2FSUjFEcGUyZXByNGR6VXBmNnJ0SExubGdJM2tqRG4zYmFOVnZUdlRkWDdlaXU4SHM2Y1VXYWhFaG1vR0FmcFNmd3pHYWVvaDlBcGRQaWlxVmgtVTR5clFiWm9aVGI3bkl1ZUVMQ3VJRV9EanhKZjdj?oc=5"
     },
     {
-      "name": "lululemon",
-      "summary_points": [
-        "lululemon在国内的七五折定向折扣活动因名额限制和门店执行混乱引发消费者不满，凸显品牌在业绩增长压力下，直营营销流程管控漏洞和品牌高端定位受损问题。",
-        "高端生活方式品牌在市场扩张和维护品牌溢价之间的平衡挑战，会员运营中的契约精神和落地执行细节，对于维护用户信任和品牌口碑至关重要。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/iQdXj9nXQazz15sNiNBW_w?scene=1"
+      "name": "特步进入“双核”时代",
+      "news": "Keywords: 体育品牌 ｜ 跑鞋 Source: 懒熊体育 Date: 2026-08-31 Content: 新闻 1 过去十年，中国跑步最明显的变化是“人越来越多”；而…",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "行业情报",
+      "link": "https://mp.weixin.qq.com/s/un7kYkhWqrvx78VJ2mptCA?"
     },
     {
-      "name": "特步",
-      "summary_points": [
-        "特步发布“RUN TO X”战略，构建“顶碳”（竞速160X）和“顶缓”（零云系列）双旗舰产品结构，以全场景跑步战略应对跑者需求分化，试图将专业优势扩展至大众市场。",
-        "运动品牌通过深挖核心品类，并针对不同场景和消费者需求进行产品线分化，从单一追求速度扩展到兼顾舒适、缓震，以实现专业高度和大众宽度的市场覆盖。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/un7kYkhWqrvx78VJ2mptCA?scene=1&click_id=32"
-    },
-    {
-      "name": "安踏集团",
-      "summary_points": [
-        "安踏上半年营收增长12.9%，主要由迪桑特、可隆等“所有其他品牌”业务（增速44.2%）拉动，主品牌增速放缓。集团战略聚焦多品牌差异化、零售效率提升和全球化布局。",
-        "运动巨头通过构建多元品牌矩阵，以垂直细分领域的差异化品牌（如高端户外、瑜伽）驱动集团增长，同时主品牌通过提升店效和优化渠道维持基本盘，实现整体高质量发展。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/tn2FtAau7R3DzwRkNU7g-Q?scene=1"
-    },
-    {
-      "name": "美国体育零售市场",
-      "summary_points": [
-        "美国体育用品零售商DICK'S收购Foot Locker后转亏，大众运动鞋零售商面临促销竞争。而昂跑、始祖鸟等高端品牌则通过直营能力和品牌溢价逆势增长。",
-        "体育零售行业正在经历两极分化，传统大众分销渠道受价格战和品牌直营挤压，而具有独特品牌故事和高端定位的品牌，通过聚焦价值和体验获得增长。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/R7WuG_4_im9UvEm-UfxFsA?scene=1"
+      "name": "迪桑特、可隆，狠拉了安踏一把",
+      "news": "Keywords: 体育品牌 ｜ 细分市场 Source: DT商业观察 Date: 2026-08-30 Content: ## 新闻7 8 月 26 日，安踏交出半年报：上半…",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "行业情报",
+      "link": "https://mp.weixin.qq.com/s/tn2FtAau7R3DzwRkNU7g-Q?"
     }
   ],
   "retail_innovation": [
     {
-      "name": "好想来量贩零食",
-      "summary_points": [
-        "好想来量贩零食店通过超96%产品源头直采、砍掉中间环节，并保持4000个SKU、月均220款新品快速上新，实现比大卖场低20-30%的均价，同时凭借自有品牌和超2.5亿注册会员进行深度运营，实现营收和门店快速增长。",
-        "该模式通过极致的供应链效率和会员运营，重塑零食消费的“质价比”体验，将规模优势转化为可复制的低价体系和强大的自有品牌孵化能力，是传统零售商成本结构和会员粘性建设的典范。"
-      ],
-      "link": "https://mp.weixin.qq.com/s/9iMpdc3dT1ZHhN9FMAiCqQ?scene=1&click_id=38"
+      "name": "Walmart plans next",
+      "news": "Walmart plans next-gen fulfillment center in Georgia Chain Store Age",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOR2RrSjZyM1hPT3NNSk9neEVTZWpPVXFUemxNNHRIZ0JLTWdnWGFaSmhfS0U5Y05qWkJ3dzAwd2dURVZFdE01dUMxR2J0T1h4UmJacWdtcHFjNnpvd0RkNjc5bThDNmo3ZWFUMEZKdTJDMmZIZmVPbEdubDVuNjJDOA?oc=5"
+    },
+    {
+      "name": "Walmart to Build High",
+      "news": "Walmart to Build High-Tech, Next-Gen Fulfillment Center in Rural Georgia Progressive Groc…",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNaDY5eTJ5eGx5a3FWemkxRnVxckxiLVUwU1lvenR6OWp1TXdDRXdMQnowV3FFajlsQmxZZ3BPeTdVNFM4YmdIUV9qejVCYjdSNXVLbDZvY0ZxMXVXZ2w3bWZfN2RsQ0ZzR2djbU5ONGgyVzR3d2pOc2FDM1V2ejRkVTNEN2NKUFpUcmtINE1FV180ckM2OXpDRHBTNA?oc=5"
+    },
+    {
+      "name": "Retailers Turn to Vertical Inte…",
+      "news": "Retailers Turn to Vertical Integration to Cut Costs, Strengthen Supply Chains CStore Deci…",
+      "why_this_matters": "该信号在近 14 天候选池中相关性较高，适合作为本期行业情报补充。",
+      "trend": "近3天;行业情报",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQa3ZzRl9MelhtTHZic2hqTkllcVpVWkZqVWk3YW1pWTkxVmw3WklYanNzWW44LXR2LTExTVlMODlwNmh1RHRLdHBNcFZmaFYwcGNhcGdiZG9VenFWOVF4OTJwdVlEYW8zRFlBM2lxLXlpbVhMQjVxYU5TMHFudF84a1BpRjdkVEdFeG52cElUOVNqWjlBbmdlcmsxQl9kN0h2Z1Q4UVNfQm0?oc=5"
     }
   ],
-  "one_thing_worth_watching": "中国电商平台对供应链深度和生态治理的投入，以及AI在零售业务落地中的真实挑战与效用评估。"
+  "one_thing_worth_watching": "Gemini 暂时不可用，已基于真实候选来源生成临时预览",
+  "parse_warning": "Gemini request failed; rendered source-based fallback content. Error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
 }
