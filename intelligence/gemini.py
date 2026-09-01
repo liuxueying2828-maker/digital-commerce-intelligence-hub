@@ -1,6 +1,7 @@
 import os
 import json
 import re
+from urllib.parse import urlparse
 
 from config import MIN_SECTION_CANDIDATES, SECTION_ORDER
 from intelligence.prompt import build_dashboard_prompt
@@ -80,10 +81,10 @@ def normalize_dashboard_data(data):
     normalized = {
         "date": data.get("date", ""),
         "headline": data.get("headline") or data.get("one_thing_worth_watching") or "今日信号已更新",
-        "platform_intelligence": _normalize_cards(_first_section(data, "platform_intelligence")),
-        "ai_technology": _normalize_ai_cards(_first_section(data, "ai_technology")),
-        "sports_outdoor": _normalize_cards(_first_section(data, "sports_outdoor")),
-        "retail_innovation": _normalize_cards(_first_section(data, "retail_innovation")),
+        "platform_intelligence": _filter_reliable_cards(_normalize_cards(_first_section(data, "platform_intelligence"))),
+        "ai_technology": _filter_reliable_cards(_normalize_ai_cards(_first_section(data, "ai_technology"))),
+        "sports_outdoor": _filter_reliable_cards(_normalize_cards(_first_section(data, "sports_outdoor"))),
+        "retail_innovation": _filter_reliable_cards(_normalize_cards(_first_section(data, "retail_innovation"))),
         "one_thing_worth_watching": data.get("one_thing_worth_watching") or data.get("headline") or "今日信号已更新",
     }
     if data.get("parse_warning"):
@@ -106,6 +107,7 @@ def _normalize_cards(items):
                 {
                     "name": "Signal",
                     "news": _clean_text(item),
+                    "summary_points": _summary_points(item),
                     "why_this_matters": "该信号值得进一步阅读原文确认。",
                     "trend": "Signal",
                     "link": "",
@@ -117,6 +119,15 @@ def _normalize_cards(items):
             {
                 "name": item.get("name") or item.get("platform") or item.get("topic") or "Signal",
                 "news": _clean_text(item.get("news") or item.get("signal") or ""),
+                "summary_points": _summary_points(
+                    item.get("summary_points")
+                    or item.get("summary")
+                    or item.get("news")
+                    or item.get("signal")
+                    or item.get("why_this_matters")
+                    or item.get("why")
+                    or ""
+                ),
                 "why_this_matters": _clean_text(item.get("why_this_matters") or item.get("why") or ""),
                 "trend": item.get("trend") or "Trend",
                 "link": item.get("link") or "",
@@ -134,6 +145,7 @@ def _normalize_ai_cards(items):
                     "name": "AI 能力变化",
                     "title": "AI 能力变化",
                     "capability": _clean_text(item),
+                    "summary_points": _summary_points(item),
                     "industry_impact": "该技术信号需要结合原文进一步判断行业影响。",
                     "trend": "AI 能力",
                     "link": "",
@@ -149,6 +161,11 @@ def _normalize_ai_cards(items):
                 "name": title,
                 "title": title,
                 "capability": _clean_text(capability),
+                "summary_points": _summary_points(
+                    item.get("summary_points")
+                    or item.get("summary")
+                    or [capability, industry_impact]
+                ),
                 "industry_impact": _clean_text(industry_impact),
                 "trend": item.get("trend") or "AI 能力",
                 "link": item.get("link") or "",
@@ -215,6 +232,19 @@ def _sanitize_dashboard_terms(value):
     if isinstance(value, dict):
         return {key: _sanitize_dashboard_terms(item) for key, item in value.items()}
     return value
+
+
+def _filter_reliable_cards(cards):
+    return [
+        card
+        for card in cards
+        if not (isinstance(card, dict) and _is_google_news_redirect(card.get("link")))
+    ]
+
+
+def _is_google_news_redirect(link):
+    host = urlparse(str(link or "")).netloc.lower()
+    return host == "news.google.com"
 
 
 def _items_by_domain(items):
@@ -325,3 +355,14 @@ def _shorten(text, limit):
 
 def _clean_text(text):
     return re.sub(r"\s+", " ", str(text)).strip()
+
+
+def _summary_points(value):
+    if isinstance(value, list):
+        points = [_clean_text(item) for item in value if _clean_text(item)]
+    else:
+        text = _clean_text(value)
+        points = [part.strip() for part in re.split(r"(?<=[。！？.!?])\s*", text) if part.strip()]
+        if len(points) <= 1 and text:
+            points = [text]
+    return points[:5]
